@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lakshay Gupta | Portfolio</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(120deg,#6a85b6 0%, #bac8e0 100%);
+      min-height: 100vh;
+      color: #222;
+      overflow-x: hidden;
+    }
+    /* ==== Animated Hero Section ==== */
+    .hero {
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; padding: 48px 16px 36px 16px;
+      animation: fadeInHero 1.8s ease;
+    }
+    @keyframes fadeInHero {
+      0% { opacity: 0; transform: translateY(60px);}
+      100% {opacity: 1; transform: none;}
+    }
+    .profile-pic {
+      width: 128px; height: 128px; object-fit: cover; border-radius: 50%;
+      box-shadow: 0 10px 30px rgba(106,133,182,0.2);
+      border: 5px solid #6a85b6;
+      transition: transform .4s;
+      margin-bottom: 20px;
+    }
+    .profile-pic:hover {transform: scale(1.04);}
+    .name {font-size: 2.5em; font-weight: bold; letter-spacing: 1.2px;}
+    .subtitle {font-size: 1.12em; margin: 11px 0 0 0; color: #4848a9;}
+    .hero-btns {margin-top:22px;}
+    .social-btn {
+      font-size: 2em; color: #6a85b6; background: #fff;
+      border: none; margin: 0 10px; border-radius: 50%;
+      width:46px; height:46px; display:inline-flex; align-items:center; justify-content:center;
+      box-shadow: 0 4px 15px #6a85b67a; transition: background .2s, color .3s, transform .18s;
+      cursor:pointer; text-decoration:none;
+    }
+    .social-btn:hover { background: #6a85b6; color: #fff; transform: translateY(-2px);}
+    /* ==== Animated Skills Section ==== */
+    .section {width:90%;max-width:840px;margin:38px auto 0 auto;background:#fff3;border-radius:18px;padding:26px 26px 20px 26px;
+      box-shadow:0 8px 32px #6a85b616; animation:fadeInSec 1.6s;}
+    @keyframes fadeInSec {0%{opacity:0;transform:translateY(60px);}100%{opacity:1;transform:none;}}
+    .sec-title {font-size:1.35em;font-weight:bold;letter-spacing:1px;color:#4848a9;margin-bottom:16px;}
+    .skills {display:flex;justify-content:space-between;flex-wrap:wrap;gap:17px;}
+    .skill-item {
+      background: #fff;
+      border-radius: 12px;
+      padding: 12px 18px;
+      box-shadow:0 3px 16px #6a85b612;
+      display:flex;align-items:center;min-width:140px;font-size:1em;gap:7px;font-weight:500;
+      transition: box-shadow .23s, transform .17s;
+      animation:fadeInSkill 2s;
+    }
+    .skill-item:hover {box-shadow:0 8px 26px #6a85b629;transform:scale(1.04);}
+    @keyframes fadeInSkill {0%{opacity:0;transform:translateY(38px);}100%{opacity:1;transform:none;}}
+    /* ==== Achievements/Projects Gallery ==== */
+    .gallery {display:flex;gap:18px;flex-wrap:wrap;}
+    .card {
+      background:#fff;border-radius:16px;box-shadow:0 4px 22px #6a85b61b;
+      padding:17px 16px;width:280px;max-width:98vw;margin-bottom:12px;
+      transition:transform .17s, box-shadow .19s;
+      animation:fadeInCard 2.3s;}
+    .card:hover {transform:scale(1.04);box-shadow:0 8px 32px #6a85b629;}
+    @keyframes fadeInCard{0%{opacity:0;transform:scale(.98);}100%{opacity:1;transform:none;}}
+    .card-title{font-size:1.07em;font-weight:bold;margin-bottom:8px;color:#6a85b6;}
+    .card-desc{font-size:.98em;color:#222;}
+    /* ==== Footer ==== */
+    .footer {margin:44px 0 0 0;padding:18px 0 4px 0;text-align:center;font-size:.92em;background:#bac8e024;color:#4848a9;}
+    @media(max-width:700px){
+      .gallery{flex-direction:column;align-items:center;}
+      .section{padding:9px;}
+      .skills{flex-direction:column;gap:10px;}
+      .hero{padding:28px 7px 16px 7px;}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <img src="https://randomuser.me/api/portraits/men/99.jpg" alt="Profile Pic" class="profile-pic"/>
+    <div class="name">Lakshay Gupta</div>
+    <div class="subtitle">Aspiring Cybersecurity & Entrepreneurship Innovator | Class of 2026<br>Kurukshetra, Haryana, India</div>
+    <div class="hero-btns">
+      <a class="social-btn" href="https://www.linkedin.com/in/lakshay-gupta-9bbaba385/" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a class="social-btn" href="mailto:lakshaygupta@email.com"><i class="fas fa-envelope"></i></a>
+      <a class="social-btn" href="https://github.com/lakshay32009" target="_blank"><i class="fab fa-github"></i></a>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section class="section">
+    <div class="sec-title">Skills & Tools</div>
+    <div class="skills">
+      <span class="skill-item"><i class="fab fa-python"></i> Python</span>
+      <span class="skill-item"><i class="fas fa-shield-alt"></i> Cybersecurity</span>
+      <span class="skill-item"><i class="fa fa-brain"></i> AI/ML</span>
+      <span class="skill-item"><i class="fa fa-network-wired"></i> Networks</span>
+      <span class="skill-item"><i class="fa fa-code"></i> Ethical Hacking</span>
+    </div>
+  </section>
+
+  <!-- Achievements/Projects Gallery -->
+  <section class="section">
+    <div class="sec-title">Achievements & Highlights</div>
+    <div class="gallery">
+      <div class="card">
+        <div class="card-title">🏆 Community Contribution Award</div>
+        <div class="card-desc">Recognized by Agarwal Sabha, Kurukshetra for outstanding community work and initiative.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">🥉 3rd Prize, Graphic Design Competition</div>
+        <div class="card-desc">Won in school fest (2022) for original graphic design project.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">🌱 Environmental Initiative</div>
+        <div class="card-desc">Planted trees as part of green initiatives at school, promoting sustainability.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">📄 Google Cybersecurity Certifications</div>
+        <div class="card-desc">Achieved multiple Google credentials in 2025 covering Python, Linux, AI, Threats & Security.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education Section -->
+  <section class="section">
+    <div class="sec-title">Education</div>
+    <div>
+      <span><strong>Wisdom World School Kurukshetra</strong> <br>Class of 2026</span>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <div class="footer">
+    &copy; 2025 Lakshay Gupta | Made with ❤️ and ambition.<br>
+    <span>Curious about this site? <a href="https://github.com/lakshay32009" style="color:#4848a9;text-decoration:underline" target="_blank">View Source</a></span>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Lakshay Gupta | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;400&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0; font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #5f2c82 0%, #49a09d 100%);
+      color: #fff;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    .container {
+      width: 90%; max-width: 850px;
+      margin: 50px auto; background: rgba(34,34,60, 0.6); border-radius: 18px; box-shadow: 0 8px 30px rgba(0,0,0, 0.2);
+      padding: 48px 32px 32px 32px;
+      animation: fadein 2s;
+    }
+    @keyframes fadein { from { opacity: 0; transform: translateY(40px);} to {opacity: 1; transform: none;} }
+    h1 { font-size: 2.6em; margin-top: 0; letter-spacing: 1.5px; }
+    .typing { font-size: 1.2em; color: #c5ecfb; font-family: monospace; font-weight: 400; }
+    .section { margin: 32px 0 0 0; }
+    .subtitle { color: #41b6e6; text-transform: uppercase; letter-spacing: 1px; font-size: 1.1em; margin-bottom: 8px;}
+    ul { padding-left: 1.2em;}
+    .achievement { margin-top: 16px; }
+    .certs {display:flex; flex-wrap:wrap; gap:14px;}
+    .cert-item {background:rgba(70,182,230,0.16); border-radius:9px; padding:8px 12px;font-size:0.98em;}
+    .contact-btn {
+      display: inline-block; background: linear-gradient(90deg,#41b6e6,#5f2c82); color: #fff; font-weight: bold;
+      padding: 10px 23px; border-radius: 50px; text-decoration: none; margin-top: 18px; transition: box-shadow .2s;
+      box-shadow: 0 4px 14px rgba(94,44,130, 0.12);}
+    .contact-btn:hover {box-shadow: 0 9px 25px #41b6e646;}
+    @media (max-width:600px) {.container {padding: 32px 9px;}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>
+      <span id="typewriter"></span>
+    </h1>
+    <script>
+      const text = "Lakshay Gupta";
+      let i = 0;
+      function typing() {
+        if (i < text.length) {
+          document.getElementById("typewriter").innerHTML += text.charAt(i);
+          i++;
+          setTimeout(typing, 110);
+        }
+      }
+      typing();
+    </script>
+    <div class="typing">Aspiring Cybersecurity & Entrepreneurship Innovator | Class of 2026<br>Kurukshetra, Haryana, India</div>
+
+    <div class="section">
+      <div class="subtitle">About Me</div>
+      <p>
+        Driven and innovative high-schooler passionate about cybersecurity, Python, ethical hacking, and AI/ML. Always learning, exploring, and contributing—awarded for community work and competitive achievements.<br>
+        Actively creating real-world projects and pursuing Google certifications to deepen skills for a future in tech and entrepreneurship.<br>
+      </p>
+    </div>
+
+    <div class="section">
+      <div class="subtitle">Achievements</div>
+      <ul>
+        <li class="achievement">🏆 Honoured to be Recognized for Community Contribution (Agarwal Sabha, Kurukshetra)</li>
+        <li class="achievement">🥉 3rd Prize, Graphic Design Competition (School Fest 2022)</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <div class="subtitle">Education</div>
+      <p><strong>Wisdom World School Kurukshetra</strong></p>
+    </div>
+
+    <div class="section">
+      <div class="subtitle">Google Certifications (2025)</div>
+      <div class="certs">
+        <div class="cert-item">Accelerate Your Job Search with AI</div>
+        <div class="cert-item">Assets, Threats, and Vulnerabilities</div>
+        <div class="cert-item">Automate Cybersecurity Tasks with Python</div>
+        <div class="cert-item">Connect and Protect: Networks & Security</div>
+        <div class="cert-item">Foundations of Cybersecurity</div>
+        <div class="cert-item">Cybersecurity Specialization</div>
+        <div class="cert-item">Manage Security Risks</div>
+        <div class="cert-item">Prepare for Cybersecurity Jobs</div>
+        <div class="cert-item">Detection and Response</div>
+        <div class="cert-item">Linux and SQL Tools</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="subtitle">Contact</div>
+      <a class="contact-btn" href="https://www.linkedin.com/in/lakshay-gupta-9bbaba385/" target="_blank">Connect on LinkedIn</a>
+    </div>
+  </div>
+</body>
+</html>

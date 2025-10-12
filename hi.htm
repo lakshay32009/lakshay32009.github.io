@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lakshay Gupta | Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css"/>
+  <style>
+    html { box-sizing: border-box; scroll-behavior: smooth;}
+    *,*:before,*:after { box-sizing: inherit;}
+    body {margin:0; color:#181730; font-family:'Montserrat',sans-serif; background: #fcfcfc; }
+    /* Navbar */
+    .navbar {
+      position:fixed; top:0; left:0; width:100vw; background:rgb(252,252,252,0.95); z-index:99;
+      display: flex; align-items: center; justify-content: space-between; padding:25px 8vw 14px 8vw;
+      border-bottom:1.5px solid #eaeaea; box-shadow:0 2.5px 15px 0 #ddd4;
+      font-size:1.09em; transition: background .3s,box-shadow .4s; 
+    }
+    .nav-logo {font-size:1.45em; font-weight:700; letter-spacing:0.7px; color:#4336e8; }
+    .nav-links a {margin-left:34px; color:#181730;text-decoration:none; font-weight:500;position:relative;}
+    .nav-links a:after {
+      content:"";display:block;width:0;height:3.1px; background:#3c1bd6;transition:.3s;
+      position:absolute; left:0;bottom:-4px; border-radius:2px;}
+    .nav-links a:hover:after, .nav-links a.active:after {width:100%;}
+    @media (max-width:700px){
+      .navbar {padding:15px 5vw 8px 5vw; font-size:0.95em;}
+      .nav-links a {margin-left:17px;}
+      .hero-wrap {padding-top:110px;}
+    }
+
+    /* Hero */
+    .hero-wrap {
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      min-height:64vh;
+      padding-top:130px; padding-bottom:70px;
+    }
+    .hero {max-width:870px; text-align:center;}
+    .hero h1 {font-size:3.2em; color:#3c1bd6; margin:0; font-weight: 800; letter-spacing:1.7px;}
+    .hero h2 {font-size:1.55em;color:#4e43b8;font-weight:600; margin:15px 0 7px 0;}
+    .hero p {font-size:1.175em; color: #333; max-width:550px; margin:auto;}
+    .hero img {
+      margin-top:38px; width:180px; height:180px; object-fit:cover;
+      border-radius:55px; box-shadow: 0 12px 48px #3c1bd632;
+      border:6px solid #b7b3fa;
+      display:block; margin-left: auto; margin-right: auto;
+      transition:transform 0.8s cubic-bezier(.56,-0.13,.29,1.27);
+    }
+    .hero img:hover {transform:scale(1.1) rotate(-4deg);}
+    /* Portfolio Grid */
+    .portfolio-section {max-width:1200px;margin:70px auto 0 auto;padding:0 6vw;}
+    .portfolio-title { font-size:2.1em; font-weight:700; color:#181730;margin-bottom:34px;margin-top:46px;}
+    .projects-grid {
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:30px; margin-bottom:60px;
+    }
+    .project-card {
+      background:#f7f6fe; border-radius:17px; box-shadow:0 6px 32px #3a2b8722; overflow:hidden;
+      display:flex; flex-direction:column; min-height:370px; transition:box-shadow .3s, transform .2s;
+      cursor:pointer;position:relative;
+    }
+    .project-card:hover {box-shadow:0 10px 34px #3a2b8799; transform:translateY(-4px) scale(1.025);}
+    .project-img {width:100%; height:170px; object-fit:cover; background:#eaeaef;}
+    .project-content {padding:28px 20px 19px 20px;}
+    .project-title {font-size:1.28em; font-weight:700; color:#3c1bd6;margin-bottom:12px;}
+    .project-desc {font-size:1.04em; color:#39396c;}
+    /* About */
+    .about-section {background:#f6f5fe;margin:95px auto 0 auto;max-width:850px;padding:56px 28px 50px 28px;border-radius:25px;box-shadow:0 5px 30px #eaeaff49;}
+    .about-section h2 {color:#3c1bd6;font-weight:800;font-size:1.7em;margin-bottom:21px;}
+    .about-section p {font-size:1.14em;color:#3c2a7c;line-height:1.75;margin-bottom:10px;}
+    /* Contact */
+    .contact-section {background:#fff;margin:90px auto 45px auto;max-width:850px;padding:49px 30px 32px 30px;
+      border-radius:25px;box-shadow:0 6px 26px #18173013;}
+    .contact-section h2 {color:#3c1bd6; font-weight:750; font-size:1.54em;}
+    .contact-links {margin-top:19px;}
+    .contact-links a {display:inline-block;margin-right:28px;text-decoration:none; color:#39396c;font-weight:600;}
+    .contact-links a i {margin-right:6px;}
+    /* Footer */
+    .footer {text-align:center; color:#7a7c9a; padding:36px 0 22px 0; font-size:1em;font-weight:600;}
+    @media (max-width:600px){
+      .hero img, .project-img {width:100%; height: auto; min-width:0;}
+      .portfolio-section, .about-section, .contact-section{ padding:20px 3vw;}
+      .hero h1 {font-size:2em;}
+      .portfolio-title {font-size:1.4em;}
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <div class="navbar" id="navbar">
+    <div class="nav-logo">Lakshay Gupta</div>
+    <div class="nav-links">
+      <a href="#portfolio">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+  <!-- Hero Section -->
+  <div class="hero-wrap" id="hero">
+    <div class="hero" data-aos="fade-up">
+      <h1>Crafting Ideas. Solving Problems.</h1>
+      <h2>12th Class Student & Portfolio Showcase</h2>
+      <p>
+        Hi, I'm Lakshay—a creative technologist focusing on <strong>AI, cybersecurity, and design</strong>.
+        I love building smart solutions and visually stunning experiences.
+      </p>
+      <img src="WhatsApp-Image-2025-10-11-at-23.19.34_d3c78967.jpg" alt="Lakshay Gupta Profile" loading="lazy" />
+    </div>
+  </div>
+  <!-- Portfolio Grid -->
+  <div class="portfolio-section" id="portfolio">
+    <div class="portfolio-title" data-aos="fade-right">Selected Projects</div>
+    <div class="projects-grid">
+      <div class="project-card" data-aos="fade-up">
+        <img src="WhatsApp-Image-2025-09-20-at-20.44.39_d6ecc205.jpg" class="project-img" alt="Project 1"/>
+        <div class="project-content">
+          <div class="project-title">AI-Based Fraud Detector</div>
+          <div class="project-desc">
+            Python-powered system for banking fraud detection using machine learning—visual patterns, real-time alerts, and analytics dashboard.
+          </div>
+        </div>
+      </div>
+      <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+        <img src="bitmoji.png" class="project-img" alt="Project 2">
+        <div class="project-content">
+          <div class="project-title">Personal Portfolio & Identity</div>
+          <div class="project-desc">
+            Designed and implemented a portfolio with interactive animations and my digital Bitmoji to represent brand and personality.
+          </div>
+        </div>
+      </div>
+      <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+        <img src="image.jpg" class="project-img" alt="Project 3">
+        <div class="project-content">
+          <div class="project-title">Community Hackathon</div>
+          <div class="project-desc">
+            Led a student team at a local hackathon—developed a community impact project and won accolades for teamwork and creativity.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- About Section -->
+  <div class="about-section" id="about" data-aos="fade-up">
+    <h2>About Me</h2>
+    <p>
+      I’m a Grade 12 student at Wisdom World School Kurukshetra, passionate about <b>AI/ML, cybersecurity, and creative coding</b>.<br>
+      I build projects that blend logic with aesthetics, using technology to solve real problems creatively.
+    </p>
+    <p>
+      <b>Recognition:</b><br>
+      🏆 Community Award | 🥉 Design Competition | 🌱 Eco Initiative Leader
+    </p>
+  </div>
+  <!-- Contact -->
+  <div class="contact-section" id="contact" data-aos="fade-up">
+    <h2>Contact</h2>
+    <div class="contact-links">
+      <a href="mailto:lakshaygupta@email.com"><i class="fas fa-envelope"></i>Email</a>
+      <a href="https://www.linkedin.com/in/lakshay-gupta-9bbaba385/" target="_blank"><i class="fab fa-linkedin"></i>LinkedIn</a>
+      <a href="https://github.com/lakshay32009" target="_blank"><i class="fab fa-github"></i>GitHub</a>
+    </div>
+  </div>
+  <div class="footer">
+    &copy; 2025 Lakshay Gupta | Site inspired by Wix Studio design, powered by clean HTML/CSS/JS
+  </div>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 900, once:true, offset: 70 });
+  </script>
+</body>
+</html>

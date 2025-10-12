@@ -4,177 +4,221 @@
   <meta charset="UTF-8">
   <title>Lakshay Gupta | Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@500;700;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css"/>
   <style>
-    html,body{margin:0;padding:0;background:#fff;color:#232323;font-family:'Inter', 'Montserrat', Arial, sans-serif;}
-    body {min-height:100vh;}
-    /* Navbar */
-    .navbar {
-      position:fixed; top:0; left:0; width:100vw; z-index:100;
-      background:#fff; border-bottom:1px solid #eaeaef;
-      display:flex;align-items:center;justify-content:space-between;
-      height:58px; padding:0 7vw; box-shadow:0 1px 15px #eaeaea09;
-    }
-    .nav-title {font-family:'Montserrat',sans-serif;font-weight:800; font-size:1.24em; color:#0071e3;}
-    .nav-links a {
-      margin-left:32px; color: #232323; text-decoration:none; font-weight:500; font-size:1.08em; font-family:'Montserrat',sans-serif; position:relative;
-    }
-    .nav-links a:after {
-      content:""; position:absolute; left:0;bottom:-4px; width:0; height:2.5px; background:#0071e3; transition:.3s; border-radius:3px;
-    }
-    .nav-links a:hover:after, .nav-links a.active:after { width:100%;}
-    .nav-links a:hover { color:#0071e3;}
-    @media(max-width:600px){.navbar{padding:0 3vw;height:52px;}.nav-links a{margin-left:16px;font-size:1em;}}
-
-    /* Hero Section */
-    .hero-section {
-      display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
-      min-height:430px; padding-top:94px; padding-bottom:56px; background:#fff;
-    }
-    .hero-title {font-family:'Montserrat',sans-serif; font-size:3em; font-weight:900; color: #232323; margin-bottom:10px;}
-    .hero-sub {font-family:'Inter',sans-serif;font-size:1.25em; color:#0071e3; font-weight:500; margin-bottom:19px;}
-    .hero-desc {font-family:'Inter',sans-serif;font-size:1.13em;color:#3a3a44;max-width:480px;margin:0 auto 24px auto;line-height:1.7;}
-    .hero-photos {display:flex;align-items:center;justify-content:center;gap:45px;margin-top:13px;}
-    .profile-pic {width:170px;height:170px;object-fit:cover;border-radius:50%;box-shadow:0 18px 40px #0071e377;border:7px solid #f3f6fb;}
-    .bitmoji {width:120px;height:120px;object-fit:cover;border-radius:28px;box-shadow:0 4px 16px #0071e319;}
+    html { box-sizing: border-box; scroll-behavior: smooth; }
+    *, *:before, *:after { box-sizing: inherit; }
+    body { margin: 0; font-family: 'Montserrat', sans-serif; min-height: 100vh; color: #25143a; background: linear-gradient(120deg, #6a35d7 0%, #be3bb6 80%); overflow-x: hidden; }
+    .navbar { width: 100%; background: #1e143a; box-shadow: 0 2px 20px #000a; position: sticky; top: 0; z-index: 999; display: flex; align-items: center; justify-content: space-between; padding: 0 32px; min-height: 60px; }
+    .nav-title { font-size: 1.5em; font-weight: bold; color: #6a35d7; letter-spacing: 1.2px;}
+    .nav-links a { margin: 0 18px; color: #fff; text-decoration: none; font-weight: 500; transition: color .2s, border-bottom .2s; border-bottom: 2px solid transparent; padding-bottom:3px; letter-spacing:0.6px;}
+    .nav-links a:hover, .nav-links a.active { color: #be3bb6; border-bottom: 2px solid #6a35d7;}
+    .hero, .about-section { scroll-margin-top: 80px; }
+    .hero { display:flex;flex-direction:column;align-items:center;justify-content:center; padding:80px 12px 36px 12px; background: linear-gradient(120deg, #6a35d7 0%, #be3bb6 80%); position:relative; min-height:420px; }
+    .profile-pic-holder { opacity: 0; transform: translateY(100px) scale(0.7); transition: opacity 1s cubic-bezier(.33,1.04,.51,.93), transform 1.2s cubic-bezier(.16,.84,.44,1.01); will-change: transform,opacity; position:relative; z-index:1;}
+    .profile-pic-holder.active { opacity: 1; transform: translateY(0) scale(1);}
+    .profile-pic {width:160px;height:160px;object-fit:cover;border-radius:50%;box-shadow:0 14px 55px #51197a96; border:7px solid #e4e1fa;margin-bottom:13px;transition:transform .6s;}
+    .profile-pic:hover{transform:scale(1.05);}
+    .bitmoji {width:74px;height:74px;object-fit:cover;border-radius:15px;background:#fff3; position:absolute;bottom:11px;right:-58px;box-shadow:0 6px 14px #be3bb635;}
+    .name { font-size: 2.6em; font-weight: bold; color: #fff;}
+    .subtitle { font-size: 1.15em; color:#e4e1fa; margin: 12px 0 0 0;letter-spacing:0.4px; background:rgba(106,53,215,0.14);border-radius:8px;padding:6px 14px;display:inline-block;font-weight:500;}
+    .hero-btns {margin-top:30px;}
+    .social-btn { font-size: 2em; color: #fff; background: #6a35d7; border: none; margin: 0 10px; border-radius: 50%; width:54px;height:54px; display:inline-flex;align-items:center;justify-content:center;box-shadow:0 6px 18px #6a35d74a; transition: background .2s, color .2s, transform .17s;cursor:pointer;text-decoration:none;}
+    .social-btn:hover { background: #be3bb6; color: #fff; transform: translateY(-3px) scale(1.05);}
+    .about-section {max-width: 880px; margin: 0 auto; background:rgba(255,255,255,0.90); border-radius: 18px; box-shadow: 0 8px 40px #3219362a; padding: 40px 32px 30px; margin-top: 34px;}
+    .sec-title { font-size: 1.43em; font-weight: bold; letter-spacing: 0.8px; color: #6a35d7; margin-bottom: 22px;}
+    .about-highlight {background:linear-gradient(90deg,#be3bb610 0%, #6a35d710 100%); font-weight:700; color:#6a35d7; padding:2px 8px; border-radius:7px; margin:0 3px;}
+    .progress-list{display:flex;flex-wrap:wrap;gap:21px;}
+    .prog{background:#ede3fc;border-radius:8px;padding:13px 13px 6px 16px;flex:1 1 187px;min-width:140px;margin-bottom:10px;}
+    .prog-bar{background:#e4e1fa;border-radius:8px;height:9px;margin-top:6px;position:relative;}
+    .prog-inner{height:100%;border-radius:8px;transition:width 1.4s; position:relative;}
+    .prog-name{color:#6a35d7;font-weight:600;}
+    .prog-value{color:#be3bb6;font-weight:bold;font-size:0.86em;float:right;}
+    .gallery {display:flex;flex-wrap:wrap;gap:19px;}
+    .gallery-card{background:#fffdef;border-radius:11px;box-shadow:0 2px 22px #6a35d711;padding:12px 5px 7px 5px;width:200px;transition:transform.22s;}
+    .gallery-card:hover{transform:scale(1.042);}
+    .gallery-card img{width:190px;height:auto;border-radius:8px;}
+    .gallery-card-title{text-align:center;color:#6a35d7;font-weight:bold;margin:6px 0 2px;}
+    .cert-box{background:#f8f3ff;border-radius:10px;padding:15px 17px;min-width:173px;display:block;margin-bottom:14px;text-align:center;box-shadow:0 2px 12px #a685ea13;color:#6a35d7;font-weight:600;font-size:.99em;text-decoration:none;transition:background .15s;}
+    .cert-box:hover{background:#dbcbf8;color:#be3bb6;}
+    form {display:flex;flex-direction:column;max-width:320px;margin:auto;}
+    input,textarea{padding:8px;border-radius:7px;border:1px solid #ede3fc;margin-bottom:10px;}
+    button{background:linear-gradient(90deg,#be3bb6, #6a35d7);color:#fff;font-weight:bold;padding:10px 23px;border-radius:50px;border:none;box-shadow: 0 4px 18px #6a35d741;cursor:pointer;transition:background.23s;}
+    button:hover{background:linear-gradient(90deg,#6a35d7,#be3bb6);}
     @media(max-width:700px){
-      .hero-photos{flex-direction:column;gap:16px;}
-      .profile-pic, .bitmoji{width:84px;height:84px;}
-      .hero-title{font-size:2em;}
-      .hero-section{padding-top:57px;}
+      .about-section{padding:17px 4px;}
+      .gallery{flex-direction:column;align-items:center;}
+      .hero{padding: 28px 5px 14px 5px;}
+      .progress-list{flex-direction:column;}
     }
-
-    /* Section blocks */
-    .section-block {max-width:950px; margin:0 auto 73px auto; padding:0 18px;}
-    .section-title {font-family:'Montserrat',sans-serif;font-size:2em;font-weight:800;color:#232323;margin-bottom:18px;}
-    .section-par {font-family:'Inter',sans-serif;font-size:1.13em;color:#21222a;}
-
-    /* Project Grid */
-    .projects-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:40px;margin-top:38px;}
-    .project-card {background:#fff; border-radius:14px; box-shadow:0 6px 22px #0071e30a; overflow:hidden; transition: box-shadow .19s, transform .14s;}
-    .project-card:hover{box-shadow:0 11px 38px #0071e316;transform:scale(1.036);}
-    .project-img {width:100%;height:150px;object-fit:cover;background:#f6f7f9;}
-    .project-title {font-family:'Montserrat',sans-serif;font-weight:700;font-size:1.16em;color:#0071e3;margin:19px 0 7px 0;}
-    .project-desc{font-family:'Inter',sans-serif;font-size:1.05em;color:#232323;padding-bottom:15px;}
-
-    /* Certificates */
-    .certs-list {display:flex;flex-wrap:wrap;gap:18px;}
-    .cert-box{background:#f5f6fa;border-radius:9px;padding:15px 9px;box-shadow:0 3px 16px #0071e312;min-width:165px;text-align:center;font-family:'Montserrat',sans-serif;font-weight:600;color:#0071e3;font-size:1em;text-decoration:none;}
-    .cert-box:hover{background:#eaf6ff;color:#232323;}
-    
-    /* Skills */
-    .skills-list {display:flex;flex-wrap:wrap;gap:24px;}
-    .skill-box {flex:1 1 156px;background:#f6f7f9;border-radius:11px;padding:16px 10px;font-family:'Montserrat',sans-serif;box-shadow:0 2px 11px #0071e31a;}
-    .skill-title{color:#232323;font-weight:700;}
-    .skill-level{color:#0071e3;font-weight:700;}
-    @media(max-width:700px){.skills-list{flex-direction:column;gap:9px;}}
-
-    /* Contact */
-    .contact-list a{margin-right:29px;text-decoration:none;color:#0071e3;font-family:'Montserrat',sans-serif;font-weight:600;}
-    .contact-list a i{margin-right:8px;}
-    form{display:flex;flex-direction:column;max-width:288px;margin:auto;}
-    input,textarea{padding:8px;border-radius:7px;border:1px solid #eaf1fb;margin-bottom:10px;font-family:'Inter',sans-serif;}
-    button{background:#0071e3;color:#fff;font-weight:700;padding:11px 17px;border-radius:50px;border:none;box-shadow:0 4px 18px #0071e351;cursor:pointer;}
-    button:hover{background:#005ecb;}
-    /* Footer */
-    .footer {text-align:center;color:#585969;padding:29px 0 17px 0;font-family:'Inter',sans-serif;}
   </style>
 </head>
 <body>
-<nav class="navbar">
+<nav class="navbar" data-aos="fade-down">
   <div class="nav-title">Lakshay Gupta</div>
   <div class="nav-links">
     <a href="#about">About</a>
     <a href="#projects">Projects</a>
     <a href="#skills">Skills</a>
     <a href="#certificates">Certificates</a>
+    <a href="#gallery">Gallery</a>
     <a href="#contact">Contact</a>
   </div>
 </nav>
-<section class="hero-section" id="hero">
-  <div class="hero-title">Lakshay Gupta</div>
-  <div class="hero-sub">AI/ML & Cybersecurity Enthusiast</div>
-  <div class="hero-desc">
-    Hi, I'm Lakshay—a Grade 12 student passionate about technology, banking, and social impact. Welcome to my portfolio!
-  </div>
-  <div class="hero-photos">
+<section class="hero" data-aos="fade-up">
+  <div class="profile-pic-holder" id="profileHolder">
     <img src="WhatsApp-Image-2025-10-11-at-23.19.34_d3c78967.jpg" alt="Profile Pic" class="profile-pic"/>
-    <img src="bitmoji.png" alt="Bitmoji" class="bitmoji"/>
+    <img class="bitmoji" src="https://sdk.bitmoji.com/render/panel/d207b116-2a31-470c-b7a7-228c6825fdb7-v1.png?transparent=1&palette=1" alt="Bitmoji">
+  </div>
+  <div class="name" data-aos="fade-right">Lakshay Gupta</div>
+  <div class="subtitle" data-aos="fade-left">12th Class Student | Cybersecurity & AI/ML Enthusiast<br>Seeking top university admission</div>
+  <div class="hero-btns" data-aos="zoom-in-up">
+    <a class="social-btn" href="https://www.linkedin.com/in/lakshay-gupta-9bbaba385/" target="_blank"><i class="fab fa-linkedin"></i></a>
+    <a class="social-btn" href="mailto:lakshaygupta@email.com"><i class="fas fa-envelope"></i></a>
+    <a class="social-btn" href="https://github.com/lakshay32009" target="_blank"><i class="fab fa-github"></i></a>
   </div>
 </section>
-<section class="section-block" id="about">
-  <div class="section-title">About Me</div>
-  <div class="section-par">
-    Dedicated student, tech creator, and winner of the Agarwal Sabha Community Contribution Award.<br>
-    Passion for AI, banking, insurance fraud detection, research methodology, and social good.
-  </div>
+<section class="about-section" id="about" data-aos="fade-right">
+  <div class="sec-title">About Me</div>
+  <p>
+    Hello! I’m <span class="about-highlight">Lakshay Gupta</span>, a dedicated and ambitious <span class="about-highlight">Grade 12 student</span> at Wisdom World School Kurukshetra. Passionate about <span class="about-highlight">cybersecurity</span> and <span class="about-highlight">AI/ML</span>, I thrive on learning cutting-edge technology and spearheading impactful projects—always with the goal of innovation and positive change.<br>
+    Proudly supported and mentored by <b>Comet Assistant (AI)</b>, collaborating on research, website building, and digital innovations!
+  </p>
+  <ul>
+    <li>🏆 <strong>Community Contribution Award</strong> (Agarwal Sabha, Kurukshetra)</li>
+    <li>🥉 <strong>3rd Prize, Graphic Design Competition</strong> (School Fest 2022)</li>
+    <li>🌱 <strong>Eco Initiative Leader</strong> (Tree Planting & Sustainability Projects)</li>
+    <li>📚 <strong>Google Certified</strong> in AI, Security, Python</li>
+  </ul>
+  <p>
+    I’m driven to achieve excellence, make an impact, and inspire others on my journey to higher education and innovation. 
+    <br>
+    <span class="about-highlight">Let’s connect and collaborate!</span>
+  </p>
 </section>
-<section class="section-block" id="skills">
-  <div class="section-title">Skills</div>
-  <div class="skills-list">
-    <div class="skill-box"><span class="skill-title">Python</span><br><span class="skill-level">89%</span></div>
-    <div class="skill-box"><span class="skill-title">Cybersecurity</span><br><span class="skill-level">83%</span></div>
-    <div class="skill-box"><span class="skill-title">AI/ML</span><br><span class="skill-level">76%</span></div>
-    <div class="skill-box"><span class="skill-title">Networks</span><br><span class="skill-level">75%</span></div>
-    <div class="skill-box"><span class="skill-title">Ethical Hacking</span><br><span class="skill-level">64%</span></div>
-    <div class="skill-box"><span class="skill-title">Design</span><br><span class="skill-level">79%</span></div>
-  </div>
-</section>
-<section class="section-block" id="projects">
-  <div class="section-title">Projects & Achievements</div>
-  <div class="projects-grid">
-    <div class="project-card">
-      <img src="WhatsApp-Image-2025-09-20-at-20.44.39_d6ecc205.jpg" class="project-img" alt="Project 1"/>
-      <div class="project-title">Banking Fraud Detector</div>
-      <div class="project-desc">
-        Python-powered fraud system for banks and insurance, using machine learning and data visualization.
-      </div>
+<section class="about-section" id="skills" style="margin-top:30px;" data-aos="fade-left">
+  <div class="sec-title">My Skills</div>
+  <div class="progress-list">
+    <div class="prog" data-aos="fade-up">
+      <span class="prog-name"><i class="fab fa-python"></i> Python</span>
+      <span class="prog-value">89%</span>
+      <div class="prog-bar"><div class="prog-inner" style="background:#6a35d7;width:89%;"></div></div>
     </div>
-    <div class="project-card">
-      <img src="bitmoji.png" class="project-img" alt="Bitmoji Project">
-      <div class="project-title">Portfolio Personalization</div>
-      <div class="project-desc">
-        Designed & coded my portfolio website. Features interactive Bitmoji avatar and skills demonstration!
-      </div>
+    <div class="prog" data-aos="fade-up">
+      <span class="prog-name"><i class="fas fa-shield-alt"></i> Cybersecurity</span>
+      <span class="prog-value">83%</span>
+      <div class="prog-bar"><div class="prog-inner" style="background:#be3bb6;width:83%;"></div></div>
     </div>
-    <div class="project-card">
-      <img src="image.jpg" class="project-img" alt="Hackathon Project"/>
-      <div class="project-title">Student Hackathon Leader</div>
-      <div class="project-desc">
-        Led a school hackathon team—developed a community impact project for digital innovation.
-      </div>
+    <div class="prog" data-aos="fade-up">
+      <span class="prog-name"><i class="fas fa-brain"></i> AI/ML</span>
+      <span class="prog-value">76%</span>
+      <div class="prog-bar"><div class="prog-inner" style="background:#6a35d7;width:76%;"></div></div>
+    </div>
+    <div class="prog" data-aos="fade-up">
+      <span class="prog-name"><i class="fas fa-network-wired"></i> Networks</span>
+      <span class="prog-value">75%</span>
+      <div class="prog-bar"><div class="prog-inner" style="background:#be3bb6;width:75%;"></div></div>
+    </div>
+    <div class="prog" data-aos="fade-up">
+      <span class="prog-name"><i class="fas fa-code"></i> Ethical Hacking</span>
+      <span class="prog-value">64%</span>
+      <div class="prog-bar"><div class="prog-inner" style="background:#6a35d7;width:64%;"></div></div>
+    </div>
+    <div class="prog" data-aos="fade-up">
+      <span class="prog-name"><i class="fas fa-palette"></i> Design</span>
+      <span class="prog-value">79%</span>
+      <div class="prog-bar"><div class="prog-inner" style="background:#be3bb6;width:79%;"></div></div>
     </div>
   </div>
 </section>
-<section class="section-block" id="certificates">
-  <div class="section-title">Certificates</div>
-  <div class="certs-list">
-      <a class="cert-box" href="#" target="_blank">Google AI & Security Cert</a>
-      <a class="cert-box" href="#" target="_blank">Python Programming</a>
-      <a class="cert-box" href="#" target="_blank">Coursera Cybersecurity</a>
-      <a class="cert-box" href="#" target="_blank">Network Security</a>
+<section class="about-section" id="projects" style="margin-top:30px;" data-aos="zoom-in">
+  <div class="sec-title">Projects & Achievements</div>
+  <div style="display:flex;flex-wrap:wrap;gap:20px;">
+    <div style="background:#e4e1fa;border-radius:15px;padding:16px 20px;width:270px;box-shadow:0 8px 24px #32193629;margin-bottom:10px;" data-aos="flip-left">
+      <span style="font-weight:bold;color:#6a35d7;">🏆 Community Contribution Award</span>
+      <p style="font-size: 1em;">Awarded for impactful social work and community support initiatives, recognized by Agarwal Sabha, Kurukshetra.</p>
+    </div>
+    <div style="background:#f4dafd;border-radius:15px;padding:16px 20px;width:270px;box-shadow:0 8px 24px #be3bb629;margin-bottom:10px;" data-aos="flip-right">
+      <span style="font-weight:bold;color:#be3bb6;">🥉 Graphic Design Competition (3rd Prize)</span>
+      <p style="font-size: 1em;">Blending creativity and technology, won in the School Fest 2022.</p>
+    </div>
+    <div style="background:#deecff;border-radius:15px;padding:16px 20px;width:270px;box-shadow:0 8px 24px #6a35d729;margin-bottom:10px;" data-aos="flip-left">
+      <span style="font-weight:bold;color:#6a35d7;">🌱 Eco Initiative</span>
+      <p style="font-size: 1em;">Planted neem and mango trees, led green initiatives for sustainability and student impact.</p>
+    </div>
+    <div style="background:#ffebfd;border-radius:15px;padding:16px 20px;width:270px;box-shadow:0 8px 24px #be3bb629;margin-bottom:10px;" data-aos="flip-right">
+      <span style="font-weight:bold;color:#be3bb6;">🚀 Hackathon Leadership</span>
+      <p style="font-size: 1em;">Led school hackathon teams, collaborated with <b>Comet Assistant (AI)</b> for innovation projects and digital learning.</p>
+    </div>
   </div>
 </section>
-<section class="section-block" id="contact">
-  <div class="section-title">Contact Me</div>
+<section class="about-section" id="certificates" style="margin-top:30px;" data-aos="fade-up">
+  <div class="sec-title">Google & Coursera Certificates</div>
+  <div style="display:flex;flex-wrap:wrap;gap:16px;">
+    <a class="cert-box" href="https://www.coursera.org/account/accomplishments/verify/XDM79A85F869" target="_blank" data-aos="zoom-in">Accelerate Your Job Search with AI<br>Google</a>
+    <a class="cert-box" href="https://www.coursera.org/account/accomplishments/verify/EWRHFA862WEY" target="_blank" data-aos="zoom-in">Assets, Threats, and Vulnerabilities<br>Google</a>
+    <a class="cert-box" href="https://www.coursera.org/account/accomplishments/verify/4FD5DC6609GE" target="_blank" data-aos="zoom-in">Automate Cybersecurity Tasks with Python<br>Google</a>
+    <a class="cert-box" href="https://www.coursera.org/account/accomplishments/verify/ATOSHEHU0BEM" target="_blank" data-aos="zoom-in">Connect & Protect: Networks & Network Security<br>Google</a>
+    <a class="cert-box" href="https://www.coursera.org/account/accomplishments/verify/15UBZ09YNUYU" target="_blank" data-aos="zoom-in">Foundations of Cybersecurity<br>Google</a>
+    <a class="cert-box" href="https://www.coursera.org/account/accomplishments/verify/TGVUBC9IGE2U" target="_blank" data-aos="zoom-in">Google Cybersecurity Specialization</a>
+    <a class="cert-box" href="https://www.coursera.org/account/accomplishments/verify/I67T7JDMWSKU" target="_blank" data-aos="zoom-in">Manage Security Risks<br>Google</a>
+    <a class="cert-box" href="https://www.coursera.org/account/accomplishments/verify/9QD45SHEWO5Z" target="_blank" data-aos="zoom-in">Prepare for Cybersecurity Jobs<br>Google</a>
+    <a class="cert-box" href="https://www.coursera.org/account/accomplishments/verify/CFLMJ39IQKZX" target="_blank" data-aos="zoom-in">Python Programming Fundamentals<br>Google</a>
+    <a class="cert-box" href="https://www.coursera.org/account/accomplishments/verify/HZ5GU4GIMGUT" target="_blank" data-aos="zoom-in">Detection & Response<br>Google</a>
+    <a class="cert-box" href="https://www.coursera.org/account/accomplishments/verify/YM662BT1RZJA" target="_blank" data-aos="zoom-in">Linux and SQL Tools<br>Google</a>
+    <a class="cert-box" href="https://www.coursera.org/account/accomplishments/verify/9XC8C16WA8YI" target="_blank" data-aos="zoom-in">Wireshark for Beginners (PCAP)</a>
+  </div>
+</section>
+<section class="about-section" id="gallery" style="margin-top:30px;" data-aos="fade-right">
+  <div class="sec-title">Photo Gallery</div>
+  <div class="gallery">
+    <div class="gallery-card" data-aos="zoom-in">
+      <img src="WhatsApp-Image-2025-10-11-at-23.19.34_d3c78967.jpg" alt="Formal Pic">
+      <div class="gallery-card-title">Formal</div>
+    </div>
+    <div class="gallery-card" data-aos="zoom-in">
+      <img src="WhatsApp-Image-2025-09-20-at-20.44.39_d6ecc205.jpg" alt="Outdoor Pic">
+      <div class="gallery-card-title">Adventure</div>
+    </div>
+  </div>
+</section>
+<section class="about-section" id="contact" style="margin-top:30px;" data-aos="fade-left">
+  <div class="sec-title">Contact Me</div>
   <form>
-    <input type="text" placeholder="Your Name">
-    <input type="email" placeholder="Your Email">
-    <textarea placeholder="Your Message"></textarea>
+    <label for="name">Name:</label>
+    <input id="name" type="text" placeholder="Your Name">
+    <label for="email">Email:</label>
+    <input id="email" type="email" placeholder="Your Email">
+    <label for="message">Message:</label>
+    <textarea id="message" placeholder="Your Message"></textarea>
     <button type="submit">Send</button>
   </form>
-  <div class="contact-list" style="margin-top:22px;">
-    <a href="mailto:lakshaygupta32009@email.com"><i class="fas fa-envelope"></i>Email</a>
-    <a href="https://www.linkedin.com/in/lakshay-gupta-9bbaba385/" target="_blank"><i class="fab fa-linkedin"></i>LinkedIn</a>
-    <a href="https://github.com/lakshay32009" target="_blank"><i class="fab fa-github"></i>GitHub</a>
+  <div style="text-align:center;margin-top:22px;">
+    <a class="social-btn" href="https://www.linkedin.com/in/lakshay-gupta-9bbaba385/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+    <a class="social-btn" href="mailto:lakshaygupta32009@email.com" title="Email"><i class="fas fa-envelope"></i></a>
+    <a class="social-btn" href="https://github.com/lakshay32009" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
   </div>
 </section>
-<div class="footer">
-  &copy; 2025 Lakshay Gupta · Made for MIT/Ivy/Stanford Applications · design by Comet Assistant
+<div class="about-section" style="text-align:center;background:#e4e1fa;margin-top:30px;padding-top:17px;padding-bottom:10px;border-radius:13px;" data-aos="fade-up">
+  <div style="font-size:1.1em;color:#6a35d7;font-weight:bold;">&copy; 2025 Lakshay Gupta</div>
+  <div style="margin-top:7px;color:#888;font-size:.97em;">Made with passion for cybersecurity, AI, and social impact.<br>
+    Designed for university applications, competitions, and future growth.<br>
+    <b>Site coded, designed, and deployed with help from Comet Assistant (AI)</b>
+  </div>
+  <div style="margin-top:7px;">
+    <a href="https://www.linkedin.com/in/lakshay-gupta-9bbaba385/" style="color:#be3bb6;text-decoration:underline;">Connect on LinkedIn</a>
+  </div>
 </div>
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-<script>AOS.init({ duration: 950, once:true, offset:65 });</script>
+<script>
+  AOS.init({ duration: 1100, once: true, offset: 56 });
+  window.addEventListener('DOMContentLoaded', ()=>{
+    setTimeout(()=>{
+      document.getElementById('profileHolder').classList.add('active');
+    },900);
+  });
+</script>
 </body>
 </html>

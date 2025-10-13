@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Skills | Lakshay Gupta</title>
+  <title>Gallery | Lakshay Gupta</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;400&display=swap" rel="stylesheet">
   <style>
@@ -13,13 +13,13 @@
     .nav-links {margin-left:auto;}
     .nav-links a {color:#fff;margin-left:22px;font-weight:500;text-decoration:none;}
     .nav-links a:hover,.nav-links .active {color:#be3bb6;}
-    .skills-section {max-width:850px;margin:60px auto 20px auto;background:rgba(255,255,255,0.94);border-radius:17px;box-shadow:0 7px 31px #32193621;padding:36px 22px;}
-    .sec-title {font-size:2em;font-weight:700;color:#6a35d7;text-align:center;margin-bottom:20px;}
-    .skills-list {display:flex;flex-wrap:wrap;gap:30px;justify-content:center;}
-    .skill-card {background:#ede3fc;border-radius:10px;box-shadow:0 2px 15px #6a35d727;padding:17px 30px 11px 30px;min-width:110px;text-align:center;}
-    .skill-title {font-size:1.14em;font-weight:700;color:#be3bb6;}
-    .skill-level {color:#6a35d7;font-weight:600;font-size:1.12em;margin-top:4px;}
-    @media (max-width:700px){.skills-section{padding:16px 5vw;}.skills-list{gap:11px;flex-direction:column;}}
+    .gallery-section {max-width:880px;margin:60px auto 15px auto;background:rgba(255,255,255,0.93);border-radius:18px;box-shadow:0 10px 31px #32193627;padding:35px 22px;}
+    .sec-title {font-size:2em;font-weight:700;color:#6a35d7;text-align:center;margin-bottom:18px;}
+    .gallery-row {display:flex;flex-wrap:wrap;gap:29px;justify-content:center;}
+    .gallery-card {background:#f7e9fe;border-radius:13px;box-shadow:0 2px 17px #be3bb627;padding:9px 5px 8px 5px;min-width:148px;text-align:center;}
+    .gallery-photo {width:150px;height:150px;object-fit:cover;border-radius:11px;box-shadow:0 5px 13px #be3bb617;}
+    .gallery-label {font-weight:600;color:#6a35d7;font-size:1.06em;margin-top:8px;}
+    @media (max-width:700px){.gallery-section{padding:13px 3vw;}.gallery-row{flex-direction:column;gap:11px;}}
   </style>
 </head>
 <body>
@@ -28,38 +28,23 @@
     <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="achievements.html">Achievements</a>
-      <a href="skills.html" class="active">Skills</a>
-      <a href="gallery.html">Gallery</a>
+      <a href="skills.html">Skills</a>
+      <a href="gallery.html" class="active">Gallery</a>
       <a href="contact.html">Contact</a>
     </div>
   </nav>
-  <div class="skills-section">
-    <div class="sec-title">My Skills</div>
-    <div class="skills-list">
-      <div class="skill-card">
-        <div class="skill-title">Python</div>
-        <div class="skill-level">89%</div>
+  <div class="gallery-section">
+    <div class="sec-title">Photo Gallery</div>
+    <div class="gallery-row">
+      <div class="gallery-card">
+        <img class="gallery-photo" src="WhatsApp-Image-2025-10-11-at-23.19.34_d3c78967.jpg" alt="Formal Pic">
+        <div class="gallery-label">Formal</div>
       </div>
-      <div class="skill-card">
-        <div class="skill-title">Cybersecurity</div>
-        <div class="skill-level">83%</div>
+      <div class="gallery-card">
+        <img class="gallery-photo" src="WhatsApp-Image-2025-09-20-at-20.44.39_d6ecc205.jpg" alt="Outdoor Pic">
+        <div class="gallery-label">Adventure</div>
       </div>
-      <div class="skill-card">
-        <div class="skill-title">AI/ML</div>
-        <div class="skill-level">76%</div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-title">Networks</div>
-        <div class="skill-level">75%</div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-title">Ethical Hacking</div>
-        <div class="skill-level">64%</div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-title">Design</div>
-        <div class="skill-level">79%</div>
-      </div>
+      <!-- Add more gallery-card blocks as needed -->
     </div>
   </div>
 </body>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact | Lakshay Gupta</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;400&display=swap" rel="stylesheet">
+  <style>
+    html, body { max-width: 100vw; overflow-x: hidden; }
+    body {margin:0;font-family:'Montserrat',sans-serif;background:linear-gradient(120deg,#6a35d7 0%,#be3bb6 80%);min-height:100vh;}
+    .navbar {width:100%;background:#1e143a;color:#fff;box-shadow:0 2px 20px #000a;padding:0 32px;height:62px;display:flex;align-items:center;}
+    .nav-title {font-size:1.4em;font-weight:bold;color:#be3bb6;}
+    .nav-links {margin-left:auto;}
+    .nav-links a {color:#fff;margin-left:22px;font-weight:500;text-decoration:none;}
+    .nav-links a:hover,.nav-links .active {color:#be3bb6;}
+    .contact-section {max-width:370px;background:rgba(255,255,255,0.93);border-radius:18px;box-shadow:0 10px 25px #32193621;padding:30px 25px;margin:60px auto 18px auto;}
+    .sec-title {font-size:2em;font-weight:700;color:#6a35d7;text-align:center;margin-bottom:18px;}
+    form {display:flex;flex-direction:column;}
+    input,textarea {margin-bottom:13px;padding:10px;border-radius:7px;border:1px solid #be3bb639;font-family:'Montserrat',sans-serif;}
+    button {background:linear-gradient(90deg,#6a35d7,#be3bb6);color:#fff;font-weight:600;padding:12px 0;border-radius:7px;border:none;box-shadow:0 4px 14px #6a35d743;}
+    button:hover {background:linear-gradient(90deg,#be3bb6,#6a35d7);}
+    .contact-links {text-align:center;margin-top:18px;}
+    .contact-links a {margin:0 11px;color:#be3bb6;text-decoration:none;font-size:1.21em;}
+    @media (max-width:700px){.contact-section{padding:13px 2vw;margin:38px auto 6px auto;}}
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-title">Lakshay Gupta</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="achievements.html">Achievements</a>
+      <a href="skills.html">Skills</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="contact.html" class="active">Contact</a>
+    </div>
+  </nav>
+  <div class="contact-section">
+    <div class="sec-title">Contact</div>
+    <form action="mailto:lakshaygupta32009@gmail.com" method="POST" enctype="text/plain">
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea placeholder="Your Message" required></textarea>
+      <button type="submit">Send</button>
+    </form>
+    <div class="contact-links">
+      <a href="mailto:lakshaygupta32009@gmail.com" title="Email">✉️</a>
+      <a href="https://www.linkedin.com/in/lakshay-gupta-9bbaba385/" target="_blank" title="LinkedIn">LinkedIn</a>
+      <a href="https://github.com/lakshay32009" target="_blank" title="GitHub">GitHub</a>
+    </div>
+  </div>
+</body>
+</html>

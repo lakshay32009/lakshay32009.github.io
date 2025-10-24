@@ -3,73 +3,48 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lakshay Gupta | Cinematic Portfolio</title>
+<title>Lakshay Gupta | Cinematic Day-Night Portfolio</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-/* ===== Reset ===== */
 *{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'Poppins',sans-serif;background:#0b0016;color:#fff;overflow-x:hidden;scroll-behavior:smooth;}
-
-/* ===== Custom Cursor ===== */
+body{font-family:'Poppins',sans-serif;color:#fff;overflow-x:hidden;scroll-behavior:smooth;transition:background 2s ease;}
 .cursor{position:fixed;width:12px;height:12px;background:white;border-radius:50%;pointer-events:none;transform:translate(-50%,-50%);transition:transform 0.05s linear;z-index:9999;}
-
-/* ===== Navbar ===== */
-.navbar{display:flex;justify-content:space-between;align-items:center;padding:18px 40px;background:rgba(10,6,30,0.7);backdrop-filter:blur(10px);box-shadow:0 4px 30px rgba(0,0,0,0.4);position:fixed;top:0;left:0;width:100%;z-index:10;}
-.nav-title{color:#be3bb6;font-weight:700;font-size:1.4rem;letter-spacing:1px}
-.nav-links a{color:#fff;text-decoration:none;margin-left:24px;font-weight:500;transition:color 0.3s}
-.nav-links a:hover{color:#6a35d7}
-
-/* ===== Hero Section ===== */
+.navbar{display:flex;justify-content:space-between;align-items:center;padding:18px 40px;background:rgba(255,255,255,0.2);backdrop-filter:blur(10px);position:fixed;top:0;width:100%;z-index:10;box-shadow:0 4px 20px rgba(0,0,0,0.2);}
+.nav-title{color:#FF758C;font-weight:700;font-size:1.4rem;letter-spacing:1px;}
+.nav-links a{color:#fff;text-decoration:none;margin-left:24px;font-weight:500;transition:color 0.3s;}
+.nav-links a:hover{color:#FFD194;}
 .hero{display:flex;flex-direction:column;align-items:center;text-align:center;padding-top:120px;position:relative;overflow:hidden;min-height:100vh;}
-
-/* ===== Profile Picture ===== */
-.avatar{width:140px;height:140px;border-radius:50%;border:4px solid rgba(255,255,255,0.15);box-shadow:0 0 30px rgba(106,53,215,0.4);margin-bottom:20px;transform-origin:bottom center;animation:avatarIdle 3s ease-in-out infinite;}
+.avatar{width:140px;height:140px;border-radius:50%;border:4px solid rgba(255,255,255,0.3);box-shadow:0 0 30px rgba(255,200,150,0.5);margin-bottom:20px;transform-origin:bottom center;animation:avatarIdle 3s ease-in-out infinite;}
 @keyframes avatarIdle{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-
-/* ===== Typing Text ===== */
-#typing-text{font-weight:700;font-size:2rem;color:#be3bb6;margin:20px 0;min-height:3rem;}
-
-/* ===== Subtitle ===== */
-.subtitle{font-size:1.2rem;font-weight:600;background:linear-gradient(90deg,#be3bb6,#6a35d7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:20px;animation:glow 2s ease-in-out infinite alternate;}
-@keyframes glow{0%{text-shadow:0 0 8px #be3bb6,0 0 16px #6a35d7;}100%{text-shadow:0 0 20px #6a35d7,0 0 30px #be3bb6;}}
-
-/* ===== Hero Description ===== */
-.hero-desc{max-width:700px;color:rgba(255,255,255,0.85);line-height:1.7;margin-bottom:35px;animation:fadeIn 2s ease forwards;}
+#typing-text{font-weight:700;font-size:2rem;margin:20px 0;min-height:3rem;}
+.subtitle{font-size:1.2rem;font-weight:600;background:linear-gradient(90deg,#FFD194,#FF758C);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:20px;animation:glow 2s ease-in-out infinite alternate;}
+@keyframes glow{0%{text-shadow:0 0 8px #FFD194,0 0 16px #FF758C;}100%{text-shadow:0 0 20px #FF758C,0 0 30px #FFD194;}}
+.hero-desc{max-width:700px;line-height:1.7;margin-bottom:35px;animation:fadeIn 2s ease forwards;}
 @keyframes fadeIn{0%{opacity:0;transform:translateY(10px);}100%{opacity:1;transform:translateY(0);}}
-
-/* ===== Buttons ===== */
 .hero-btn-group{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
-.hero-btn{background:linear-gradient(90deg,#6a35d7,#be3bb6);color:#fff;border:none;border-radius:50px;padding:12px 32px;text-decoration:none;font-weight:600;font-size:1rem;box-shadow:0 0 15px rgba(190,59,182,0.5);transition:0.3s ease, transform 0.3s;position:relative;}
-.hero-btn:hover{transform:scale(1.1) translateY(-2px);box-shadow:0 0 35px rgba(190,59,182,0.9);}
-
-/* ===== Bitmoji ===== */
+.hero-btn{color:#fff;border:none;border-radius:50px;padding:12px 32px;text-decoration:none;font-weight:600;font-size:1rem;transition:0.3s ease, transform 0.3s;position:relative;}
+.hero-btn:hover{transform:scale(1.1) translateY(-2px);}
 .bitmoji{width:110px;position:absolute;bottom:60px;right:70px;z-index:3;border-radius:14px;box-shadow:0 8px 25px rgba(0,0,0,0.3);transform-origin:bottom center;animation:bounce 3s ease-in-out infinite;}
 @keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
-
-/* ===== Speech Bubble ===== */
-.speech-bubble{position:absolute;bottom:220px;right:60px;background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);padding:12px 18px;border-radius:14px;font-weight:600;color:#fff;font-size:1rem;opacity:0;transform:translateY(10px);transition:0.5s ease;max-width:240px;text-align:center;z-index:3;}
+.speech-bubble{position:absolute;bottom:220px;right:60px;background:rgba(255,255,255,0.25);backdrop-filter:blur(10px);padding:12px 18px;border-radius:14px;font-weight:600;font-size:1rem;opacity:0;transform:translateY(10px);transition:0.5s ease;max-width:240px;text-align:center;z-index:3;}
 .speech-bubble.show{opacity:1;transform:translateY(0);}
-
-/* ===== Footer ===== */
-.footer{text-align:center;padding:20px;margin-top:60px;color:#ccc;font-weight:500;background:rgba(10,6,30,0.4);backdrop-filter:blur(8px);position:relative;z-index:5;}
-
-/* ===== Stars ===== */
-.stars-container{position:absolute;inset:0;pointer-events:none;z-index:0}
-.stars{position:absolute;border-radius:50%;background:white;animation:twinkle 2s infinite;}
-@keyframes twinkle{0%,100%{opacity:0.2;}50%{opacity:1;}}
-
-/* ===== Shooting Star ===== */
-.shooting-star{position:absolute;width:2px;height:100px;background:linear-gradient(white, transparent);transform:rotate(45deg);opacity:0;animation:shoot 1.2s linear forwards;}
-@keyframes shoot{0%{opacity:1;transform:translateX(0) translateY(0) rotate(45deg);}100%{opacity:0;transform:translateX(-800px) translateY(800px) rotate(45deg);}}
-
-/* ===== Responsive ===== */
-@media(max-width:700px){#typing-text{font-size:1.4rem}.subtitle{font-size:1rem}.avatar{width:100px;height:100px}.bitmoji{width:80px;right:30px;bottom:40px}.speech-bubble{bottom:140px;right:30px;font-size:0.85rem;max-width:180px}.hero-desc{font-size:0.95rem}}
+.footer{text-align:center;padding:20px;margin-top:60px;color:#fff;font-weight:500;background:rgba(255,255,255,0.2);backdrop-filter:blur(8px);position:relative;z-index:5;}
+.stars-container{position:absolute;inset:0;pointer-events:none;z-index:0;}
+.stars{position:absolute;border-radius:50%;background:white;opacity:0.3;animation:twinkle 3s infinite;}
+@keyframes twinkle{0%,100%{opacity:0.2;}50%{opacity:0.5;}}
+.theme-switcher{position:fixed;top:100px;right:20px;background:rgba(255,255,255,0.3);padding:10px 16px;border-radius:12px;cursor:pointer;font-weight:600;z-index:20;transition:0.3s;}
+.theme-switcher:hover{background:rgba(255,255,255,0.6);}
+.sun{position:absolute;bottom:-100px;left:50%;width:150px;height:150px;background:radial-gradient(circle,#FFD194,#FF758C);border-radius:50%;transform:translateX(-50%);z-index:1;transition:bottom 1s ease,opacity 1s;}
+.moon{position:absolute;bottom:-100px;left:50%;width:120px;height:120px;background:radial-gradient(circle,#F0F8FF,#B0C4DE);border-radius:50%;transform:translateX(-50%);z-index:1;opacity:0;transition:bottom 1s ease,opacity 1s;}
+.cloud{position:absolute;width:200px;height:80px;background:rgba(255,255,255,0.3);border-radius:50%;top:50px;animation:cloudMove 60s linear infinite;}
+.cloud:nth-child(2){top:120px;animation-duration:80s;left:300px;}
+@keyframes cloudMove{0%{transform:translateX(-250px);}100%{transform:translateX(110vw);}}
+@media(max-width:700px){#typing-text{font-size:1.4rem}.subtitle{font-size:1rem}.avatar{width:100px;height:100px}.bitmoji{width:80px;right:30px;bottom:40px}.speech-bubble{bottom:140px;right:30px;font-size:0.85rem;max-width:180px}.hero-desc{font-size:0.95rem}.cloud{width:120px;height:50px;}}
 </style>
 </head>
 <body>
 
 <div class="cursor" id="cursor"></div>
-
 <nav class="navbar">
   <div class="nav-title">Lakshay Gupta</div>
   <div class="nav-links">
@@ -82,30 +57,29 @@ body{font-family:'Poppins',sans-serif;background:#0b0016;color:#fff;overflow-x:h
   </div>
 </nav>
 
+<div class="theme-switcher" id="themeSwitcher">Switch Theme</div>
+
 <section class="hero">
   <div class="stars-container" id="stars"></div>
-
+  <div class="sun" id="sun"></div>
+  <div class="moon" id="moon"></div>
+  <div class="cloud" style="left:10%;"></div>
+  <div class="cloud" style="left:60%;"></div>
   <img class="avatar" src="WhatsApp-Image-2025-10-11-at-23.19.34_d3c78967.jpg" alt="Lakshay Gupta Photo">
-
   <div id="typing-text"></div>
-
-  <div class="subtitle">Cybersecurity | AI/ML | Tech Explorer | Hackathons | Projects</div>
-
+  <div class="subtitle" id="subtitle">Cybersecurity | AI/ML | Tech Explorer | Hackathons | Projects</div>
   <div class="hero-desc">
     I’m Lakshay — a passionate student exploring AI, ML, and Cybersecurity.<br>
     I build projects, compete in hackathons, and learn every day. Welcome to my cinematic portfolio!
   </div>
-
   <div class="hero-btn-group">
-    <a href="achievements.html" class="hero-btn">Achievements</a>
-    <a href="skills.html" class="hero-btn">Skills</a>
-    <a href="gallery.html" class="hero-btn">Gallery</a>
-    <a href="certificates.html" class="hero-btn">Certificates</a>
-    <a href="contact.html" class="hero-btn">Contact</a>
+    <a href="achievements.html" class="hero-btn" id="btn1">Achievements</a>
+    <a href="skills.html" class="hero-btn" id="btn2">Skills</a>
+    <a href="gallery.html" class="hero-btn" id="btn3">Gallery</a>
+    <a href="certificates.html" class="hero-btn" id="btn4">Certificates</a>
+    <a href="contact.html" class="hero-btn" id="btn5">Contact</a>
   </div>
-
   <img src="https://i.ibb.co/7N5tLV/realistic-avatar.png" alt="Bitmoji" class="bitmoji" id="bitmoji">
-
   <div class="speech-bubble" id="bubble">Hello 👋</div>
 </section>
 
@@ -114,45 +88,30 @@ body{font-family:'Poppins',sans-serif;background:#0b0016;color:#fff;overflow-x:h
 </div>
 
 <script>
-// ===== Custom Cursor =====
+// ===== Cursor =====
 const cursor=document.getElementById('cursor');
 document.addEventListener('mousemove', e=>{cursor.style.transform=`translate(${e.clientX}px, ${e.clientY}px)`;});
 
 // ===== Stars =====
 const starsContainer=document.getElementById('stars');
-for(let i=0;i<500;i++){
+for(let i=0;i<200;i++){
   const star=document.createElement('div'); star.className='stars';
-  const size=Math.random()*2; star.style.width=size+'px'; star.style.height=size+'px';
-  star.style.top=Math.random()*100+'%'; star.style.left=Math.random()*100+'%';
+  const size=Math.random()*3; star.style.width=size+'px'; star.style.height=size+'px';
+  star.style.top=Math.random()*80+'%'; star.style.left=Math.random()*100+'%';
   starsContainer.appendChild(star);
 }
-
-// ===== Shooting stars =====
 setInterval(()=>{
-  const star=document.createElement('div'); star.className='shooting-star';
+  const star=document.createElement('div'); star.className='stars';
   star.style.top=Math.random()*50+'%'; star.style.left=Math.random()*100+'%';
   starsContainer.appendChild(star);
   setTimeout(()=>star.remove(),1200);
-}, 1200);
+},1200);
 
-// ===== Typing animation =====
-const lines=[
-  "Welcome! 👋",
-  "I'm Lakshay Gupta",
-  "12th Class Student | Cybersecurity & AI/ML Enthusiast",
-  "Building Projects | Competing in Hackathons",
-  "Learning Every Day | Exploring Tech",
-  "International Certifications | Awards",
-  "Passionate about AI & ML",
-  "Cybersecurity Enthusiast",
-  "Creative Problem Solver",
-  "Open to Collaborations & Research"
-];
-
+// ===== Typing =====
+const lines=["Welcome! 👋","I'm Lakshay Gupta","12th Class Student | Cybersecurity & AI/ML Enthusiast","Building Projects | Competing in Hackathons","Learning Every Day | Exploring Tech","International Certifications | Awards","Passionate about AI & ML","Cybersecurity Enthusiast","Creative Problem Solver","Open to Collaborations & Research"];
 const typingText=document.getElementById('typing-text');
 const bubble=document.getElementById('bubble');
 let lineIndex=0,charIndex=0;
-
 function typeNextChar(){
   if(lineIndex>=lines.length){ bubble.textContent="All loaded! 🌟"; return;}
   typingText.textContent=lines[lineIndex].slice(0,charIndex+1);
@@ -169,6 +128,49 @@ bitmoji.style.transition='transform 0.2s';
 document.addEventListener('mousemove', e=>{
   const x=e.clientX/window.innerWidth-0.5;
   bitmoji.style.transform=`rotate(${x*15}deg)`;
+});
+
+// ===== Sun & Moon animation =====
+const sun=document.getElementById('sun');
+const moon=document.getElementById('moon');
+function updateSunMoon(){
+  const hour=new Date().getHours();
+  let sunBottom=0, moonBottom=0, sunOpacity=1, moonOpacity=0;
+  if(hour>=6 && hour<18){ // Daytime
+    sunBottom=((hour-6)/12)*80; sunOpacity=1; moonOpacity=0;
+  } else { // Night
+    moonBottom=((hour>=18?hour-18:hour+6)/12)*80; sunOpacity=0; moonOpacity=1;
+  }
+  sun.style.bottom=sunBottom+'vh'; sun.style.opacity=sunOpacity;
+  moon.style.bottom=moonBottom+'vh'; moon.style.opacity=moonOpacity;
+}
+setInterval(updateSunMoon,1000);
+updateSunMoon();
+
+// ===== Theme Switcher =====
+let themeIndex=-1;
+const themes=[
+  {bg:'linear-gradient(120deg,#FFD194,#FF758C)',sub:'#FFD194,#FF758C',btn:'#FFD194,#FF758C'}, 
+  {bg:'linear-gradient(120deg,#87CEFA,#00BFFF)',sub:'#87CEFA,#00BFFF',btn:'#87CEFA,#00BFFF'}, 
+  {bg:'linear-gradient(120deg,#0b0016,#3b0b36)',sub:'#6a35d7,#be3bb6',btn:'#6a35d7,#be3bb6'} 
+];
+function applyTheme(index=-1){
+  const body=document.body;
+  const subtitle=document.getElementById('subtitle');
+  const buttons=[document.getElementById('btn1'),document.getElementById('btn2'),document.getElementById('btn3'),document.getElementById('btn4'),document.getElementById('btn5')];
+  if(index===-1){
+    const hour=new Date().getHours();
+    index=(hour>=5 && hour<10)?0:(hour>=10 && hour<18)?1:2;
+  }
+  themeIndex=index;
+  body.style.background=themes[index].bg;
+  subtitle.style.background=`linear-gradient(90deg,${themes[index].sub})`;
+  buttons.forEach(b=>b.style.background=`linear-gradient(90deg,${themes[index].btn})`);
+}
+applyTheme();
+document.getElementById('themeSwitcher').addEventListener('click', ()=>{
+  themeIndex=(themeIndex+1)%3;
+  applyTheme(themeIndex);
 });
 </script>
 </body>

@@ -3,23 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lakshay Gupta | Portfolio</title>
+<title>Lakshay Gupta | Cinematic Portfolio</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
+/* ===== Global Reset ===== */
 *{margin:0;padding:0;box-sizing:border-box}
 body{
   font-family:'Poppins',sans-serif;
-  background: radial-gradient(circle at 20% 20%, #0d0221 0%, #20033a 40%, #0b0016 100%);
-  color:#fff; overflow-x:hidden; min-height:100vh; scroll-behavior:smooth;
+  background:#0b0016;
+  color:#fff;
+  overflow-x:hidden;
+  scroll-behavior:smooth;
 }
 
-/* Custom cursor */
+/* ===== Custom Cursor ===== */
 .cursor{
-  position:fixed;width:12px;height:12px;background:white;border-radius:50%;pointer-events:none;
-  transform:translate(-50%, -50%);transition:transform 0.1s linear;z-index:9999;
+  position:fixed;width:12px;height:12px;background:white;border-radius:50%;
+  pointer-events:none;transform:translate(-50%,-50%);transition:transform 0.05s linear;z-index:9999;
 }
 
-/* Navbar */
+/* ===== Navbar ===== */
 .navbar{
   display:flex;justify-content:space-between;align-items:center;
   padding:18px 40px;background:rgba(10,6,30,0.7);
@@ -28,95 +31,96 @@ body{
 }
 .nav-title{color:#be3bb6;font-weight:700;font-size:1.4rem;letter-spacing:1px}
 .nav-links a{color:#fff;text-decoration:none;margin-left:24px;font-weight:500;transition:color 0.3s}
-.nav-links a:hover{color:#be3bb6}
+.nav-links a:hover{color:#6a35d7}
 
-/* Hero */
+/* ===== Hero Section ===== */
 .hero{
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   text-align:center;padding-top:120px;position:relative;overflow:hidden;
   min-height:100vh;
 }
 
-/* Avatar */
+/* ===== Avatar ===== */
 .avatar{
   width:140px;height:140px;border-radius:50%;border:4px solid rgba(255,255,255,0.15);
   box-shadow:0 0 30px rgba(106,53,215,0.4);margin-bottom:20px;
-  transform-origin:bottom center;
-  position:relative;z-index:2;transition:transform 0.2s;
+  transform-origin:bottom center;position:relative;z-index:2;transition:transform 0.2s;
+  animation:avatarIdle 3s ease-in-out infinite;
 }
+@keyframes avatarIdle{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 
-/* Speech bubble */
+/* ===== Speech Bubble ===== */
 .speech-bubble{
-  position:absolute;bottom:200px;right:60px;
+  position:absolute;bottom:220px;right:60px;
   background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);
-  padding:12px 18px;border-radius:14px;
-  font-weight:600;color:#fff;
+  padding:12px 18px;border-radius:14px;font-weight:600;color:#fff;
   font-size:1rem;opacity:0;transform:translateY(10px);
-  transition:0.5s ease;
-  max-width:220px;text-align:center;z-index:3;
+  transition:0.5s ease;max-width:240px;text-align:center;z-index:3;
 }
 .speech-bubble.show{opacity:1;transform:translateY(0);}
 
-/* Typing animation */
+/* ===== Typing Animation ===== */
 .typing-line{
-  font-weight:700;font-size:1.8rem;color:#be3bb6;white-space:nowrap;overflow:hidden;
-  border-right:3px solid #be3bb6;width:0;margin-bottom:10px;
+  font-weight:700;font-size:2rem;color:#be3bb6;white-space:nowrap;overflow:hidden;
+  border-right:3px solid #be3bb6;width:0;margin-bottom:12px;
   background:linear-gradient(90deg,#be3bb6,#6a35d7);
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;
 }
 
-/* Subtitle */
+/* ===== Subtitle ===== */
 .subtitle{
   font-size:1.2rem;font-weight:600;
   background:linear-gradient(90deg,#be3bb6,#6a35d7);
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;
   margin-bottom:20px;
+  animation: glow 2s ease-in-out infinite alternate;
+}
+@keyframes glow{
+  0%{text-shadow:0 0 8px #be3bb6,0 0 16px #6a35d7;}
+  100%{text-shadow:0 0 20px #6a35d7,0 0 30px #be3bb6;}
 }
 
-.hero-desc{max-width:700px;color:rgba(255,255,255,0.85);line-height:1.7;margin-bottom:35px}
+/* ===== Hero Description ===== */
+.hero-desc{max-width:700px;color:rgba(255,255,255,0.85);line-height:1.7;margin-bottom:35px;
+  animation:fadeIn 2s ease forwards;}
+@keyframes fadeIn{0%{opacity:0;transform:translateY(10px);}100%{opacity:1;transform:translateY(0);}}
 
-/* Buttons */
+/* ===== Buttons ===== */
 .hero-btn-group{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
 .hero-btn{
-  background:linear-gradient(90deg,#6a35d7,#be3bb6);
-  color:#fff;border:none;border-radius:50px;
+  background:linear-gradient(90deg,#6a35d7,#be3bb6);color:#fff;border:none;border-radius:50px;
   padding:12px 32px;text-decoration:none;font-weight:600;font-size:1rem;
-  box-shadow:0 0 15px rgba(190,59,182,0.5);
-  transition:0.3s ease, transform 0.3s;
+  box-shadow:0 0 15px rgba(190,59,182,0.5);transition:0.3s ease, transform 0.3s;position:relative;
 }
-.hero-btn:hover{
-  transform:scale(1.1);
-  box-shadow:0 0 35px rgba(190,59,182,0.9);
-}
+.hero-btn:hover{transform:scale(1.1) translateY(-2px);box-shadow:0 0 35px rgba(190,59,182,0.9);}
 
-/* Bitmoji realistic */
+/* ===== Bitmoji ===== */
 .bitmoji{
   width:110px;position:absolute;bottom:60px;right:70px;z-index:3;border-radius:14px;
   box-shadow:0 8px 25px rgba(0,0,0,0.3);transform-origin:bottom center;
+  animation:bounce 3s ease-in-out infinite;
 }
+@keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
 
-/* Footer */
+/* ===== Footer ===== */
 .footer{text-align:center;padding:20px;margin-top:60px;color:#ccc;font-weight:500;
-  background:rgba(10,6,30,0.4);backdrop-filter:blur(8px)}
+  background:rgba(10,6,30,0.4);backdrop-filter:blur(8px);position:relative;z-index:5;}
 
-/* Stars background */
+/* ===== Stars Background ===== */
 .stars-container{position:absolute;inset:0;pointer-events:none;z-index:0}
 .stars{position:absolute;border-radius:50%;background:white;animation:twinkle 2s infinite;}
 @keyframes twinkle{0%,100%{opacity:0.2;}50%{opacity:1;}}
 
-/* Shooting star */
+/* ===== Shooting Star ===== */
 .shooting-star{
-  position:absolute;
-  width:2px;height:100px;background:linear-gradient(white, transparent);
+  position:absolute;width:2px;height:100px;background:linear-gradient(white, transparent);
   transform:rotate(45deg);opacity:0;animation:shoot 1.2s linear forwards;
 }
-@keyframes shoot{
-  0%{opacity:1;transform:translateX(0) translateY(0) rotate(45deg);}
-  100%{opacity:0;transform:translateX(-800px) translateY(800px) rotate(45deg);}
-}
+@keyframes shoot{0%{opacity:1;transform:translateX(0) translateY(0) rotate(45deg);}100%{opacity:0;transform:translateX(-800px) translateY(800px) rotate(45deg);}}
 
+/* ===== Responsive ===== */
 @media(max-width:700px){
-  .typing-line{font-size:1.2rem}
+  .typing-line{font-size:1.4rem}
   .subtitle{font-size:1rem}
   .avatar{width:100px;height:100px}
   .bitmoji{width:80px;right:30px;bottom:40px}
@@ -145,13 +149,14 @@ body{
 
   <img class="avatar" src="https://i.ibb.co/0tN1zq0/lakshay-avatar.jpg" alt="Lakshay Gupta Photo">
 
-  <div class="typing-line" id="line1"></div>
-  <div class="typing-line" id="line2"></div>
-  <div class="typing-line" id="line3"></div>
+  <!-- 50 typing lines -->
+  <div id="typing-lines"></div>
+
+  <div class="subtitle">Cybersecurity | AI/ML | Tech Explorer | Hackathons | Projects</div>
 
   <div class="hero-desc">
     I’m Lakshay — a passionate student exploring AI, ML, and Cybersecurity.  
-    I build projects, compete in hackathons, and learn every day.
+    I build projects, compete in hackathons, and learn every day. Welcome to my cinematic portfolio!
   </div>
 
   <div class="hero-btn-group">
@@ -171,42 +176,15 @@ body{
 </div>
 
 <script>
-// Custom cursor
+// ===== Custom Cursor =====
 const cursor=document.getElementById('cursor');
 document.addEventListener('mousemove', e=>{
   cursor.style.transform=`translate(${e.clientX}px, ${e.clientY}px)`;
 });
 
-// Typing animation + bubble
-const lines=[
-  {text:"Welcome!", bubble:"Hello! Welcome! 👋"},
-  {text:"I'm Lakshay Gupta", bubble:"I'm Lakshay 👨‍💻"},
-  {text:"12th Class Student | Cybersecurity & AI/ML Enthusiast", bubble:"Let's explore AI & Cybersecurity 🚀"}
-];
-const bitmoji=document.getElementById('bitmoji');
-const bubble=document.getElementById('bubble');
-let lineIndex=0,charIndex=0;
-
-function typeNextChar(){
-  if(lineIndex>=lines.length){bubble.classList.add('show'); return;}
-  const el=document.getElementById('line'+(lineIndex+1));
-  el.textContent=lines[lineIndex].text.slice(0,charIndex+1);
-  bitmoji.style.transform=`rotate(${Math.sin(charIndex/2)*8}deg)`;
-  bubble.textContent=lines[lineIndex].bubble;
-  bubble.classList.add('show');
-  charIndex++;
-  if(charIndex<lines[lineIndex].text.length){
-    setTimeout(typeNextChar,50);
-  }else{
-    charIndex=0; lineIndex++;
-    setTimeout(()=>{bubble.classList.remove('show'); typeNextChar();},600);
-  }
-}
-window.addEventListener('load',typeNextChar);
-
-// Stars
+// ===== Stars =====
 const starsContainer=document.getElementById('stars');
-for(let i=0;i<120;i++){
+for(let i=0;i<1000;i++){
   const star=document.createElement('div');
   star.className='stars';
   const size=Math.random()*2; star.style.width=size+'px'; star.style.height=size+'px';
@@ -214,15 +192,60 @@ for(let i=0;i<120;i++){
   starsContainer.appendChild(star);
 }
 
-// Shooting stars every 2-5s
+// ===== Shooting stars =====
 setInterval(()=>{
   const star=document.createElement('div'); star.className='shooting-star';
   star.style.top=Math.random()*50+'%'; star.style.left=Math.random()*100+'%';
   starsContainer.appendChild(star);
   setTimeout(()=>star.remove(),1200);
-}, 2500);
+}, 1200);
 
-// Avatar follow cursor
+// ===== Typing animation with 50+ lines =====
+const typingLinesContainer=document.getElementById('typing-lines');
+const lines=[
+"Welcome! 👋","I'm Lakshay Gupta","12th Class Student | Cybersecurity & AI/ML Enthusiast",
+"Building Projects | Competing in Hackathons","Learning Every Day | Exploring Tech",
+"International Certifications | Awards","Passionate about AI & ML","Cybersecurity Enthusiast",
+"Creative Problem Solver","Open to Collaborations & Research",
+"Always Curious 🤓","Explorer of Tech & Innovation","AI is my Passion 🤖","ML Projects Enthusiast",
+"Hacker at Heart 💻","Competitive Programmer","Love Challenges","Dream Big 🌟",
+"Future AI Researcher","Student Leader","Open to Internships","Technology Blogger",
+"Content Creator","Tech Reviewer","Coding Tutor","Mentor & Guide",
+"Cybersecurity Analyst in Training","Bug Bounty Hunter","Blockchain Explorer","Open Source Contributor",
+"Passionate About Space 🌌","Science Lover 🔬","Mathematics Enthusiast","Physics Nerd ⚛️",
+"Reading Books 📚","Loves Chess ♟️","Gaming Enthusiast 🎮","Drone Pilot","Tech Innovator",
+"Robotics Builder 🤖","Electronics Hobbyist","Aspiring Engineer","Tech YouTuber","AI Developer",
+"Machine Learning Engineer","Cybersecurity Consultant","Web Developer","Mobile App Creator",
+"Problem Solver","Idea Generator","Futurist Visionary","Always Learning 📖","Collaboration Advocate"
+];
+lines.forEach((txt,i)=>{
+  const div=document.createElement('div');
+  div.className='typing-line';
+  div.id='line-'+i;
+  typingLinesContainer.appendChild(div);
+});
+
+const bitmoji=document.getElementById('bitmoji');
+const bubble=document.getElementById('bubble');
+let lineIndex=0,charIndex=0;
+function typeNextChar(){
+  if(lineIndex>=lines.length){bubble.classList.add('show'); bubble.textContent="All loaded! 🌟"; return;}
+  const el=document.getElementById('line-'+lineIndex);
+  el.textContent=lines[lineIndex].slice(0,charIndex+1);
+  bitmoji.style.transform=`rotate(${Math.sin(charIndex/2)*8}deg)`;
+  bubble.textContent="Typing: "+lines[lineIndex];
+  bubble.classList.add('show');
+  charIndex++;
+  if(charIndex<lines[lineIndex].length){
+    setTimeout(typeNextChar,50);
+  }else{
+    charIndex=0; lineIndex++;
+    setTimeout(()=>{bubble.classList.remove('show'); typeNextChar();},500);
+  }
+}
+window.addEventListener('load',typeNextChar);
+
+// ===== Bitmoji follows cursor =====
 document.addEventListener('mousemove', e=>{
   const x= e.clientX/window.innerWidth -0.5;
   bitmoji.style.transform=`rotate(${x*15}deg)`;

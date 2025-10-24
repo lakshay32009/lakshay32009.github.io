@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lakshay Gupta | Portfolio</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
 
   <style>
-    /* ---------- GLOBAL STYLES ---------- */
     * {
       margin: 0;
       padding: 0;
@@ -16,171 +14,198 @@
     }
     body {
       font-family: 'Poppins', sans-serif;
-      background: url('https://cdn.pixabay.com/photo/2018/02/21/10/55/milky-way-3169326_1280.jpg') no-repeat center center fixed;
-      background-size: cover;
+      background: radial-gradient(circle at 20% 20%, #0d0221 0%, #20033a 40%, #0b0016 100%);
       color: #fff;
       overflow-x: hidden;
       min-height: 100vh;
     }
 
-    /* ---------- NAVBAR ---------- */
+    /* Navbar */
     .navbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: rgba(10, 10, 30, 0.8);
-      padding: 15px 40px;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+      padding: 18px 40px;
+      background: rgba(10, 6, 30, 0.7);
       backdrop-filter: blur(10px);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
       position: fixed;
-      width: 100%;
       top: 0;
+      left: 0;
+      width: 100%;
       z-index: 10;
     }
-    .navbar .nav-title {
-      font-weight: 800;
+    .nav-title {
+      color: #be3bb6;
+      font-weight: 700;
       font-size: 1.4rem;
-      color: #ff66ff;
       letter-spacing: 1px;
     }
-    .navbar a {
-      text-decoration: none;
+    .nav-links a {
       color: #fff;
-      margin-left: 20px;
+      text-decoration: none;
+      margin-left: 24px;
       font-weight: 500;
-      transition: 0.3s;
+      transition: color 0.3s;
     }
-    .navbar a:hover {
-      color: #ff66ff;
+    .nav-links a:hover {
+      color: #be3bb6;
     }
 
-    /* ---------- HERO SECTION ---------- */
+    /* Hero section */
     .hero {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
       text-align: center;
-      padding-top: 100px;
+      padding-top: 120px;
       position: relative;
+      overflow: hidden;
     }
 
-    .bitmoji {
-      width: 140px;
-      animation: float 4s ease-in-out infinite;
+    /* Stars animation background */
+    .stars {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      animation: moveStars 40s linear infinite;
+      opacity: 0.8;
     }
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-12px); }
+    @keyframes moveStars {
+      from {
+        transform: translateY(0);
+      }
+      to {
+        transform: translateY(2000px);
+      }
     }
 
-    .name {
-      font-size: 2.2rem;
-      font-weight: 700;
-      color: #ffb6ff;
-      margin-top: 20px;
-      animation: fadeIn 2s ease forwards;
+    .profile-pic {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      border: 5px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 0 30px rgba(106, 53, 215, 0.4);
+      margin-bottom: 20px;
+      z-index: 2;
     }
 
     .typing {
-      border-right: 3px solid #ff66ff;
+      border-right: 3px solid #be3bb6;
       white-space: nowrap;
       overflow: hidden;
-      font-size: 1.8rem;
       width: 0;
-      animation: typing 3s steps(30, end) forwards, blink 0.75s step-end infinite;
-      margin-top: 20px;
+      animation: typing 3.5s steps(40, end) forwards, blink 0.75s step-end infinite;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #be3bb6;
+      margin-bottom: 15px;
+      z-index: 2;
     }
-
     @keyframes typing {
-      from { width: 0; }
-      to { width: 100%; }
+      from {
+        width: 0;
+      }
+      to {
+        width: 100%;
+      }
     }
-
     @keyframes blink {
-      50% { border-color: transparent; }
+      50% {
+        border-color: transparent;
+      }
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(15px); }
-      to { opacity: 1; transform: translateY(0); }
+    .subtitle {
+      font-size: 1.2rem;
+      font-weight: 600;
+      background: linear-gradient(90deg, #be3bb6, #6a35d7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 20px;
+      z-index: 2;
     }
 
-    /* ---------- BUTTONS ---------- */
+    .hero-desc {
+      max-width: 700px;
+      color: #ddd;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin-bottom: 35px;
+      z-index: 2;
+    }
+
+    /* Buttons */
     .hero-btn-group {
       display: flex;
+      gap: 14px;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 15px;
-      margin-top: 35px;
+      z-index: 2;
     }
     .hero-btn {
       background: linear-gradient(90deg, #6a35d7, #be3bb6);
-      color: white;
-      padding: 12px 30px;
-      border-radius: 40px;
-      font-weight: 600;
-      font-size: 1.05rem;
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      padding: 12px 32px;
       text-decoration: none;
-      box-shadow: 0 0 20px rgba(190, 59, 182, 0.5);
-      transition: 0.3s;
+      font-weight: 600;
+      font-size: 1rem;
+      box-shadow: 0 0 15px rgba(190, 59, 182, 0.5);
+      transition: 0.3s ease;
     }
     .hero-btn:hover {
       transform: scale(1.08);
-      box-shadow: 0 0 30px rgba(255, 102, 255, 0.7);
+      box-shadow: 0 0 30px rgba(190, 59, 182, 0.8);
     }
 
-    /* ---------- ORBITAL GLOW ---------- */
-    .orbit {
+    /* Bitmoji */
+    .bitmoji {
+      width: 110px;
       position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 320px;
-      height: 320px;
-      transform: translate(-50%, -50%);
-      border: 2px dashed rgba(255,255,255,0.2);
-      border-radius: 50%;
-      animation: rotate 18s linear infinite;
+      bottom: 60px;
+      right: 70px;
+      animation: wave 2s infinite ease-in-out;
+      z-index: 3;
     }
-    @keyframes rotate {
-      0% { transform: translate(-50%, -50%) rotate(0deg); }
-      100% { transform: translate(-50%, -50%) rotate(360deg); }
-    }
-    .orb {
-      position: absolute;
-      width: 18px;
-      height: 18px;
-      background: radial-gradient(circle, #ff66ff, #6a35d7);
-      border-radius: 50%;
-      box-shadow: 0 0 15px #ff66ff;
-      top: -10px;
-      left: 50%;
-      transform: translateX(-50%);
+    @keyframes wave {
+      0%, 100% {
+        transform: rotate(0deg);
+      }
+      50% {
+        transform: rotate(10deg);
+      }
     }
 
-    /* ---------- FOOTER ---------- */
+    /* Footer */
     .footer {
       text-align: center;
-      padding: 25px;
-      background: rgba(0, 0, 0, 0.4);
-      font-weight: 600;
-      letter-spacing: 1px;
+      padding: 20px;
+      margin-top: 60px;
       color: #ccc;
-      margin-top: 50px;
+      font-weight: 500;
+      background: rgba(10, 6, 30, 0.4);
+      backdrop-filter: blur(8px);
     }
 
-    /* ---------- RESPONSIVE ---------- */
     @media (max-width: 700px) {
       .typing {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
       }
-      .orbit {
-        width: 220px;
-        height: 220px;
+      .subtitle {
+        font-size: 1rem;
       }
       .bitmoji {
-        width: 100px;
+        width: 80px;
+        right: 30px;
+        bottom: 40px;
+      }
+      .hero-desc {
+        font-size: 0.95rem;
       }
     }
   </style>
@@ -199,22 +224,55 @@
   </nav>
 
   <section class="hero">
-    <div class="orbit"><div class="orb"></div></div>
-    <img src="https://i.ibb.co/YRRb3Tm/bitmoji-wave.png" alt="Lakshay Bitmoji Hello" class="bitmoji">
+    <!-- Stars background (JS will duplicate) -->
+    <div id="stars-container"></div>
+
+    <img
+      class="profile-pic"
+      src="WhatsApp-Image-2025-10-11-at-23.19.34_d3c78967.jpg"
+      alt="Lakshay Gupta Photo"
+    />
+
     <div class="typing">Welcome, I'm Lakshay Gupta 👋</div>
-    <div class="name">12th Grade | AI • Cybersecurity • ML</div>
+    <div class="subtitle">12th Class Student | Cybersecurity & AI/ML Enthusiast</div>
+
+    <div class="hero-desc">
+      I’m Lakshay — a passionate student driven by curiosity and innovation.  
+      Exploring the world of Artificial Intelligence, Cybersecurity, and emerging technologies,  
+      I aim to create real-world solutions with purpose and creativity.
+    </div>
 
     <div class="hero-btn-group">
-      <a href="achievements.html" class="hero-btn">My Achievements</a>
-      <a href="skills.html" class="hero-btn">My Skills</a>
+      <a href="achievements.html" class="hero-btn">Achievements</a>
+      <a href="skills.html" class="hero-btn">Skills</a>
       <a href="gallery.html" class="hero-btn">Gallery</a>
       <a href="certificates.html" class="hero-btn">Certificates</a>
       <a href="contact.html" class="hero-btn">Contact</a>
     </div>
+
+    <img
+      src="https://i.ibb.co/YRRb3Tm/bitmoji-wave.png"
+      alt="Lakshay Bitmoji Hello"
+      class="bitmoji"
+    />
   </section>
 
   <div class="footer">
-    &copy; 2025 Lakshay Gupta • Designed with 💜 for Dreams Beyond Earth 🚀
+    &copy; 2025 Lakshay Gupta • Designed for Excellence and Innovation 💫
   </div>
+
+  <script>
+    // Generate moving stars
+    const starContainer = document.getElementById('stars-container');
+    for (let i = 0; i < 120; i++) {
+      const star = document.createElement('div');
+      star.className = 'stars';
+      star.style.left = Math.random() * 100 + 'vw';
+      star.style.top = Math.random() * -100 + 'vh';
+      star.style.animationDuration = 20 + Math.random() * 20 + 's';
+      star.style.opacity = Math.random();
+      starContainer.appendChild(star);
+    }
+  </script>
 </body>
 </html>

@@ -11,7 +11,6 @@ body{
   font-family:'Poppins',sans-serif;
   background: radial-gradient(circle at 20% 20%, #0d0221 0%, #20033a 40%, #0b0016 100%);
   color:#fff; overflow-x:hidden; min-height:100vh; scroll-behavior:smooth;
-  cursor: none;
 }
 
 /* Custom cursor */
@@ -226,7 +225,6 @@ setInterval(()=>{
 // Avatar follow cursor
 document.addEventListener('mousemove', e=>{
   const x= e.clientX/window.innerWidth -0.5;
-  const y= e.clientY/window.innerHeight -0.5;
   bitmoji.style.transform=`rotate(${x*15}deg)`;
 });
 </script>

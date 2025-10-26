@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery | Lakshay Gupta</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="../assets/images/favicon.png" type="image/png">
+<style>
+html,body{margin:0;padding:0;font-family:'Montserrat',sans-serif;scroll-behavior:smooth;transition:0.5s;}
+body{min-height:100vh;background:linear-gradient(120deg,#0a0a1a,#1a1a2e);color:#fff;}
+.container{max-width:1000px;margin:auto;padding:40px 20px;text-align:center;}
+h1{color:#be3bb6;}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px;}
+.grid img{width:100%;border-radius:12px;box-shadow:0 4px 15px #000a;opacity:0;transform:translateY(20px);transition:0.8s;}
+.nav-btn{display:inline-block;background:linear-gradient(90deg,#be3bb6,#6a35d7);padding:10px 24px;border-radius:50px;color:#fff;text-decoration:none;margin:4px;transition:0.3s;}
+.nav-btn:hover{background:linear-gradient(90deg,#6a35d7,#be3bb6);}
+.theme-toggle{position:fixed;top:20px;right:20px;background:#be3bb6;border:none;padding:10px 14px;border-radius:50px;color:#fff;font-weight:700;cursor:pointer;z-index:1000;transition:0.3s;}
+.theme-toggle:hover{background:#6a35d7;}
+</style>
+</head>
+<body id="body">
+<button class="theme-toggle" onclick="toggleTheme()">🌞 / 🌌</button>
+<div class="container">
+<h1>Gallery</h1>
+<div class="grid">
+<img src="../assets/images/gallery1.jpg" alt="Gallery Image 1">
+<img src="../assets/images/gallery2.jpg" alt="Gallery Image 2">
+<img src="../assets/images/gallery3.jpg" alt="Gallery Image 3">
+<img src="../assets/images/gallery4.jpg" alt="Gallery Image 4">
+</div>
+<div style="margin-top:20px;">
+<a href="../index.html" class="nav-btn">Home</a>
+<a href="../Resume/" class="nav-btn">Resume</a>
+<a href="../Achievements/" class="nav-btn">Achievements</a>
+</div>
+</div>
+
+<script>
+let isGalaxy=true;
+function toggleTheme(){const body=document.getElementById('body');if(isGalaxy){body.style.background="linear-gradient(120deg,#FFD194,#FFB347)";body.style.color="#222";isGalaxy=false;}else{body.style.background="linear-gradient(120deg,#0a0a1a,#1a1a2e)";body.style.color="#fff";isGalaxy=true;}}
+const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.style.opacity=1;entry.target.style.transform='translateY(0)';}}},{threshold:0.1});
+document.querySelectorAll('.grid img').forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>

@@ -2,157 +2,121 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lakshay Gupta | Cinematic Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lakshay Gupta | Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="assets/images/favicon.png" type="image/png">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'Poppins',sans-serif;color:#fff;overflow-x:hidden;transition:background 2s ease;}
-.cursor{position:fixed;width:10px;height:10px;background:white;border-radius:50%;pointer-events:none;transform:translate(-50%,-50%);transition:transform 0.05s linear;z-index:9999;}
-.navbar{display:flex;justify-content:space-between;align-items:center;padding:18px 40px;background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);position:fixed;top:0;width:100%;z-index:10;box-shadow:0 4px 20px rgba(0,0,0,0.2);}
-.nav-title{color:#FF758C;font-weight:700;font-size:1.4rem;letter-spacing:1px;}
-.nav-links a{color:#fff;text-decoration:none;margin-left:24px;font-weight:500;transition:color 0.3s;}
-.nav-links a:hover{color:#FFD194;}
-.hero{display:flex;flex-direction:column;align-items:center;text-align:center;padding-top:120px;position:relative;overflow:hidden;min-height:100vh;}
-.avatar{width:140px;height:140px;border-radius:50%;border:4px solid rgba(255,255,255,0.3);box-shadow:0 0 30px rgba(255,200,150,0.5);margin-bottom:20px;animation:float 3s ease-in-out infinite;}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-#typing-text{font-weight:700;font-size:2rem;margin:20px 0;min-height:3rem;}
-.subtitle{font-size:1.2rem;font-weight:600;background:linear-gradient(90deg,#FFD194,#FF758C);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:20px;animation:glow 2s ease-in-out infinite alternate;}
-@keyframes glow{0%{text-shadow:0 0 8px #FFD194,0 0 16px #FF758C;}100%{text-shadow:0 0 20px #FF758C,0 0 30px #FFD194;}}
-.hero-desc{max-width:700px;line-height:1.7;margin-bottom:35px;animation:fadeIn 2s ease forwards;}
-@keyframes fadeIn{0%{opacity:0;transform:translateY(10px);}100%{opacity:1;transform:translateY(0);}}
-.hero-btn-group{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;}
-.hero-btn{color:#fff;border:none;border-radius:50px;padding:12px 32px;text-decoration:none;font-weight:600;font-size:1rem;transition:0.3s ease,transform 0.3s;}
-.hero-btn:hover{transform:scale(1.1) translateY(-2px);}
-.footer{text-align:center;padding:20px;margin-top:60px;color:#fff;font-weight:500;background:rgba(255,255,255,0.2);backdrop-filter:blur(8px);position:relative;z-index:5;}
-.stars-container{position:absolute;inset:0;pointer-events:none;z-index:0;}
-.stars{position:absolute;border-radius:50%;background:white;opacity:0.3;animation:twinkle 3s infinite;}
-@keyframes twinkle{0%,100%{opacity:0.2;}50%{opacity:0.5;}}
-.theme-btn{position:fixed;bottom:25px;right:25px;width:55px;height:55px;border:none;border-radius:50%;font-size:22px;color:white;background:rgba(255,255,255,0.25);backdrop-filter:blur(8px);cursor:pointer;box-shadow:0 4px 15px rgba(0,0,0,0.3);transition:0.3s;z-index:20;}
-.theme-btn:hover{transform:scale(1.15);}
-.sun{position:absolute;bottom:-100px;left:50%;width:150px;height:150px;background:radial-gradient(circle,#FFD194,#FF758C);border-radius:50%;transform:translateX(-50%);z-index:1;transition:bottom 1s ease,opacity 1s;}
-.moon{position:absolute;bottom:-100px;left:50%;width:120px;height:120px;background:radial-gradient(circle,#F0F8FF,#B0C4DE);border-radius:50%;transform:translateX(-50%);z-index:1;opacity:0;transition:bottom 1s ease,opacity 1s;}
-.cloud{position:absolute;width:200px;height:80px;background:rgba(255,255,255,0.3);border-radius:50%;top:50px;animation:cloudMove 60s linear infinite;}
-.cloud:nth-child(2){top:120px;animation-duration:80s;left:300px;}
-@keyframes cloudMove{0%{transform:translateX(-250px);}100%{transform:translateX(110vw);}}
-@media(max-width:700px){#typing-text{font-size:1.4rem}.subtitle{font-size:1rem}.avatar{width:100px;height:100px}.hero-desc{font-size:0.95rem}.cloud{width:120px;height:50px;}}
+/* ---------- Reset & Body ---------- */
+html, body { margin:0; padding:0; font-family:'Montserrat',sans-serif; overflow-x:hidden; scroll-behavior:smooth; transition:0.5s;}
+body { min-height:100vh; background: linear-gradient(120deg,#0a0a1a,#1a1a2e); color:#fff; position:relative; }
+
+/* ---------- Container ---------- */
+.container { max-width:900px; margin:auto; padding:40px 20px; position:relative; z-index:2; text-align:center; }
+
+/* ---------- Header ---------- */
+.profile-pic { width:150px; height:150px; border-radius:50%; border:4px solid #6a35d7; object-fit:cover; margin-bottom:20px; }
+.name { font-size:2.2em; font-weight:700; color:#be3bb6; margin-bottom:5px; }
+.subtitle { font-size:1.1em; margin-bottom:30px; }
+
+/* ---------- Nav Buttons ---------- */
+.nav-btn { display:inline-block; background:linear-gradient(90deg,#be3bb6,#6a35d7); padding:12px 28px; border-radius:50px; color:#fff; font-weight:600; text-decoration:none; margin:6px; transition:0.3s; }
+.nav-btn:hover { background:linear-gradient(90deg,#6a35d7,#be3bb6); }
+
+/* ---------- Theme Toggle ---------- */
+.theme-toggle { position: fixed; top:20px; right:20px; background: #be3bb6; border:none; padding:10px 14px; border-radius:50px; color:#fff; font-weight:700; cursor:pointer; z-index:1000; transition:0.3s; }
+.theme-toggle:hover { background:#6a35d7; }
+
+/* ---------- Typing Animation ---------- */
+.typed { font-weight:600; font-size:1.1em; white-space:pre-wrap; overflow:hidden; border-right:.15em solid #be3bb6; }
+
+/* ---------- Fade-in ---------- */
+.section h2, .section p { opacity:0; transform: translateY(20px); transition:0.8s ease-out; }
+
+/* ---------- Stars ---------- */
+#stars { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:1; }
+.star { position:absolute; background:white; border-radius:50%; opacity:0.8; animation: twinkle 3s infinite alternate; }
+@keyframes twinkle { from{opacity:0.2;} to{opacity:1;} }
+
+/* ---------- Sunrise ---------- */
+#sunrise { position:fixed; bottom:-100px; left:50%; width:200px; height:200px; border-radius:50%; background: radial-gradient(circle, #FFD194, #FFB347); transform:translateX(-50%); z-index:0; transition: all 0.5s; }
+
+/* ---------- Responsive ---------- */
+@media (max-width:700px){ .name{font-size:1.6em;} .subtitle{font-size:1em;} .nav-btn{padding:10px 22px;} }
 </style>
 </head>
-<body>
+<body id="body">
 
-<div class="cursor" id="cursor"></div>
+<!-- BACKGROUND -->
+<div id="stars"></div>
+<div id="sunrise"></div>
 
-<nav class="navbar">
-  <div class="nav-title">Lakshay Gupta</div>
-  <div class="nav-links">
-    <a href="index.html" class="active">Home</a>
-    <a href="achievements.html">Achievements</a>
-    <a href="skills.html">Skills</a>
-    <a href="gallery.html">Gallery</a>
-    <a href="certificates.html">Certificates</a>
-    <a href="resume.html">Resume</a>
-    <a href="contact.html">Contact</a>
+<!-- THEME TOGGLE -->
+<button class="theme-toggle" onclick="toggleTheme()">🌞 / 🌌</button>
+
+<div class="container">
+  <img class="profile-pic" src="assets/images/profile/lakshay.jpg" alt="Lakshay Gupta">
+  <div class="name">Lakshay Gupta</div>
+  <div class="subtitle">12th Class | Cybersecurity & AI/ML Enthusiast</div>
+  <p class="typed"></p>
+
+  <!-- Navigation Buttons -->
+  <div style="margin-top:30px;">
+    <a href="resume/" class="nav-btn">Resume</a>
+    <a href="achievements/" class="nav-btn">Achievements</a>
+    <a href="skills/" class="nav-btn">Skills</a>
+    <a href="gallery/" class="nav-btn">Gallery</a>
+    <a href="certificates/" class="nav-btn">Certificates</a>
+    <a href="contact/" class="nav-btn">Contact</a>
   </div>
-</nav>
-
-<section class="hero">
-  <div class="stars-container" id="stars"></div>
-  <div class="sun" id="sun"></div>
-  <div class="moon" id="moon"></div>
-  <div class="cloud" style="left:10%;"></div>
-  <div class="cloud" style="left:60%;"></div>
-  
-  <img class="avatar" src="WhatsApp-Image-2025-10-11-at-23.19.34_d3c78967.jpg" alt="Lakshay Gupta Photo">
-  <div id="typing-text"></div>
-  <div class="subtitle" id="subtitle">Cybersecurity | AI/ML | Tech Explorer | Hackathons | Projects</div>
-  <div class="hero-desc">
-    I’m Lakshay — a passionate student exploring AI, ML, and Cybersecurity.<br>
-    I build projects, compete in hackathons, and learn every day. Welcome to my cinematic portfolio!
-  </div>
-  <div class="hero-btn-group">
-    <a href="achievements.html" class="hero-btn" id="btn1">Achievements</a>
-    <a href="skills.html" class="hero-btn" id="btn2">Skills</a>
-    <a href="gallery.html" class="hero-btn" id="btn3">Gallery</a>
-    <a href="certificates.html" class="hero-btn" id="btn4">Certificates</a>
-    <a href="contact.html" class="hero-btn" id="btn5">Contact</a>
-  </div>
-</section>
-
-<div class="footer">
-  &copy; 2025 Lakshay Gupta • Designed with 💜 for Excellence
 </div>
 
-<button class="theme-btn" id="themeBtn">🌅</button>
-
 <script>
-// Cursor
-const cursor=document.getElementById('cursor');
-document.addEventListener('mousemove', e=>{
-  cursor.style.transform=`translate(${e.clientX}px,${e.clientY}px)`;
-});
+// TYPING ANIMATION
+const aboutText = "Welcome! I am Lakshay Gupta, a passionate learner and tech enthusiast focused on AI, ML, Cybersecurity, and community service. Explore my projects, achievements, and certifications!";
+let index=0;
+const typedContainer=document.querySelector('.typed');
+function typeLetter(){ if(index<aboutText.length){ typedContainer.textContent+=aboutText[index]; index++; setTimeout(typeLetter,25); } }
+typeLetter();
 
-// Stars
+// THEME TOGGLE
+let isGalaxy = true;
+function toggleTheme(){
+  const body=document.getElementById('body');
+  const stars=document.getElementById('stars');
+  const sun=document.getElementById('sunrise');
+  if(isGalaxy){ body.style.background="linear-gradient(120deg,#FFD194,#FFB347)"; body.style.color="#222"; stars.style.display="none"; sun.style.bottom="50px"; isGalaxy=false; }
+  else{ body.style.background="linear-gradient(120deg,#0a0a1a,#1a1a2e)"; body.style.color="#fff"; stars.style.display="block"; sun.style.bottom="-100px"; isGalaxy=true; }
+}
+
+// STARS
 const starsContainer=document.getElementById('stars');
-for(let i=0;i<200;i++){
-  const star=document.createElement('div');
-  star.className='stars';
-  const size=Math.random()*3;
-  star.style.width=size+'px';
-  star.style.height=size+'px';
-  star.style.top=Math.random()*80+'%';
-  star.style.left=Math.random()*100+'%';
+for(let i=0;i<80;i++){
+  const star=document.createElement('div'); star.className='star';
+  star.style.width=`${Math.random()*3+1}px`;
+  star.style.height=star.style.width;
+  star.style.top=`${Math.random()*100}%`;
+  star.style.left=`${Math.random()*100}%`;
+  star.style.animationDuration=`${Math.random()*3+2}s`;
   starsContainer.appendChild(star);
 }
 
-// Typing Animation
-const lines=["Welcome! 👋","I'm Lakshay Gupta","Cybersecurity & AI/ML Enthusiast","Passionate Tech Explorer"];
-const typingText=document.getElementById('typing-text');
-let lineIndex=0,charIndex=0;
-function typeNextChar(){
-  if(lineIndex>=lines.length)return;
-  typingText.textContent=lines[lineIndex].slice(0,charIndex+1);
-  charIndex++;
-  if(charIndex<lines[lineIndex].length)setTimeout(typeNextChar,70);
-  else{charIndex=0;lineIndex++;setTimeout(typeNextChar,700);}
-}
-window.addEventListener('load',typeNextChar);
+// FADE-IN ON SCROLL
+const observer=new IntersectionObserver(entries=>{ entries.forEach(entry=>{ if(entry.isIntersecting){ entry.target.style.opacity=1; entry.target.style.transform='translateY(0)'; } }); },{threshold:0.1});
+document.querySelectorAll('.section h2, .section p').forEach(el=>observer.observe(el));
 
-// Sun & Moon
-const sun=document.getElementById('sun');
-const moon=document.getElementById('moon');
-function updateSky(){
-  const hour=new Date().getHours();
-  let sunOpacity=0,moonOpacity=0;
-  if(hour>=6 && hour<18){sunOpacity=1;moonOpacity=0;}
-  else{sunOpacity=0;moonOpacity=1;}
-  sun.style.opacity=sunOpacity;moon.style.opacity=moonOpacity;
-}
-updateSky();
-setInterval(updateSky,60000);
-
-// Theme Button
-let themeIndex=-1;
-const themes=[
-  {bg:'linear-gradient(120deg,#FFD194,#FF758C)',btn:'🌅'},
-  {bg:'linear-gradient(120deg,#87CEFA,#00BFFF)',btn:'☀️'},
-  {bg:'linear-gradient(120deg,#0b0016,#3b0b36)',btn:'🌙'}
-];
-const themeBtn=document.getElementById('themeBtn');
-function applyTheme(index=-1){
-  const body=document.body;
-  if(index===-1){
-    const hour=new Date().getHours();
-    index=(hour>=5 && hour<10)?0:(hour>=10 && hour<18)?1:2;
-  }
-  themeIndex=index;
-  body.style.background=themes[index].bg;
-  themeBtn.textContent=themes[index].btn;
-}
-applyTheme();
-themeBtn.addEventListener('click',()=>{
-  themeIndex=(themeIndex+1)%3;
-  applyTheme(themeIndex);
+// DYNAMIC TAB TITLE
+const sections=document.querySelectorAll('.section');
+window.addEventListener('scroll',()=>{
+  let scrollPos=window.scrollY;
+  sections.forEach(section=>{
+    if(section.offsetTop<=scrollPos+100){
+      const title=section.querySelector('h2')? section.querySelector('h2').innerText : "Lakshay Gupta | Portfolio";
+      document.title = title + " | Lakshay Gupta";
+    }
+  });
 });
 </script>
+
 </body>
 </html>

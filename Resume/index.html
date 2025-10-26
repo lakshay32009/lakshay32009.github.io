@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lakshay Gupta | Cybersecurity & AI/ML Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="assets/images/favicon.png" type="image/png">
+<style>
+html, body { margin:0; padding:0; font-family: 'Montserrat', sans-serif; overflow-x:hidden; transition: background 0.5s, color 0.5s; scroll-behavior: smooth; }
+body { min-height:100vh; background: linear-gradient(120deg,#0a0a1a,#1a1a2e); color:#fff; position:relative; }
+.container { max-width:900px; margin:auto; padding:40px 20px; position:relative; z-index:2; }
+
+/* HEADER */
+.profile-pic { width:150px; height:150px; border-radius:50%; border:4px solid #6a35d7; margin-bottom:20px; object-fit:cover; }
+.name { font-size:2.2em; font-weight:700; color:#be3bb6; margin-bottom:5px; text-align:center; }
+.subtitle { font-size:1.1em; color:#fff; text-align:center; margin-bottom:30px; }
+
+/* SECTIONS */
+h2 { font-size:1.6em; color:#6a35d7; margin-bottom:20px; border-bottom:2px solid #be3bb6; padding-bottom:6px; opacity:0; transform: translateY(20px); transition: 0.8s ease-out; }
+p { line-height:1.6; margin-bottom:15px; opacity:0; transform: translateY(20px); transition: 0.8s ease-out; }
+.section { margin-bottom:40px; }
+.achievement, .goal { margin-bottom:15px; padding-left:12px; border-left:3px solid #be3bb6; opacity:0; transform: translateY(20px); transition: 0.8s ease-out; }
+
+/* BUTTONS */
+.btn { display:inline-block; background:linear-gradient(90deg,#be3bb6,#6a35d7); padding:12px 28px; border-radius:50px; color:#fff; font-weight:600; text-decoration:none; margin-top:10px; transition:0.3s; }
+.btn:hover { background:linear-gradient(90deg,#6a35d7,#be3bb6); }
+
+/* THEME BUTTON */
+.theme-toggle { position: fixed; top:20px; right:20px; background: #be3bb6; border:none; padding:10px 14px; border-radius:50px; color:#fff; font-weight:700; cursor:pointer; z-index:1000; transition:0.3s; }
+.theme-toggle:hover { background:#6a35d7; }
+
+/* TYPING ANIMATION */
+.typed { font-weight:600; font-size:1.1em; white-space:pre-wrap; overflow:hidden; border-right:.15em solid #be3bb6; }
+
+/* RESPONSIVE */
+@media (max-width:700px){ .name{font-size:1.6em;} .subtitle{font-size:1em;} .btn{padding:10px 22px;} }
+
+/* STAR BACKGROUND */
+#stars { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:1; }
+.star { position:absolute; background:white; border-radius:50%; opacity:0.8; animation: twinkle 3s infinite alternate; }
+@keyframes twinkle { from {opacity:0.2;} to {opacity:1;} }
+
+/* SUNRISE EFFECT */
+#sunrise { position:fixed; bottom:-100px; left:50%; width:200px; height:200px; border-radius:50%; background: radial-gradient(circle, #FFD194, #FFB347); transform:translateX(-50%); z-index:0; transition: all 0.5s; }
+</style>
+</head>
+<body id="body">
+
+<!-- BACKGROUND -->
+<div id="stars"></div>
+<div id="sunrise"></div>
+
+<!-- THEME TOGGLE -->
+<button class="theme-toggle" onclick="toggleTheme()">🌞 / 🌌</button>
+
+<div class="container">
+  <!-- HEADER -->
+  <div style="text-align:center;">
+    <img class="profile-pic" src="assets/images/profile/lakshay.jpg" alt="Lakshay Gupta">
+    <div class="name">Lakshay Gupta</div>
+    <div class="subtitle">12th Class | Cybersecurity & AI/ML Enthusiast | Hackathon & Science Exhibitions Participant</div>
+  </div>
+
+  <!-- ABOUT ME -->
+  <div class="section" id="about">
+    <h2>About Me</h2>
+    <p class="typed"></p>
+  </div>
+
+  <!-- EDUCATION -->
+  <div class="section" id="education">
+    <h2>Education</h2>
+    <p><strong>Wisdom World School – Class 12 (CBSE)</strong><br>
+    I have maintained strong academic performance while actively participating in technology and science competitions.</p>
+  </div>
+
+  <!-- SKILLS -->
+  <div class="section" id="skills">
+    <h2>Skills</h2>
+    <p><strong>Programming & Tech:</strong> Python, C++, AI/ML, Cybersecurity fundamentals, Web Development</p>
+    <p><strong>Soft Skills:</strong> Leadership, Problem Solving, Teamwork, Community Engagement</p>
+  </div>
+
+  <!-- ACHIEVEMENTS / CURRENT PROJECTS -->
+  <div class="section" id="achievements">
+    <h2>Achievements & Projects</h2>
+    <div class="achievement"><strong>Google Cybersecurity Certifications:</strong> Gained practical knowledge in network security, ethical hacking, and data protection.</div>
+    <div class="achievement"><strong>Donation in Orphanage:</strong> Contributed resources to support children’s education and well-being.</div>
+    <div class="achievement"><strong>Community Contribution in Aggarwal Sabha:</strong> Participated in social service initiatives to improve local community welfare.</div>
+    <div class="achievement"><strong>3rd Prize – Science Exhibition at JMIT Rador:</strong> Presented a scientific project demonstrating creativity and analytical skills.</div>
+    <div class="achievement"><strong>Participation – Design IO by Kreative Eyes:</strong> Engaged in design thinking exercises and collaborative team projects.</div>
+  </div>
+
+  <!-- FUTURE PLANS / GOALS -->
+  <div class="section" id="goals">
+    <h2>Future Plans & Goals</h2>
+    <div class="goal"><strong>CS50 Course:</strong> Plan to deepen understanding of computer science fundamentals and improve coding skills.</div>
+    <div class="goal"><strong>Science Essay Writing Competition:</strong> Participate to enhance research, writing, and analytical capabilities.</div>
+    <div class="goal"><strong>Open House Quiz – Panorama KKR:</strong> Test knowledge and teamwork in an intellectually competitive environment.</div>
+    <div class="goal"><strong>Panel Discussion – Panorama KKR:</strong> Present ideas and communicate effectively on scientific topics.</div>
+    <div class="goal"><strong>Science Exhibition – NIT KKR:</strong> Showcase innovative projects and collaborate with peers.</div>
+    <div class="goal"><strong>Courses on Business, Computer Science & Cybersecurity:</strong> Aim to gain interdisciplinary expertise for future academic and professional growth.</div>
+  </div>
+
+  <!-- BUTTONS -->
+  <div style="text-align:center;">
+    <a href="resume.pdf" class="btn" download>Download Resume PDF</a>
+    <a href="index.html" class="btn">Back to Home</a>
+    <a href="achievements.html" class="btn">View Achievements</a>
+  </div>
+</div>
+
+<script>
+// TYPING ANIMATION
+const aboutText = "I am a passionate learner with a strong interest in AI, machine learning, and cybersecurity. I enjoy solving challenging problems, participating in competitions, and contributing to my community through meaningful initiatives.";
+let index = 0;
+const typedContainer = document.querySelector('.typed');
+function typeLetter() {
+  if(index < aboutText.length){
+    typedContainer.textContent += aboutText[index];
+    index++;
+    setTimeout(typeLetter, 25);
+  }
+}
+typeLetter();
+
+// THEME SWITCHER
+let isGalaxy = true;
+function toggleTheme(){
+  const body = document.getElementById('body');
+  const stars = document.getElementById('stars');
+  const sun = document.getElementById('sunrise');
+  if(isGalaxy){
+    body.style.background = "linear-gradient(120deg,#FFD194,#FFB347)";
+    body.style.color = "#222";
+    stars.style.display = "none";
+    sun.style.bottom = "50px";
+    isGalaxy = false;
+  } else {
+    body.style.background = "linear-gradient(120deg,#0a0a1a,#1a1a2e)";
+    body.style.color = "#fff";
+    stars.style.display = "block";
+    sun.style.bottom = "-100px";
+    isGalaxy = true;
+  }
+}
+
+// CREATE STARS
+const starsContainer = document.getElementById('stars');
+for(let i=0;i<80;i++){
+  const star = document.createElement('div');
+  star.className = 'star';
+  star.style.width = `${Math.random()*3 + 1}px`;
+  star.style.height = star.style.width;
+  star.style.top = `${Math.random()*100}%`;
+  star.style.left = `${Math.random()*100}%`;
+  star.style.animationDuration = `${Math.random()*3 + 2}s`;
+  starsContainer.appendChild(star);
+}
+
+// FADE-IN ON SCROLL
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.style.opacity = 1;
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+},{ threshold: 0.1 });
+
+document.querySelectorAll('h2, p, .achievement, .goal').forEach(el => {
+  observer.observe(el);
+});
+
+// DYNAMIC TAB TITLE
+const sections = document.querySelectorAll('.section');
+window.addEventListener('scroll', () => {
+  let scrollPos = window.scrollY;
+  sections.forEach(section => {
+    if(section.offsetTop <= scrollPos + 100){
+      const title = section.querySelector('h2') ? section.querySelector('h2').innerText : "Lakshay Gupta | Portfolio";
+      document.title = title + " | Lakshay Gupta";
+    }
+  });
+});
+</script>
+
+</body>
+</html>

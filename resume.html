@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lakshay Gupta | Resume</title>
+<title>Lakshay Gupta | Cybersecurity & AI/ML Portfolio</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="assets/images/favicon.png" type="image/png">
 <style>
 html, body { margin:0; padding:0; font-family: 'Montserrat', sans-serif; overflow-x:hidden; transition: background 0.5s, color 0.5s; scroll-behavior: smooth; }
 body { min-height:100vh; background: linear-gradient(120deg,#0a0a1a,#1a1a2e); color:#fff; position:relative; }
@@ -19,10 +20,7 @@ body { min-height:100vh; background: linear-gradient(120deg,#0a0a1a,#1a1a2e); co
 h2 { font-size:1.6em; color:#6a35d7; margin-bottom:20px; border-bottom:2px solid #be3bb6; padding-bottom:6px; opacity:0; transform: translateY(20px); transition: 0.8s ease-out; }
 p { line-height:1.6; margin-bottom:15px; opacity:0; transform: translateY(20px); transition: 0.8s ease-out; }
 .section { margin-bottom:40px; }
-.achievement, .goal { margin-bottom:15px; padding-left:36px; border-left:3px solid #be3bb6; opacity:0; transform: translateY(20px); transition: 0.8s ease-out; position:relative; cursor:pointer; }
-.achievement:hover, .goal:hover { transform: translateY(0) scale(1.05); box-shadow: 0 0 15px #be3bb6; }
-.achievement::before, .goal::before { content:'✨'; position:absolute; left:-28px; top:0; font-size:20px; opacity:0; transform: scale(0); transition: all 0.5s; }
-.achievement:hover::before, .goal:hover::before { opacity:1; transform: scale(1); }
+.achievement, .goal { margin-bottom:15px; padding-left:12px; border-left:3px solid #be3bb6; opacity:0; transform: translateY(20px); transition: 0.8s ease-out; }
 
 /* BUTTONS */
 .btn { display:inline-block; background:linear-gradient(90deg,#be3bb6,#6a35d7); padding:12px 28px; border-radius:50px; color:#fff; font-weight:600; text-decoration:none; margin-top:10px; transition:0.3s; }
@@ -33,7 +31,7 @@ p { line-height:1.6; margin-bottom:15px; opacity:0; transform: translateY(20px);
 .theme-toggle:hover { background:#6a35d7; }
 
 /* TYPING ANIMATION */
-.typed { font-weight:600; font-size:1.1em; white-space:pre-wrap; overflow:hidden; border-right:.15em solid #be3bb6; display:inline-block; }
+.typed { font-weight:600; font-size:1.1em; white-space:pre-wrap; overflow:hidden; border-right:.15em solid #be3bb6; }
 
 /* RESPONSIVE */
 @media (max-width:700px){ .name{font-size:1.6em;} .subtitle{font-size:1em;} .btn{padding:10px 22px;} }
@@ -65,27 +63,27 @@ p { line-height:1.6; margin-bottom:15px; opacity:0; transform: translateY(20px);
   </div>
 
   <!-- ABOUT ME -->
-  <div class="section">
+  <div class="section" id="about">
     <h2>About Me</h2>
     <p class="typed"></p>
   </div>
 
   <!-- EDUCATION -->
-  <div class="section">
+  <div class="section" id="education">
     <h2>Education</h2>
     <p><strong>Wisdom World School – Class 12 (CBSE)</strong><br>
     I have maintained strong academic performance while actively participating in technology and science competitions.</p>
   </div>
 
   <!-- SKILLS -->
-  <div class="section">
+  <div class="section" id="skills">
     <h2>Skills</h2>
     <p><strong>Programming & Tech:</strong> Python, C++, AI/ML, Cybersecurity fundamentals, Web Development</p>
     <p><strong>Soft Skills:</strong> Leadership, Problem Solving, Teamwork, Community Engagement</p>
   </div>
 
   <!-- ACHIEVEMENTS / CURRENT PROJECTS -->
-  <div class="section">
+  <div class="section" id="achievements">
     <h2>Achievements & Projects</h2>
     <div class="achievement"><strong>Google Cybersecurity Certifications:</strong> Gained practical knowledge in network security, ethical hacking, and data protection.</div>
     <div class="achievement"><strong>Donation in Orphanage:</strong> Contributed resources to support children’s education and well-being.</div>
@@ -95,7 +93,7 @@ p { line-height:1.6; margin-bottom:15px; opacity:0; transform: translateY(20px);
   </div>
 
   <!-- FUTURE PLANS / GOALS -->
-  <div class="section">
+  <div class="section" id="goals">
     <h2>Future Plans & Goals</h2>
     <div class="goal"><strong>CS50 Course:</strong> Plan to deepen understanding of computer science fundamentals and improve coding skills.</div>
     <div class="goal"><strong>Science Essay Writing Competition:</strong> Participate to enhance research, writing, and analytical capabilities.</div>
@@ -173,6 +171,18 @@ const observer = new IntersectionObserver(entries => {
 
 document.querySelectorAll('h2, p, .achievement, .goal').forEach(el => {
   observer.observe(el);
+});
+
+// DYNAMIC TAB TITLE
+const sections = document.querySelectorAll('.section');
+window.addEventListener('scroll', () => {
+  let scrollPos = window.scrollY;
+  sections.forEach(section => {
+    if(section.offsetTop <= scrollPos + 100){
+      const title = section.querySelector('h2') ? section.querySelector('h2').innerText : "Lakshay Gupta | Portfolio";
+      document.title = title + " | Lakshay Gupta";
+    }
+  });
 });
 </script>
 

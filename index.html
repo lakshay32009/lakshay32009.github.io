@@ -1,78 +1,378 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Lakshay Gupta | Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="icon" href="assets/images/favicon.png" type="image/png">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-html, body { margin:0; padding:0; font-family:'Montserrat',sans-serif; overflow-x:hidden; scroll-behavior:smooth; transition:0.5s;}
-body { min-height:100vh; background: linear-gradient(120deg,#0a0a1a,#1a1a2e); color:#fff; position:relative; }
-.container { max-width:900px; margin:auto; padding:40px 20px; position:relative; z-index:2; text-align:center; }
-.profile-pic { width:150px; height:150px; border-radius:50%; border:4px solid #6a35d7; object-fit:cover; margin-bottom:20px; }
-.name { font-size:2.2em; font-weight:700; color:#be3bb6; margin-bottom:5px; }
-.subtitle { font-size:1.1em; margin-bottom:30px; }
-.nav-btn { display:inline-block; background:linear-gradient(90deg,#be3bb6,#6a35d7); padding:12px 28px; border-radius:50px; color:#fff; font-weight:600; text-decoration:none; margin:6px; transition:0.3s; }
-.nav-btn:hover { background:linear-gradient(90deg,#6a35d7,#be3bb6); }
-.theme-toggle { position: fixed; top:20px; right:20px; background: #be3bb6; border:none; padding:10px 14px; border-radius:50px; color:#fff; font-weight:700; cursor:pointer; z-index:1000; transition:0.3s; }
-.theme-toggle:hover { background:#6a35d7; }
-.typed { font-weight:600; font-size:1.1em; white-space:pre-wrap; overflow:hidden; border-right:.15em solid #be3bb6; display:block; margin:auto; max-width:700px; line-height:1.5; }
-#stars { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:1; }
-.star { position:absolute; background:white; border-radius:50%; opacity:0.8; animation: twinkle 3s infinite alternate; }
-@keyframes twinkle { from{opacity:0.2;} to{opacity:1;} }
-#sunrise { position:fixed; bottom:-100px; left:50%; width:200px; height:200px; border-radius:50%; background: radial-gradient(circle, #FFD194, #FFB347); transform:translateX(-50%); z-index:0; transition: all 0.5s; }
-@media (max-width:700px){ .name{font-size:1.6em;} .subtitle{font-size:1em;} .nav-btn{padding:10px 22px;} }
+  :root{
+    --galaxy-1:#0a0016;
+    --galaxy-2:#2b0736;
+    --accent1:#be3bb6;
+    --accent2:#6a35d7;
+    --glass: rgba(255,255,255,0.06);
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;font-family:Montserrat,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue";-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+  body{
+    background: linear-gradient(120deg,var(--galaxy-1),var(--galaxy-2));
+    color:#fff;
+    position:relative;
+    overflow-x:hidden;
+    transition: background .6s ease, color .4s ease;
+  }
+
+  /* Stars */
+  #stars{position:fixed;inset:0;z-index:0;pointer-events:none}
+  .star{position:absolute;background:rgba(255,255,255,0.9);border-radius:50%;opacity:0.85;filter:blur(.2px);animation:twinkle linear infinite alternate}
+  @keyframes twinkle{from{opacity:.2}to{opacity:.95}}
+
+  /* Navbar */
+  .navbar{position:fixed;top:0;left:0;width:100%;height:64px;display:flex;align-items:center;padding:0 28px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0));backdrop-filter:blur(6px);z-index:60}
+  .nav-title{font-weight:700;color:var(--accent1);font-size:1.2rem}
+  .nav-links{margin-left:auto;display:flex;gap:18px;align-items:center}
+  .nav-links a{color:#fff;text-decoration:none;font-weight:600;padding:8px 10px;border-radius:10px;transition:all .18s}
+  .nav-links a:hover{color:var(--accent1);transform:translateY(-2px)}
+
+  /* Theme toggle (floating) */
+  .theme-toggle{position:fixed;top:18px;right:18px;background:linear-gradient(90deg,var(--accent1),var(--accent2));border:none;color:#fff;padding:9px 12px;border-radius:999px;font-weight:700;cursor:pointer;z-index:70;box-shadow:0 8px 30px rgba(106,53,215,.12)}
+
+  /* Hero */
+  .wrap{max-width:980px;margin:110px auto 40px;padding:28px 22px;position:relative;z-index:10}
+  .hero{background:var(--glass);border-radius:18px;padding:34px;text-align:center;box-shadow:0 18px 60px rgba(15,7,30,.45);backdrop-filter:blur(6px);display:flex;flex-direction:column;align-items:center;gap:12px}
+  .pf{width:134px;height:134px;border-radius:50%;object-fit:cover;border:4px solid rgba(255,255,255,.12);box-shadow:0 12px 40px rgba(106,53,215,.18);transform:translateY(-6px);opacity:0;transition:all .9s}
+  .name{font-size:1.95rem;font-weight:800;color:var(--accent2);margin-top:4px}
+  .subtitle{display:inline-block;padding:6px 14px;border-radius:999px;background:linear-gradient(90deg, rgba(106,53,215,.10), rgba(190,59,182,.06));color:var(--accent1);font-weight:700}
+  .desc{max-width:720px;color:rgba(255,255,255,.95);line-height:1.55;margin-top:6px;opacity:0;transform:translateY(12px);transition:all .7s}
+  .btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:16px;opacity:0;transform:translateY(12px);transition:all .7s}
+  .btn{background:linear-gradient(90deg,var(--accent1),var(--accent2));padding:10px 20px;border-radius:999px;color:#fff;font-weight:700;text-decoration:none;box-shadow:0 8px 30px rgba(106,53,215,.12);transition:transform .18s}
+  .btn:hover{transform:translateY(-4px)}
+
+  /* Choose Experience floating action */
+  .choose-btn{position:fixed;right:24px;bottom:24px;width:64px;height:64px;border-radius:999px;background:linear-gradient(90deg,var(--accent1),var(--accent2));display:flex;align-items:center;justify-content:center;font-size:26px;color:#fff;border:none;cursor:pointer;z-index:70;box-shadow:0 18px 50px rgba(106,53,215,.18)}
+  .choose-btn:active{transform:scale(.97)}
+
+  /* Modal popup */
+  .modal-backdrop{position:fixed;inset:0;background:rgba(5,3,12,0.6);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;z-index:100;opacity:0;pointer-events:none;transition:opacity .35s}
+  .modal{width:min(920px,92%);background:linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.02));border-radius:16px;padding:22px;border:1px solid rgba(255,255,255,0.04);box-shadow:0 30px 80px rgba(8,4,20,0.6);transform:translateY(18px) scale(.99);transition:all .35s;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .modal.show{transform:translateY(0) scale(1)}
+  .modal-backdrop.show{opacity:1;pointer-events:auto}
+  .modal h3{margin:0;color:var(--accent1);font-size:1.15rem}
+  .modal p{color:rgba(255,255,255,.9);margin-top:6px}
+  .choice{background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:12px;align-items:flex-start;cursor:pointer;transition:all .25s;border:1px solid rgba(255,255,255,0.03)}
+  .choice:hover{transform:translateY(-8px);box-shadow:0 18px 50px rgba(106,53,215,.12)}
+  .choice .icon{width:56px;height:56px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:linear-gradient(90deg,var(--accent2),var(--accent1));font-size:22px}
+  .choice h4{margin:0;color:#fff}
+  .choice p{margin:0;color:rgba(255,255,255,.8)}
+  .modal-footer{grid-column:1/-1;text-align:right;margin-top:8px}
+  .modal-close{background:transparent;border:none;color:rgba(255,255,255,.8);padding:8px 10px;border-radius:8px;cursor:pointer}
+
+  /* dynamic sections (hidden initially) */
+  .dynamic-section{max-width:980px;margin:30px auto;padding:26px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));box-shadow:0 18px 50px rgba(6,3,20,0.35);opacity:0;transform:translateY(20px);transition:all .6s}
+  .dynamic-section h2{color:var(--accent2);margin:0 0 10px 0}
+  .card-row{display:flex;flex-wrap:wrap;gap:14px}
+  .card{flex:1 1 220px;padding:14px;border-radius:10px;background:rgba(255,255,255,0.02);border-left:4px solid rgba(106,53,215,0.16)}
+  .card h3{margin:0;color:var(--accent1)}
+  .card p{margin:10px 0 0 0;color:rgba(255,255,255,.9)}
+
+  /* footer */
+  footer{max-width:980px;margin:36px auto 80px;padding:12px 20px;text-align:center;color:rgba(255,255,255,.8)}
+
+  /* small screens */
+  @media(max-width:820px){
+    .modal{grid-template-columns:1fr; padding:16px}
+    .choice{align-items:center;text-align:center}
+    .card-row{flex-direction:column}
+    .wrap{margin:100px 12px 20px}
+  }
 </style>
 </head>
-<body id="body">
+<body>
+  <!-- Stars layer -->
+  <div id="stars" aria-hidden="true"></div>
 
-<div id="stars"></div>
-<div id="sunrise"></div>
-<button class="theme-toggle" onclick="toggleTheme()">🌞 / 🌌</button>
+  <!-- Navigation -->
+  <header class="navbar" role="navigation" aria-label="Main">
+    <div class="nav-title">Lakshay Gupta</div>
+    <nav class="nav-links" aria-label="Primary Links">
+      <a href="Resume/" id="nav-resume">Resume</a>
+      <a href="Achievements/" id="nav-ach">Achievements</a>
+      <a href="Skills/" id="nav-skills">Skills</a>
+      <a href="Gallery/" id="nav-gallery">Gallery</a>
+      <a href="Certificates/" id="nav-certs">Certificates</a>
+      <a href="Contact/" id="nav-contact">Contact</a>
+    </nav>
+  </header>
 
-<div class="container">
-<img class="profile-pic" src="assets/images/profile/lakshay.jpg" alt="Lakshay Gupta">
-<div class="name">Lakshay Gupta</div>
-<div class="subtitle">12th Class | Cybersecurity & AI/ML Enthusiast</div>
-<p class="typed"></p>
+  <!-- Theme toggle -->
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌞 / 🌌</button>
 
-<div style="margin-top:30px;">
-<a href="Resume/" class="nav-btn">Resume</a>
-<a href="Achievements/" class="nav-btn">Achievements</a>
-<a href="Skills/" class="nav-btn">Skills</a>
-<a href="Gallery/" class="nav-btn">Gallery</a>
-<a href="Certificates/" class="nav-btn">Certificates</a>
-<a href="Contact/" class="nav-btn">Contact</a>
-</div>
-</div>
+  <!-- Hero -->
+  <main class="wrap" id="main">
+    <section class="hero" id="hero">
+      <img src="assets/images/profile/lakshay.jpg" alt="Lakshay Gupta" class="pf" id="pf">
+      <div class="name" id="typedName" aria-live="polite"></div>
+      <div class="subtitle">12th Class | Cybersecurity & AI/ML Enthusiast</div>
+      <div class="desc" id="desc">Welcome! I’m Lakshay — a driven learner focusing on AI, ML, cybersecurity, and community service. Choose how you want to explore my portfolio.</div>
+
+      <div class="btns" id="btns">
+        <a class="btn" href="Resume/">Resume</a>
+        <a class="btn" href="Achievements/">Achievements</a>
+        <a class="btn" href="Skills/">Skills</a>
+        <a class="btn" href="Gallery/">Gallery</a>
+        <a class="btn" href="Certificates/">Certificates</a>
+        <a class="btn" href="Contact/">Contact</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Extra floating choose button -->
+  <button class="choose-btn" id="chooseBtn" title="Choose how to explore">💫</button>
+
+  <!-- Modal popup (auto open) -->
+  <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal" id="modal">
+      <div>
+        <h3>How would you like to explore Lakshay’s Portfolio?</h3>
+        <p style="margin-top:8px;color:rgba(255,255,255,.85)">Choose an experience — jump through dedicated pages or explore everything here with a smooth scroll.</p>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:12px;align-items:stretch;">
+        <div class="choice" id="pageMode" role="button" tabindex="0" aria-pressed="false">
+          <div style="display:flex;gap:12px;align-items:center">
+            <div class="icon">🌐</div>
+            <div>
+              <h4>Page Mode</h4>
+              <p>Open full pages (Achievements, Skills, Gallery, Certificates). Best if you prefer focused pages.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="choice" id="scrollMode" role="button" tabindex="0" aria-pressed="false">
+          <div style="display:flex;gap:12px;align-items:center">
+            <div class="icon">💫</div>
+            <div>
+              <h4>Scroll Mode</h4>
+              <p>Load sections below and scroll through the whole portfolio on one page.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="modal-close" id="modalClose">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Placeholder for dynamically injected sections -->
+  <div id="dynamicSectionsContainer" aria-live="polite"></div>
+
+  <footer role="contentinfo">© 2025 Lakshay Gupta · Designed for MIT/Ivy/Stanford Applications</footer>
 
 <script>
-const aboutText = "Welcome! I am Lakshay Gupta, a passionate learner focused on AI, ML, Cybersecurity, and community service. Explore my achievements, projects, and certifications!";
-let index=0;
-const typedContainer=document.querySelector('.typed');
-function typeLetter(){ if(index<aboutText.length){ typedContainer.textContent+=aboutText[index]; index++; setTimeout(typeLetter,25); } }
-typeLetter();
+/* -------------------------
+   Utility & initial state
+   ------------------------- */
+const starsEl = document.getElementById('stars');
+const modalBackdrop = document.getElementById('modalBackdrop');
+const modal = document.getElementById('modal');
+const chooseBtn = document.getElementById('chooseBtn');
+const pageModeBtn = document.getElementById('pageMode');
+const scrollModeBtn = document.getElementById('scrollMode');
+const modalClose = document.getElementById('modalClose');
+const dynamicContainer = document.getElementById('dynamicSectionsContainer');
 
-let isGalaxy = true;
-function toggleTheme(){
-const body=document.getElementById('body');
-const stars=document.getElementById('stars');
-const sun=document.getElementById('sunrise');
-if(isGalaxy){ body.style.background="linear-gradient(120deg,#FFD194,#FFB347)"; body.style.color="#222"; stars.style.display="none"; sun.style.bottom="50px"; isGalaxy=false; }
-else{ body.style.background="linear-gradient(120deg,#0a0a1a,#1a1a2e)"; body.style.color="#fff"; stars.style.display="block"; sun.style.bottom="-100px"; isGalaxy=true; }
+let isGalaxy = true; // default
+let sectionsLoaded = false;
+
+/* ---------- Stars generation ---------- */
+function createStars(count = 80){
+  for(let i=0;i<count;i++){
+    const s = document.createElement('div');
+    s.className = 'star';
+    const size = Math.random() * 2.6 + 0.8;
+    s.style.width = s.style.height = `${size}px`;
+    s.style.top = `${Math.random()*100}%`;
+    s.style.left = `${Math.random()*100}%`;
+    s.style.animationDuration = `${(Math.random()*3 + 2).toFixed(2)}s`;
+    s.style.opacity = (Math.random()*0.8 + 0.2).toString();
+    starsEl.appendChild(s);
+  }
+}
+createStars(80);
+
+/* ---------- Typing animation for hero name ---------- */
+const typedNameEl = document.getElementById('typedName');
+const heroText = "Welcome! I am Lakshay Gupta — 12th Class | Cybersecurity & AI/ML Enthusiast";
+let idx = 0;
+function typeHero(){
+  if(idx < heroText.length){
+    typedNameEl.textContent += heroText[idx++];
+    setTimeout(typeHero, 28);
+  }
+}
+window.addEventListener('load', () => {
+  // reveal hero elements gracefully
+  document.querySelector('.pf').style.opacity = 1;
+  document.querySelector('.desc').style.opacity = 1;
+  document.querySelector('.desc').style.transform = 'translateY(0)';
+  document.querySelector('.btns').style.opacity = 1;
+  document.querySelector('.btns').style.transform = 'translateY(0)';
+  document.querySelector('.hero').style.opacity = 1;
+  document.querySelector('.hero').style.transform = 'translateY(0)';
+  typeHero();
+  // auto show modal after short delay
+  setTimeout(() => openModal(), 1400);
+});
+
+/* ---------- Theme toggle ---------- */
+document.getElementById('themeToggle').addEventListener('click', () => toggleTheme());
+function toggleTheme(to){
+  const body = document.body;
+  const sunrise = document.getElementById('sunrise');
+  if(typeof to === 'boolean') isGalaxy = !to;
+  if(isGalaxy){
+    // switch to sunrise/day
+    body.style.background = 'linear-gradient(120deg,#FFD194,#FFB347)';
+    sunrise.style.bottom = '40px';
+    isGalaxy = false;
+  } else {
+    // switch to galaxy
+    body.style.background = 'linear-gradient(120deg,var(--galaxy-1),var(--galaxy-2))';
+    sunrise.style.bottom = '-120px';
+    isGalaxy = true;
+  }
 }
 
-const starsContainer=document.getElementById('stars');
-for(let i=0;i<80;i++){
-const star=document.createElement('div'); star.className='star';
-star.style.width=`${Math.random()*3+1}px`;
-star.style.height=star.style.width;
-star.style.top=`${Math.random()*100}%`;
-star.style.left=`${Math.random()*100}%`;
-star.style.animationDuration=`${Math.random()*3+2}s`;
-starsContainer.appendChild(star);
+/* ---------- Modal behavior ---------- */
+function openModal(){ modalBackdrop.classList.add('show'); modal.classList.add('show'); modalBackdrop.setAttribute('aria-hidden','false'); }
+function closeModal(){ modalBackdrop.classList.remove('show'); modal.classList.remove('show'); modalBackdrop.setAttribute('aria-hidden','true'); }
+chooseBtn.addEventListener('click', openModal);
+modalClose.addEventListener('click', closeModal);
+modalBackdrop.addEventListener('click', e => { if(e.target === modalBackdrop) closeModal(); });
+
+/* ---------- Accessibility: keyboard activation ---------- */
+[pageModeBtn, scrollModeBtn].forEach(el=>{
+  el.addEventListener('keydown', (e) => { if(e.key === 'Enter' || e.key === ' ') el.click(); });
+});
+
+/* ---------- Page Mode: navigate to dedicated pages ---------- */
+pageModeBtn.addEventListener('click', () => {
+  // close modal then navigate to any page (let user choose by navbar or buttons)
+  closeModal();
+  // optional: give a subtle focus on nav
+  document.getElementById('nav-ach').focus?.();
+});
+
+/* ---------- Scroll Mode: dynamically insert sections and scroll ---------- */
+scrollModeBtn.addEventListener('click', async () => {
+  closeModal();
+  if(!sectionsLoaded){
+    await loadScrollSections();
+    sectionsLoaded = true;
+  }
+  // scroll to the first dynamic section smoothly
+  const first = document.querySelector('.dynamic-section');
+  first?.scrollIntoView({behavior:'smooth', block:'start'});
+});
+
+/* ---------- Build dynamic sections (Achievements, Skills, Gallery, Certificates) ---------- */
+async function loadScrollSections(){
+  // small delay for nice UX
+  await sleep(200);
+
+  // Achievements
+  const ach = createSection('Achievements', `
+    <div class="card-row">
+      <div class="card">
+        <h3>Google Cybersecurity Certifications</h3>
+        <p>Completed multiple modules covering network security, safe browsing, and practical security basics.</p>
+      </div>
+      <div class="card">
+        <h3>Community Contributions</h3>
+        <p>Donations to orphanage and active participation in Aggarwal Sabha community projects.</p>
+      </div>
+      <div class="card">
+        <h3>Science Fair Prize</h3>
+        <p>Awarded 3rd prize at the Science Exhibition at JMIT Rador for an innovative project.</p>
+      </div>
+    </div>
+    <div style="margin-top:12px;text-align:right"><a class="btn" href="Achievements/">View Full Page</a></div>
+  `);
+  dynamicContainer.appendChild(ach);
+
+  // Skills
+  const skills = createSection('Skills', `
+    <div class="card-row">
+      <div class="card"><h3>Programming</h3><p>Python, C++ — strong fundamentals and project experience.</p></div>
+      <div class="card"><h3>AI / ML</h3><p>Hands-on learning with small models and experiments.</p></div>
+      <div class="card"><h3>Cybersecurity</h3><p>Certified basics; interested in ethical hacking & network security.</p></div>
+    </div>
+    <div style="margin-top:12px;text-align:right"><a class="btn" href="Skills/">View Full Page</a></div>
+  `);
+  dynamicContainer.appendChild(skills);
+
+  // Gallery (light examples)
+  const gallery = createSection('Gallery', `
+    <div class="card-row">
+      <div class="card"><h3>Hackathon</h3><p>Snapshots from hackathons and projects.</p></div>
+      <div class="card"><h3>Projects</h3><p>Screenshots & diagrams from AI / ML experiments.</p></div>
+      <div class="card"><h3>Community</h3><p>Moments from charity & community events.</p></div>
+    </div>
+    <div style="margin-top:12px;text-align:right"><a class="btn" href="Gallery/">View Full Page</a></div>
+  `);
+  dynamicContainer.appendChild(gallery);
+
+  // Certificates
+  const certs = createSection('Certificates', `
+    <div class="card-row">
+      <div class="card"><h3>Google Cybersecurity</h3><p>Verified certification — details on certificates page.</p></div>
+      <div class="card"><h3>Other Online Courses</h3><p>Courses on AI & CS planned and in-progress.</p></div>
+    </div>
+    <div style="margin-top:12px;text-align:right"><a class="btn" href="Certificates/">View Full Page</a></div>
+  `);
+  dynamicContainer.appendChild(certs);
+
+  // reveal with stagger animation
+  const sects = dynamicContainer.querySelectorAll('.dynamic-section');
+  sects.forEach((s, i) => setTimeout(()=>{ s.style.opacity = 1; s.style.transform = 'translateY(0)'; }, 160*i + 80));
+
+  // smooth spacing
+  window.scrollBy({top:24, left:0, behavior:'smooth'});
 }
+
+/* ---------- Helpers ---------- */
+function createSection(title, innerHTML){
+  const div = document.createElement('section');
+  div.className = 'dynamic-section';
+  div.innerHTML = `<h2>${escapeHtml(title)}</h2>${innerHTML}`;
+  return div;
+}
+function sleep(ms){ return new Promise(res => setTimeout(res,ms)); }
+function escapeHtml(s){ return String(s); } // content is controlled above; kept simple
+
+/* ---------- Minimal keyboard shortcuts ---------- */
+document.addEventListener('keydown', e => {
+  if(e.key === 'Escape') closeModal();
+  if(e.key === 's' && (e.ctrlKey || e.metaKey)){ // ctrl/cmd + s => scroll mode quick
+    e.preventDefault();
+    scrollModeBtn.click();
+  }
+});
+
+/* ---------- Small UX: hide choose button after choosing ---------- */
+pageModeBtn.addEventListener('click', ()=> chooseBtn.style.display = 'none');
+scrollModeBtn.addEventListener('click', ()=> chooseBtn.style.display = 'none');
+
+/* ---------- Small polyfills / safety ---------- */
+(function ensureProfile(){
+  const pf = document.querySelector('.pf');
+  pf.addEventListener('error', ()=> { pf.src = 'assets/images/profile/lakshay.jpg'; });
+})();
+
 </script>
 </body>
 </html>

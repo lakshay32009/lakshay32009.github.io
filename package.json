@@ -1,0 +1,13 @@
+{
+  "name": "lakshay-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "npx serve public"
+  },
+  "devDependencies": {
+    "@tinacms/cli": "^1.12.0",
+    "serve": "^14.2.5",
+    "tinacms": "^2.9.1"
+  }
+}

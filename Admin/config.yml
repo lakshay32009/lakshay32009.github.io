@@ -3,8 +3,8 @@ backend:
   repo: lakshay32009/lakshay32009.github.io
   branch: main
   auth_type: implicit
-  app_id: Ov23libcS7X2RACS5EY2   # <-- your GitHub OAuth Client ID
-  base_url: https://decapcms-oauth.netlify.app  # <-- ADD THIS LINE
+  app_id: Ov23libcS7X2RACS5EY2
+  base_url: https://decapcms-oauth.netlify.app
 
 media_folder: "images"
 public_folder: "/images"

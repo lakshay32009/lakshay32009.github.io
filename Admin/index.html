@@ -2,25 +2,70 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Lakshay Control Center</title>
-
-    <!-- Decap CMS -->
-    <script src="https://unpkg.com/decap-cms@latest/dist/decap-cms.js"></script>
-
-    <!-- Netlify Identity -->
+    <title>Admin Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://identity.netlify.com/v1/netlify-identity-widget.css" />
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+    <style>
+      body {
+        background: #0f0f0f;
+        color: #fff;
+        font-family: Arial, sans-serif;
+        display: flex;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+      }
+      .box {
+        background: #1b1b1b;
+        padding: 30px;
+        border-radius: 10px;
+        text-align: center;
+        width: 330px;
+      }
+      input {
+        width: 100%;
+        padding: 12px;
+        margin: 10px 0;
+        border: none;
+        border-radius: 6px;
+      }
+      button {
+        width: 100%;
+        background: #00d17a;
+        border: none;
+        padding: 12px;
+        border-radius: 6px;
+        cursor: pointer;
+        color: #000;
+        font-weight: bold;
+        margin-top: 10px;
+      }
+    </style>
   </head>
 
   <body>
-    <script>
-      // Show login popup if not logged in
-      if (window.netlifyIdentity) {
-        window.netlifyIdentity.on("init", (user) => {
-          if (!user) window.netlifyIdentity.open("login");
-        });
+    <div class="box">
+      <h2>Admin Login</h2>
 
-        window.netlifyIdentity.on("login", () => {
-          window.location.reload();
+      <input type="email" id="email" placeholder="Email" />
+      <input type="password" id="password" placeholder="Password" />
+
+      <button onclick="login()">Login</button>
+    </div>
+
+    <script>
+      function login() {
+        const email = document.getElementById("email").value;
+        const pass = document.getElementById("password").value;
+
+        netlifyIdentity.init();
+
+        netlifyIdentity.login(email, pass, true).then((user) => {
+          window.location.href = "/admin/#/collections";
+        }).catch((err) => {
+          alert("Invalid login. Check email or password.");
         });
       }
     </script>

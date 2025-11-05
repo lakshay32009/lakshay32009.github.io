@@ -179,7 +179,7 @@ footer {
 <section id="about">
   <h2 class="editable" contenteditable="true">About Me</h2>
   <p class="editable" contenteditable="true" style="text-align:center; font-size:1.05rem; opacity:.85;">
-    I am Lakshay â€” a passionate learner driven by curiosity, purpose, and ambition.
+    I am Lakshay â€” a passionate learner driven by curiosity, purpose, and ambition.  
     I explore technology, cybersecurity, AI, finance, and real-world problem solving.
   </p>
 </section>
@@ -232,43 +232,4 @@ function loadChanges() {
   });
 }
 loadChanges();
-</script>
-<script>
-if (sessionStorage.getItem("admin") === "true") {
-
-  // Add Edit Button
-  const editBtn = document.createElement("button");
-  editBtn.innerHTML = "?? Edit Site";
-  editBtn.style = "position:fixed; bottom:70px; right:20px; padding:12px 16px; background:#6a35d7; border:none; color:white; border-radius:8px; cursor:pointer; z-index:999;";
-  document.body.appendChild(editBtn);
-
-  // Add Save Button
-  const saveBtn = document.createElement("button");
-  saveBtn.innerHTML = "?? Save";
-  saveBtn.style = "position:fixed; bottom:20px; right:20px; padding:12px 18px; background:#ff6ddd; border:none; color:black; font-weight:bold; border-radius:8px; cursor:pointer; z-index:999;";
-  document.body.appendChild(saveBtn);
-
-  editBtn.onclick = function(){
-    document.body.classList.toggle("edit-mode");
-    alert(document.body.classList.contains("edit-mode")
-      ? "? Edit Mode ON — Click text to edit."
-      : "? Edit Mode OFF");
-  };
-
-  saveBtn.onclick = function(){
-    const edits = {};
-    document.querySelectorAll(".editable").forEach((el, index) => {
-      edits[index] = el.innerHTML;
-    });
-    localStorage.setItem("siteEdits", JSON.stringify(edits));
-    alert("? Saved — visible only after login.");
-  };
-
-  // Load Saved Edits
-  const edits = JSON.parse(localStorage.getItem("siteEdits") || "{}");
-  document.querySelectorAll(".editable").forEach((el, index) => {
-    if(edits[index]) el.innerHTML = edits[index];
-  });
-
-}
 </script>

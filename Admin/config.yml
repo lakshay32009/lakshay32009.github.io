@@ -4,6 +4,7 @@ backend:
   branch: main
   auth_type: implicit
   app_id: Ov23libcS7X2RACS5EY2   # <-- your GitHub OAuth Client ID
+  base_url: https://decapcms-oauth.netlify.app  # <-- ADD THIS LINE
 
 media_folder: "images"
 public_folder: "/images"

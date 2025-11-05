@@ -3,8 +3,26 @@
   <head>
     <meta charset="utf-8" />
     <title>Lakshay Control Center</title>
-  </head>
-  <body>
+
+    <!-- Decap CMS -->
     <script src="https://unpkg.com/decap-cms@latest/dist/decap-cms.js"></script>
+
+    <!-- Netlify Identity -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  </head>
+
+  <body>
+    <script>
+      // Show login popup if not logged in
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", (user) => {
+          if (!user) window.netlifyIdentity.open("login");
+        });
+
+        window.netlifyIdentity.on("login", () => {
+          window.location.reload();
+        });
+      }
+    </script>
   </body>
 </html>

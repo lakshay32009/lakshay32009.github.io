@@ -6,8 +6,12 @@
     "dev": "npx serve public"
   },
   "devDependencies": {
-    "@tinacms/cli": "^1.12.0",
+    "@tinacms/cli": "^1.5.0",
     "serve": "^14.2.5",
-    "tinacms": "^2.9.1"
+    "tinacms": "^1.5.0"
+  },
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   }
 }

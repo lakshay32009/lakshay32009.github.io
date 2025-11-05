@@ -1,0 +1,20 @@
+backend:
+  name: github
+  repo: lakshay32009/lakshay32009.github.io
+  branch: main
+  auth_type: implicit
+  app_id: Ov23li3gpPKKDaxkTxpK   # <-- your GitHub OAuth Client ID
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+  - name: "pages"
+    label: "Pages"
+    files:
+      - name: "home"
+        label: "Home Page"
+        file: "index.html"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }

@@ -1,365 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lakshay Gupta | Portfolio</title>
-  <style>
-    :root {
-      --galaxy-1: #090a1a;
-      --galaxy-2: #1b1734;
-      --accent: #08f7fe;
-      --accent2: #ff61a6;
-    }
+<meta charset="UTF-8">
+<title>Lakshay Gupta | Portfolio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    body {
-      margin: 0;
-      font-family: "Poppins", sans-serif;
-      background: linear-gradient(120deg, var(--galaxy-1), var(--galaxy-2));
-      color: white;
-      overflow-x: hidden;
-      transition: background 1.2s ease;
-    }
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
 
-    /* --- Stars --- */
-    #stars {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      overflow: hidden;
-      z-index: 0;
-    }
-    .star {
-      position: absolute;
-      background: white;
-      border-radius: 50%;
-      animation: twinkle ease-in-out infinite;
-    }
-    @keyframes twinkle {
-      0%, 100% { opacity: 0.3; transform: scale(1); }
-      50% { opacity: 1; transform: scale(1.4); }
-    }
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-    /* --- Navbar --- */
-    .navbar {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      padding: 20px;
-      background: rgba(0, 0, 0, 0.3);
-      backdrop-filter: blur(10px);
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      transition: 0.5s ease;
-    }
-    .navbar a {
-      text-decoration: none;
-      color: var(--accent);
-      font-weight: 500;
-      transition: 0.3s;
-    }
-    .navbar a:hover {
-      color: var(--accent2);
-    }
+body {
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
+  background: #0a001f;
+  color: white;
+}
 
-    /* --- Hero Section --- */
-    .hero {
-      text-align: center;
-      padding: 130px 20px;
-      position: relative;
-      z-index: 1;
-    }
-    .pf {
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      border: 3px solid var(--accent);
-      margin-bottom: 25px;
-      opacity: 0;
-      transition: 1s ease;
-    }
-    .desc {
-      font-size: 1.2rem;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: 1s ease;
-      max-width: 650px;
-      margin: 0 auto;
-    }
-    #typedName {
-      color: var(--accent2);
-      font-weight: 600;
-    }
-    .btns {
-      margin-top: 30px;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: 1s ease;
-    }
-    .btn {
-      padding: 10px 22px;
-      border: none;
-      border-radius: 25px;
-      cursor: pointer;
-      font-size: 1rem;
-      background: var(--accent);
-      color: #000;
-      font-weight: 600;
-      transition: 0.3s;
-    }
-    .btn:hover {
-      transform: scale(1.07);
-      background: var(--accent2);
-      color: #fff;
-    }
+/* Galaxy Background */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: url('https://i.imgur.com/7bGtK7j.jpg') center/cover no-repeat;
+  z-index: -3;
+  opacity: 0.35;
+}
 
-    /* --- Dynamic sections --- */
-    .dynamic-section {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: 1s ease;
-      padding: 70px 10%;
-      text-align: center;
-    }
-    .dynamic-section h2 {
-      font-size: 2.2rem;
-      color: var(--accent);
-      margin-bottom: 40px;
-    }
-    .card-row {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 25px;
-    }
-    .card {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 10px;
-      padding: 20px;
-      max-width: 280px;
-      text-align: left;
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
-      transition: 0.4s;
-    }
-    .card:hover { transform: translateY(-10px); }
+/* Floating Stars */
+@keyframes floatStars {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(-2000px); }
+}
+.stars {
+  position: fixed;
+  width: 2000px;
+  height: 2000px;
+  background: transparent url('https://i.imgur.com/GBG7zXG.png') repeat;
+  animation: floatStars 80s linear infinite;
+  z-index: -2;
+  opacity: .5;
+}
 
-    /* --- Modal --- */
-    .modal-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.7);
-      backdrop-filter: blur(5px);
-      opacity: 0;
-      pointer-events: none;
-      transition: 0.5s ease;
-      z-index: 20;
-    }
-    .modal-backdrop.show {
-      opacity: 1;
-      pointer-events: auto;
-    }
-    .modal {
-      position: fixed;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%) scale(0.8);
-      background: #1c1f3f;
-      border-radius: 15px;
-      padding: 40px 30px;
-      max-width: 350px;
-      text-align: center;
-      opacity: 0;
-      transition: 0.5s ease;
-      z-index: 21;
-    }
-    .modal.show {
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(1);
-    }
-    .modal h2 {
-      color: var(--accent);
-      margin-bottom: 15px;
-    }
-    .modal p {
-      font-size: 0.95rem;
-      color: #ddd;
-      margin-bottom: 25px;
-    }
-    .modal button {
-      display: block;
-      margin: 10px auto;
-      padding: 8px 18px;
-      border: none;
-      border-radius: 20px;
-      background: var(--accent);
-      color: #000;
-      font-weight: 600;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    .modal button:hover { background: var(--accent2); color: white; }
-  </style>
+/* Sunrise Circle */
+.sun {
+  position: fixed;
+  bottom: -160px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffb347, #ff5f6d);
+  z-index: -1;
+}
+
+/* Clouds */
+.cloud {
+  position: fixed;
+  width: 300px; opacity: .14;
+  top: 20%;
+  transform: translateX(-50%);
+}
+.cloud.c2 { top: 50%; width: 380px; opacity: .17; animation-delay: -5s; }
+.cloud.c3 { top: 72%; width: 450px; opacity: .11; animation-delay: -9s; }
+
+@keyframes cloudMove {
+  0% { left: -400px; }
+  100% { left: 110%; }
+}
+.cloud { animation: cloudMove 55s linear infinite; }
+
+/* Navigation */
+nav {
+  position: fixed; top: 0; width: 100%;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 16px 40px;
+  backdrop-filter: blur(15px);
+  background: rgba(0,0,0,0.35);
+  z-index: 10;
+}
+nav a {
+  color: white; text-decoration: none; margin-left: 22px; font-weight: 500;
+}
+nav a:hover { color: #ff6ddd; }
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding-top: 140px;
+  padding-bottom: 120px;
+}
+
+.hero img {
+  width: 150px; height: 150px;
+  border-radius: 50%; border: 4px solid #ffffff90;
+  box-shadow: 0 0 25px #ff6ddd66;
+  margin-bottom: 18px;
+}
+
+/* Typing Animation */
+#typing {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #ff9dfc;
+  margin-bottom: 14px;
+  min-height: 50px;
+}
+
+.subtitle {
+  font-size: 1.15rem;
+  opacity: .85;
+  margin-bottom: 26px;
+}
+
+section {
+  width: 90%;
+  max-width: 900px;
+  margin: auto;
+  padding: 60px 0;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 16px;
+  color: #ffd2ff;
+  text-shadow: 0 0 18px #ff6ddd50;
+  text-align:center;
+}
+
+button, .btn {
+  display:inline-block;
+  background: linear-gradient(90deg, #be3bb6, #6a35d7);
+  padding: 12px 26px;
+  border-radius: 40px;
+  color:white; text-decoration:none;
+  margin-top: 20px; font-weight:600;
+  transition:.3s;
+}
+button:hover, .btn:hover { transform:scale(1.07); }
+
+footer {
+  text-align:center;
+  padding: 40px 0;
+  opacity:.75;
+}
+</style>
 </head>
+
 <body>
-  <div id="stars"></div>
 
-  <div class="navbar">
-    <a href="#Achievements">Achievements</a>
-    <a href="#Skills">Skills</a>
-    <a href="#Gallery">Gallery</a>
-    <a href="#Certificates">Certificates</a>
-    <a href="Resume/">Resume</a>
+<div class="stars"></div>
+<div class="sun"></div>
+
+<img class="cloud c1" src="https://i.imgur.com/YZ9UdmP.png">
+<img class="cloud c2" src="https://i.imgur.com/YZ9UdmP.png">
+<img class="cloud c3" src="https://i.imgur.com/YZ9UdmP.png">
+
+<nav>
+  <div class="logo">Lakshay Gupta</div>
+  <div>
+    <a href="#about">About</a>
+    <a href="achievements.html">Achievements</a>
+    <a href="skills.html">Skills</a>
+    <a href="certificates.html">Certificates</a>
+    <a href="contact.html">Contact</a>
   </div>
+</nav>
 
-  <section class="hero">
-    <img src="assets/pfp.png" class="pf" alt="Profile" />
-    <p id="typedName"></p>
-    <p class="desc">A passionate 12th-grade student exploring <b>Cybersecurity, Computer Science & AI/ML</b> — always learning, creating, and building ideas into reality.</p>
+<section class="hero">
+  <img src="assets/profile.jpg">
+  <div id="typing"></div>
+  <div class="subtitle">Cybersecurity | AI/ML | Community Impact</div>
+  <a href="Resume/resume.pdf" class="btn">📄 View Resume</a>
+</section>
 
-    <div class="btns">
-      <button class="btn" onclick="window.location.href='Resume/'">Resume</button>
-      <button class="btn" onclick="document.getElementById('chooseBtn').click()">Mode</button>
-    </div>
-    <button class="btn" id="chooseBtn" style="margin-top:40px;">Choose Mode</button>
-  </section>
+<section id="about">
+  <h2>About Me</h2>
+  <p style="text-align:center; font-size:1.05rem; opacity:.85;">
+    I am Lakshay — a passionate learner driven by curiosity, purpose, and ambition.  
+    I explore technology, cybersecurity, AI, finance, and real-world problem solving.
+  </p>
+</section>
 
-  <div id="dynamicSectionsContainer"></div>
+<footer>
+  © 2025 Lakshay Gupta · Always Learning 🌙
+</footer>
 
-  <!-- Modal -->
-  <div id="modalBackdrop" class="modal-backdrop"></div>
-  <div id="modal" class="modal">
-    <h2>Welcome to my Portfolio 🌌</h2>
-    <p>Would you like to explore the full scrolling experience or navigate through pages?</p>
-    <button id="pageMode">Page Mode</button>
-    <button id="scrollMode">Scroll Mode</button>
-  </div>
+<script>
+const text = "Welcome, I’m Lakshay Gupta.";
+let i = 0;
+function type() {
+  if(i < text.length){
+    document.getElementById("typing").innerHTML += text.charAt(i);
+    i++; setTimeout(type, 95);
+  }
+}
+type();
+</script>
 
-  <script>
-    const starsEl = document.getElementById('stars');
-    const modalBackdrop = document.getElementById('modalBackdrop');
-    const modal = document.getElementById('modal');
-    const chooseBtn = document.getElementById('chooseBtn');
-    const pageModeBtn = document.getElementById('pageMode');
-    const scrollModeBtn = document.getElementById('scrollMode');
-    const dynamicContainer = document.getElementById('dynamicSectionsContainer');
-    const navbar = document.querySelector('.navbar');
-    let sectionsLoaded = false;
-
-    // create stars
-    function createStars(count=80){
-      for(let i=0;i<count;i++){
-        const s=document.createElement('div');
-        s.className='star';
-        const size=Math.random()*2.6+0.8;
-        s.style.width=s.style.height=`${size}px`;
-        s.style.top=`${Math.random()*100}%`;
-        s.style.left=`${Math.random()*100}%`;
-        s.style.animationDuration=`${(Math.random()*3+2).toFixed(2)}s`;
-        s.style.opacity=(Math.random()*0.8+0.2).toString();
-        starsEl.appendChild(s);
-      }
-    }
-    createStars(90);
-
-    // typing
-    const typedNameEl = document.getElementById('typedName');
-    const heroText = "Welcome! I am Lakshay Gupta — Cybersecurity & AI/ML Enthusiast";
-    let idx=0;
-    function typeHero(){
-      if(idx<heroText.length){
-        typedNameEl.textContent += heroText[idx++];
-        setTimeout(typeHero,30);
-      }
-    }
-    window.addEventListener('load',()=>{
-      document.querySelector('.pf').style.opacity=1;
-      document.querySelector('.desc').style.opacity=1;
-      document.querySelector('.desc').style.transform='translateY(0)';
-      document.querySelector('.btns').style.opacity=1;
-      document.querySelector('.btns').style.transform='translateY(0)';
-      typeHero();
-      setTimeout(()=>openModal(),1400);
-    });
-
-    // modal
-    function openModal(){ modalBackdrop.classList.add('show'); modal.classList.add('show'); }
-    function closeModal(){ modalBackdrop.classList.remove('show'); modal.classList.remove('show'); }
-    chooseBtn.addEventListener('click', openModal);
-    modalBackdrop.addEventListener('click',e=>{ if(e.target===modalBackdrop) closeModal(); });
-
-    pageModeBtn.addEventListener('click',()=>{
-      closeModal();
-      navbar.style.display='none';
-      document.querySelector('.btns').style.display='flex';
-      chooseBtn.style.display='none';
-    });
-
-    scrollModeBtn.addEventListener('click',async()=>{
-      closeModal();
-      navbar.style.display='flex';
-      document.querySelector('.btns').style.display='none';
-      chooseBtn.style.display='none';
-      if(!sectionsLoaded){
-        await loadScrollSections();
-        sectionsLoaded=true;
-      }
-      document.querySelector('.dynamic-section').scrollIntoView({behavior:'smooth'});
-    });
-
-    async function loadScrollSections(){
-      await sleep(200);
-      const ach=createSection('Achievements',`
-        <div class="card-row">
-          <div class="card"><h3>Google Cybersecurity Certifications</h3><p>Completed modules on network security and online safety.</p></div>
-          <div class="card"><h3>Community Contributions</h3><p>Donations to orphanage & Aggarwal Sabha community projects.</p></div>
-          <div class="card"><h3>Science Fair Prize</h3><p>3rd Prize in JMIT Radaur Science Exhibition.</p></div>
-          <div class="card"><h3>Design.IO Participation</h3><p>Showcased creativity with Krēative Eyes.</p></div>
-        </div>
-      `);
-      dynamicContainer.appendChild(ach);
-
-      const skills=createSection('Skills',`
-        <div class="card-row">
-          <div class="card"><h3>Programming</h3><p>Fluent in Python, C++, JavaScript.</p></div>
-          <div class="card"><h3>Cybersecurity</h3><p>Certified by Google; exploring ethical hacking & network security.</p></div>
-          <div class="card"><h3>AI/ML</h3><p>Creating small projects using machine learning algorithms.</p></div>
-        </div>
-      `);
-      dynamicContainer.appendChild(skills);
-
-      const goals=createSection('Upcoming Goals',`
-        <div class="card-row">
-          <div class="card"><h3>CS50 Course</h3><p>Planning to complete Harvard’s CS50 program.</p></div>
-          <div class="card"><h3>Competitions</h3><p>Participating in Science Essay Writing, Open House Quiz & Panel Discussion at Panorama KKR.</p></div>
-          <div class="card"><h3>Science Exhibition at NIT KKR</h3><p>Preparing innovative project for presentation.</p></div>
-          <div class="card"><h3>Advanced Courses</h3><p>Further learning in Business, Computer Science & Cybersecurity.</p></div>
-        </div>
-      `);
-      dynamicContainer.appendChild(goals);
-
-      const certs=createSection('Certificates',`
-        <div class="card-row">
-          <div class="card"><h3>Google Cybersecurity</h3><p>Successfully completed foundational certification by Google.</p></div>
-          <div class="card"><h3>Upcoming</h3><p>Will soon add certifications from CS50 and advanced Cybersecurity modules.</p></div>
-        </div>
-      `);
-      dynamicContainer.appendChild(certs);
-
-      dynamicContainer.querySelectorAll('.dynamic-section').forEach((s,i)=>
-        setTimeout(()=>{ s.style.opacity=1; s.style.transform='translateY(0)'; },160*i+80)
-      );
-    }
-
-    function createSection(title,inner){
-      const div=document.createElement('section');
-      div.className='dynamic-section';
-      div.innerHTML=`<h2>${title}</h2>${inner}`;
-      return div;
-    }
-    function sleep(ms){return new Promise(r=>setTimeout(r,ms));}
-  </script>
 </body>
 </html>

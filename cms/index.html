@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard</title>
+  <style>
+    body { background:#121212; color:white; font-family:Arial; padding:40px; }
+    button { padding:12px 20px; border:none; background:#00d17a; color:#000; font-weight:bold; cursor:pointer; border-radius:6px; }
+  </style>
+
+  <script>
+    if (sessionStorage.getItem("admin") !== "true") {
+      window.location.href = "/admin"; // If not logged in → go back to login page
+    }
+  </script>
+</head>
+
+<body>
+  <h1>✅ Welcome, Lakshay</h1>
+  <p>This is your admin dashboard. Editing tools will be added here.</p>
+
+  <button onclick="sessionStorage.removeItem('admin'); location.href='/admin'">Logout</button>
+</body>
+</html>

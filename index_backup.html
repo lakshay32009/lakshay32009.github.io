@@ -172,13 +172,13 @@ footer {
 <section class="hero">
   <img src="assets/profile.jpg">
   <div id="typing"></div>
-  <div class="subtitle editable" contenteditable="true">Cybersecurity | AI/ML | Community Impact</div>
+  <div class="subtitle">Cybersecurity | AI/ML | Community Impact</div>
   <a href="Resume/resume.pdf" class="btn">📄 View Resume</a>
 </section>
 
 <section id="about">
-  <h2 class="editable" contenteditable="true">About Me</h2>
-  <p class="editable" contenteditable="true" style="text-align:center; font-size:1.05rem; opacity:.85;">
+  <h2>About Me</h2>
+  <p style="text-align:center; font-size:1.05rem; opacity:.85;">
     I am Lakshay — a passionate learner driven by curiosity, purpose, and ambition.  
     I explore technology, cybersecurity, AI, finance, and real-world problem solving.
   </p>
@@ -202,34 +202,3 @@ type();
 
 </body>
 </html>
-<button onclick="saveChanges()" style="position:fixed; bottom:20px; right:20px; padding:12px 18px; background:#ff6ddd; border:none; color:white; border-radius:8px; cursor:pointer; z-index:999;">
- ?? Save
-</button>
-
-<script>
-document.addEventListener("keydown", function(e){
-  if(e.ctrlKey && e.key === "e"){
-    e.preventDefault();
-    document.body.classList.toggle("edit-mode");
-    const isEditing = document.body.classList.contains("edit-mode");
-    alert(isEditing ? "? Edit Mode ON" : "? Edit Mode OFF");
-  }
-});
-
-function saveChanges() {
-  const edits = {};
-  document.querySelectorAll(".editable").forEach((el, index) => {
-    edits[index] = el.innerHTML;
-  });
-  localStorage.setItem("siteEdits", JSON.stringify(edits));
-  alert("? Changes Saved!");
-}
-
-function loadChanges() {
-  const edits = JSON.parse(localStorage.getItem("siteEdits") || "{}");
-  document.querySelectorAll(".editable").forEach((el, index) => {
-    if(edits[index]) el.innerHTML = edits[index];
-  });
-}
-loadChanges();
-</script>

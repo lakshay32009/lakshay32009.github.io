@@ -14,8 +14,7 @@ h1{margin:0;color:var(--accent);font-size:1.9rem}
 .subtitle{color:#bfefff;font-size:.95rem}
 .panel{background:rgba(255,255,255,0.02);padding:18px;border-radius:12px;margin-top:16px}
 input[type=text]{width:72%;padding:10px;border-radius:10px;border:0;margin:8px 0;font-size:1rem}
-button.primary{background:var(--gold);color:#000;border:0;padding:10px 16px;border-radius:10px;cursor:pointer;font-weight:700;transition:transform .1s,box-shadow .1s}
-button.primary:hover{transform:scale(1.05);box-shadow:0 0 10px var(--gold)}
+button.primary{background:var(--gold);color:#000;border:0;padding:10px 16px;border-radius:10px;cursor:pointer;font-weight:700}
 .scorebar{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-radius:10px;background:rgba(255,255,255,0.03);margin-bottom:12px}
 .timer{color:var(--gold);font-weight:700}
 .question{font-size:1.05rem;margin:14px 0;min-height:60px}
@@ -41,7 +40,7 @@ th{background:rgba(255,255,255,0.02)}
 <header>
   <div>
     <h1>UTSAV 2025 — Quiz</h1>
-    <div class="subtitle">Two rounds • 10 s per question • Auto-save leaderboard</div>
+    <div class="subtitle">Two rounds • 10 s per question • Local leaderboard</div>
   </div>
   <div class="subtitle">Good luck 🎉</div>
 </header>
@@ -74,8 +73,7 @@ th{background:rgba(255,255,255,0.02)}
 </div>
 
 <div class="leader panel">
-  <h3>🏆 Live Leaderboard</h3>
-  <div id="leaderLoad" class="loader"></div>
+  <h3>🏆 Local Leaderboard</h3>
   <table>
     <thead><tr><th>Rank</th><th>Name</th><th>Score</th><th>Time (s)</th></tr></thead>
     <tbody id="leaderBody"></tbody>
@@ -87,10 +85,7 @@ th{background:rgba(255,255,255,0.02)}
 <audio id="soundWrong" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_86b46f36c7.mp3?filename=error-126627.mp3"></audio>
 
 <script>
-const GOOGLE_SCRIPT_URL="https://script.google.com/macros/s/AKfycbw6iLsvIwrYB3LUX8oxuszdtB5yovjmCs1390Fr6yi2WgRIt_VIqhWlC5vsihK64iKsfA/exec";
-const SHEET_ID="1L6yYFs1BRqWRBNkRMReA_WYTQgPJf2QvCA-2tl9z6bc";
 const ROUND1_COUNT=5,ROUND2_COUNT=5,TIME_PER_Q=10;
-
 const IMAGE_POOL=[
  {img:"https://upload.wikimedia.org/wikipedia/commons/4/44/Tesla_logo.png",a:"Tesla",opts:["Tesla","Toyota","Hyundai","Tata"]},
  {img:"https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg",a:"Apple",opts:["Samsung","Sony","Apple","LG"]},
@@ -108,9 +103,9 @@ roundDisplay=document.getElementById("roundDisplay"),scoreDisplay=document.getEl
 timeLeftEl=document.getElementById("timeLeft"),questionText=document.getElementById("questionText"),
 optionsBox=document.getElementById("optionsBox"),logoImage=document.getElementById("logoImage"),
 finalScore=document.getElementById("finalScore"),finalTime=document.getElementById("finalTime"),
-leaderBody=document.getElementById("leaderBody"),leaderLoad=document.getElementById("leaderLoad"),
-correctSnd=document.getElementById("soundCorrect"),wrongSnd=document.getElementById("soundWrong"),
-replayBtn=document.getElementById("replayBtn"),roundTitle=document.getElementById("roundTitle");
+leaderBody=document.getElementById("leaderBody"),correctSnd=document.getElementById("soundCorrect"),
+wrongSnd=document.getElementById("soundWrong"),replayBtn=document.getElementById("replayBtn"),
+roundTitle=document.getElementById("roundTitle");
 
 function shuffle(a){return a.sort(()=>Math.random()-.5);}
 function decodeHTML(h){const t=document.createElement("textarea");t.innerHTML=h;return t.value;}
@@ -165,12 +160,19 @@ function selectAnswer(btn,sel,correct){
 function finishGame(){
  clearInterval(timer);quizPanel.style.display="none";resultPanel.style.display="block";
  finalScore.textContent=score;finalTime.textContent=totalTime;spawnConfetti();
- saveScore(playerName,score,totalTime);setTimeout(loadLeaderboard,1500);
+ saveLocalScore(playerName,score,totalTime);loadLocalLeaderboard();
 }
 
-function saveScore(n,s,t){
- fetch(GOOGLE_SCRIPT_URL,{method:"POST",headers:{"Content-Type":"application/json"},
- body:JSON.stringify({name:n,score:s,time:t})}).catch(console.error);
+function saveLocalScore(name,score,time){
+ let data=JSON.parse(localStorage.getItem("quiz_leaderboard")||"[]");
+ data.push({name,score,time});
+ localStorage.setItem("quiz_leaderboard",JSON.stringify(data));
+}
+
+function loadLocalLeaderboard(){
+ let data=JSON.parse(localStorage.getItem("quiz_leaderboard")||"[]");
+ data=data.sort((a,b)=>b.score-a.score||a.time-b.time).slice(0,10);
+ leaderBody.innerHTML=data.map((r,i)=>`<tr><td>${i+1}</td><td>${r.name}</td><td>${r.score}</td><td>${r.time}</td></tr>`).join("")||"<tr><td colspan='4'>No scores yet</td></tr>";
 }
 
 function spawnConfetti(){
@@ -179,38 +181,11 @@ function spawnConfetti(){
  e.style.height=e.style.width;e.style.background=["#ffd700","#00d4ff","#ff6ec7","#6effa1"][Math.floor(Math.random()*4)];
  document.body.appendChild(e);
  e.animate([{transform:"translateY(0)"},{transform:`translateY(${window.innerHeight+200}px) rotate(720deg)`}],
- {duration:2000+Math.random()*1500,easing:"linear"});
- setTimeout(()=>e.remove(),3500);}
-}
-
-async function loadLeaderboard(){
-  leaderLoad.style.display="block";
-  leaderBody.innerHTML="";
-  try {
-    const res = await fetch(`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&tq&gid=0`);
-    const text = await res.text();
-    const json = JSON.parse(text.substring(text.indexOf("(")+1, text.lastIndexOf(")")));
-    const rows = json.table.rows.map(r => r.c.map(c => c ? c.v : ""));
-    let data = [];
-    for (let r of rows) {
-      if (r.length >= 3 && r[0] && r[1]) {
-        data.push({ name: r[0], score: parseInt(r[1]) || 0, time: parseInt(r[2]) || 0 });
-      }
-    }
-    data = data.sort((a,b) => b.score - a.score || a.time - b.time).slice(0,10);
-    leaderBody.innerHTML = data.map((r,i)=>
-      `<tr><td>${i+1}</td><td>${r.name}</td><td>${r.score}</td><td>${r.time}</td></tr>`
-    ).join("");
-  } catch (e) {
-    console.error(e);
-    leaderBody.innerHTML = "<tr><td colspan='4'>⚠️ Error loading leaderboard</td></tr>";
-  }
-  leaderLoad.style.display="none";
+ {duration:2000+Math.random()*1500,easing:"linear"});setTimeout(()=>e.remove(),3500);}
 }
 
 replayBtn.onclick=()=>{resultPanel.style.display="none";startPanel.style.display="block";};
-
-loadLeaderboard();setInterval(loadLeaderboard,20000);
+loadLocalLeaderboard();
 </script>
 </body>
 </html>

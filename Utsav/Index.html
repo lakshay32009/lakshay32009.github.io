@@ -1,501 +1,264 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>UTSAV 2025 QUIZ</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Utsav 2025 Quiz</title>
 <style>
-  :root {
-    --accent: #00ffff;
-    --gold: #ffcc00;
-    --bg1: #001f1f;
-    --bg2: #000;
-  }
-  body {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    background: radial-gradient(circle at top, var(--bg1), var(--bg2));
-    color: #fff;
-    text-align: center;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-  .container {
-    max-width: 900px;
-    margin: 36px auto;
-    padding: 28px;
-    background: rgba(255,255,255,0.06);
-    border-radius: 18px;
-    box-shadow: 0 8px 40px rgba(0,0,0,0.6);
-  }
-  header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
-  h1 {
-    margin: 0;
-    color: var(--accent);
-    font-size: 2.2rem;
-    letter-spacing: 0.5px;
-    text-shadow: 0 0 10px rgba(0,255,255,0.12);
-  }
-  .subtitle {
-    color: #bfefff;
-    font-size: 0.95rem;
-  }
-  .panel {
-    background: rgba(255,255,255,0.03);
-    padding: 18px;
-    border-radius: 14px;
-    margin-top: 18px;
-  }
-  #startForm input {
-    width: 72%;
-    padding: 12px;
-    border-radius: 10px;
-    border: 0;
-    margin: 6px 0;
-    text-align: center;
-    font-size: 1rem;
-  }
-  #startBtn {
-    background: var(--accent);
-    color: #002;
-    border: none;
-    padding: 12px 18px;
-    border-radius: 10px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: transform .15s;
-  }
-  #startBtn:hover {
-    transform: scale(1.03);
-  }
-  .scoreboard {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 12px;
-    border-radius: 10px;
-    background: rgba(0,255,255,0.06);
-    margin-bottom: 12px;
-  }
-  .timer {
-    color: var(--gold);
-    font-weight: 700;
-  }
-  .question {
-    font-size: 1.05rem;
-    margin: 14px 0;
-    min-height: 56px;
-  }
-  .options {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 6px;
-  }
-  .option {
-    cursor: pointer;
-    background: rgba(0,255,255,0.06);
-    border: 1px solid rgba(0,255,255,0.12);
-    padding: 12px;
-    border-radius: 12px;
-    width: 78%;
-    margin: 0 auto;
-    text-align: center;
-    font-weight: 600;
-    transition: transform .14s, box-shadow .14s;
-  }
-  .option:hover {
-    transform: scale(1.03);
-  }
-  .option.correct {
-    background: rgba(0,255,0,0.14);
-    box-shadow: 0 6px 18px rgba(0,255,0,0.12);
-  }
-  .option.wrong {
-    background: rgba(255,0,0,0.12);
-    box-shadow: 0 6px 18px rgba(255,0,0,0.12);
-  }
-  .logoImg {
-    display: block;
-    margin: 10px auto 0;
-    max-width: 180px;
-    height: auto;
-    border-radius: 10px;
-  }
-  .result {
-    font-size: 1rem;
-    margin-top: 12px;
-  }
-  .leaderboard {
-    margin-top: 18px;
-    padding: 12px;
-    border-radius: 12px;
-    background: linear-gradient(180deg, rgba(0,0,0,0.1), rgba(255,255,255,0.01));
-  }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    color: #fff;
-  }
-  th, td {
-    padding: 8px;
-    border-bottom: 1px solid rgba(0,255,255,0.06);
-    text-align: left;
-  }
-  th {
-    background: rgba(0,255,255,0.06);
-  }
-  .confetti {
-    position: fixed;
-    width: 12px;
-    height: 12px;
-    pointer-events: none;
-    z-index: 9999;
-    top: 0;
-    opacity: 0.95;
-  }
-  footer {
-    margin-top: 14px;
-    color: #9fdce8;
-    font-size: 0.9rem;
-    text-align: center;
-  }
-  @media (max-width:700px){
-    .container { margin:18px; padding:18px; }
-    .option { width:92%; }
-    #startForm input { width:90%; }
-  }
+body {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #1f1c2c, #928dab);
+  color: white;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+.container {
+  max-width: 800px;
+  margin: 40px auto;
+  background: rgba(255,255,255,0.1);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+h1 {
+  font-size: 2.2em;
+  color: #ffeb3b;
+  animation: fadeIn 1s ease-in-out;
+}
+button {
+  background-color: #ffeb3b;
+  border: none;
+  color: black;
+  padding: 10px 25px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+button:hover {
+  background-color: #fff176;
+}
+.option {
+  display: block;
+  background-color: white;
+  color: black;
+  border: 2px solid #444;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 8px auto;
+  cursor: pointer;
+  width: 80%;
+  transition: 0.3s;
+}
+.option:hover {
+  background-color: #f0f0f0;
+}
+.correct { background-color: #4caf50 !important; color: white; }
+.wrong { background-color: #f44336 !important; color: white; }
+#leaderboard {
+  margin-top: 30px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 10px;
+  padding: 15px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  color: white;
+}
+th, td {
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+}
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(-10px);}
+  to {opacity: 1; transform: translateY(0);}
+}
 </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div>
-        <h1>🚗 UTSAV 2025 QUIZ</h1>
-        <div class="subtitle">Fast rounds • Random questions each play • Guess-the-logo included</div>
-      </div>
-      <div class="subtitle">Good luck! 🎉</div>
-    </header>
-
-    <div id="startPanel" class="panel">
-      <div style="display:flex;flex-direction:column;align-items:center">
-        <input id="name" placeholder="Enter your name" autocomplete="off" />
-        <button id="startBtn">Start Quiz</button>
-      </div>
-    </div>
-
-    <div id="quizPanel" class="panel" style="display:none">
-      <div class="scoreboard">
-        <div>Player: <strong id="playerName"></strong></div>
-        <div>Score: <strong id="score">0</strong></div>
-        <div class="timer">⏱ Time Left: <span id="timeLeft">5</span>s</div>
-      </div>
-
-      <div class="question" id="question">…</div>
-      <img id="logoImg" class="logoImg" style="display:none" alt="logo">
-      <div id="options" class="options"></div>
-      <div class="result" id="resultText" style="display:none"></div>
-    </div>
-
-    <div id="resultPanel" class="panel" style="display:none;text-align:center">
-      <h2 id="resultTitle">🎉 Quiz Completed</h2>
-      <div class="result">Score: <strong id="finalScore">0</strong></div>
-      <div class="result">Total Time: <strong id="finalTime">0</strong> s</div>
-      <div style="margin-top:12px">
-        <button id="playAgainBtn" style="background:var(--accent);color:#002;border:none;padding:10px 16px;border-radius:10px;cursor:pointer">Play Again</button>
-      </div>
-    </div>
-
-    <div class="leaderboard panel">
-      <h3 style="margin-top:0">🏆 Live Leaderboard</h3>
-      <div style="overflow:auto">
-        <table aria-live="polite">
-          <thead><tr><th>Rank</th><th>Name</th><th>Score</th><th>Time (s)</th></tr></thead>
-          <tbody id="leaderBody"><tr><td colspan="4">Loading leaderboard…</td></tr></tbody>
-        </table>
-      </div>
-    </div>
-
-    <footer>UTSAV 2025 • Powered by your quiz system</footer>
+  <div class="container" id="startPage">
+    <h1>Welcome to Utsav 2025 Quiz 🎉</h1>
+    <p>Test your knowledge — GK, Food, Fashion, Automobiles, and more!</p>
+    <input type="text" id="nameInput" placeholder="Enter your name" style="padding:8px;border-radius:6px;border:none;">
+    <br><br>
+    <button onclick="startQuiz()">Start Quiz</button>
   </div>
 
-  <audio id="sCorrect" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_0ff56c1a07.mp3?filename=correct-answer-4-145576.mp3"></audio>
-  <audio id="sWrong" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_86b46f36c7.mp3?filename=error-126627.mp3"></audio>
+  <div class="container" id="quizPage" style="display:none;">
+    <h1 id="questionText">Question</h1>
+    <div id="options"></div>
+    <p id="timer">Time left: <span id="timeLeft">5</span>s</p>
+  </div>
+
+  <div class="container" id="resultPage" style="display:none;">
+    <h1>Quiz Complete!</h1>
+    <h2 id="scoreText"></h2>
+    <h3 id="timeText"></h3>
+    <button onclick="showLeaderboard()">View Leaderboard</button>
+  </div>
+
+  <div class="container" id="leaderboard" style="display:none;">
+    <h1>Leaderboard 🏆</h1>
+    <table id="leaderboardTable">
+      <tr><th>Name</th><th>Score</th><th>Time (s)</th></tr>
+    </table>
+    <br>
+    <button onclick="restart()">Play Again</button>
+  </div>
 
 <script>
-/* ================== CONFIG ================== */
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbztv5R1tC8-kMzO0dNNcjQkrc4HHHoUacniGoRJn-_ptvTwI_kHxqNUZLP5deCcd3BRog/exec";
-const SHEET_ID = "2PACX-1vQhpl-9rPIvHdrsqJiTrt08eJDZEqEG9QJ-y4OSNx3DJjQiLdnzkG5KyjXSLeDLOJTRkvsmkLWHrzmy";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxImguBnWjQFzk1PEXScmFrW4hCmlFRwVbGq_rVCfB7gAvcci12rKh6u8BuifJOURJkaQ/exec";
+let playerName = "";
+let score = 0;
+let totalTime = 0;
+let questionIndex = 0;
+let questions = [];
+let timer;
+let timeLeft = 5;
 
-/* game settings */
-const QUESTIONS_PER_GAME = 12;
-const API_FETCH_COUNT = 10;
-const LOGO_COUNT_PER_GAME = 3;
-const TIMER_SECONDS = 5;
-
-/* LOGO POOL */
-const LOGO_POOL = [
-  { img:"https://upload.wikimedia.org/wikipedia/commons/4/44/Tesla_logo.png", a:"Tesla", opts:["Tesla","Toyota","Hyundai","Tata"] },
-  { img:"https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg", a:"Apple", opts:["Samsung","Sony","Apple","LG"] },
-  { img:"https://upload.wikimedia.org/wikipedia/commons/0/08/Google_2015_logo.svg", a:"Google", opts:["Microsoft","Amazon","Google","Meta"] },
-  { img:"https://upload.wikimedia.org/wikipedia/commons/a/a6/McDonalds_Golden_Arches.svg", a:"McDonald's", opts:["Burger King","KFC","McDonald's","Subway"] },
-  { img:"https://upload.wikimedia.org/wikipedia/commons/6/6a/Pepsi_logo_2014.svg", a:"Pepsi", opts:["Coca-Cola","Pepsi","Sprite","Mirinda"] },
-  { img:"https://upload.wikimedia.org/wikipedia/commons/7/7a/Slack_icon_2019.svg", a:"Slack", opts:["Discord","Slack","Teams","Skype"] },
-  { img:"https://upload.wikimedia.org/wikipedia/commons/7/76/Instagram_AppIcon_August_2017.png", a:"Instagram", opts:["Snapchat","Instagram","TikTok","Pinterest"] },
-  { img:"https://upload.wikimedia.org/wikipedia/commons/0/03/Nike_logo.svg", a:"Nike", opts:["Adidas","Puma","Reebok","Nike"] },
-  { img:"https://upload.wikimedia.org/wikipedia/commons/8/85/Starbucks_Corporation_Logo_2011.svg", a:"Starbucks", opts:["Costa","Starbucks","Cafe Coffee Day","Dunkin’"] },
-  { img:"https://upload.wikimedia.org/wikipedia/commons/5/5a/Amazon_icon.png", a:"Amazon", opts:["Flipkart","Amazon","eBay","Alibaba"] },
-  { img:"https://upload.wikimedia.org/wikipedia/commons/3/39/Microsoft_logo_%282012%29.svg", a:"Microsoft", opts:["Microsoft","IBM","Oracle","SAP"] },
-  { img:"https://upload.wikimedia.org/wikipedia/commons/0/0e/Spotify_logo_with_text.svg", a:"Spotify", opts:["Pandora","SoundCloud","Spotify","Deezer"] }
-];
-
-let playerName="", questions=[], currentIndex=0, score=0, questionTimer=null, timeLeft=TIMER_SECONDS, totalTime=0;
-const usedQuestionsSet=new Set(), usedLogos=new Set();
-
-/* UI refs */
-const startPanel = document.getElementById('startPanel'), quizPanel = document.getElementById('quizPanel'),
-      resultPanel = document.getElementById('resultPanel'), nameInput = document.getElementById('name'),
-      startBtn = document.getElementById('startBtn'), playerNameEl = document.getElementById('playerName'),
-      questionEl = document.getElementById('question'), optionsEl = document.getElementById('options'),
-      logoImg = document.getElementById('logoImg'), scoreEl = document.getElementById('score'),
-      timeLeftEl = document.getElementById('timeLeft'), finalScoreEl = document.getElementById('finalScore'),
-      finalTimeEl = document.getElementById('finalTime'), playAgainBtn = document.getElementById('playAgainBtn'),
-      sCorrect = document.getElementById('sCorrect'), sWrong = document.getElementById('sWrong'),
-      leaderBody = document.getElementById('leaderBody');
-
-/* Helpers */
-function shuffle(arr){ return arr.sort(()=>Math.random()-0.5); }
-function decodeHTML(html){
-  const t=document.createElement('textarea');
-  t.innerHTML=html;
-  return t.value;
-}
-function safePick(arr,n){
-  const cp = arr.slice(); shuffle(cp); return cp.slice(0,n);
+// 🧠 Fetch random questions from OpenTriviaDB (unlimited variety)
+async function fetchQuestions() {
+  const res = await fetch("https://opentdb.com/api.php?amount=10&type=multiple");
+  const data = await res.json();
+  questions = data.results.map(q => ({
+    question: decodeHTML(q.question),
+    correct: decodeHTML(q.correct_answer),
+    options: shuffle([...q.incorrect_answers.map(decodeHTML), decodeHTML(q.correct_answer)])
+  }));
 }
 
-/* Fetch from API */
-async function fetchApiQuestions(count){
-  try{
-    const url = `https://opentdb.com/api.php?amount=${count}&type=multiple`;
-    const res = await fetch(url);
-    const data = await res.json();
-    if(!data.results) return [];
-    return data.results.map(r=>({
-      q: decodeHTML(r.question),
-      options: shuffle([...r.incorrect_answers.map(decodeHTML), decodeHTML(r.correct_answer)]),
-      a: decodeHTML(r.correct_answer),
-      img: null
-    }));
-  }catch(err){
-    console.warn('API error',err);
-    return [];
-  }
+function decodeHTML(html) {
+  const txt = document.createElement("textarea");
+  txt.innerHTML = html;
+  return txt.value;
 }
 
-async function buildQuestions(){
-  usedQuestionsSet.clear(); usedLogos.clear();
-  const apiRaw = await fetchApiQuestions(API_FETCH_COUNT);
-  const uniqueApi=[];
-  for(const q of apiRaw){
-    if(!usedQuestionsSet.has(q.q)){
-      usedQuestionsSet.add(q.q);
-      uniqueApi.push(q);
-    }
-    if(uniqueApi.length >= QUESTIONS_PER_GAME - LOGO_COUNT_PER_GAME) break;
-  }
-  const logoAvailable = LOGO_POOL.filter(l => !usedLogos.has(l.img));
-  const chosenLogos = safePick(logoAvailable, Math.min(LOGO_COUNT_PER_GAME, logoAvailable.length));
-  const logoQs = chosenLogos.map(l=>{
-    usedLogos.add(l.img);
-    return { q: l.q || "Guess the logo:", options: shuffle(l.opts.slice()), a: l.a, img: l.img };
-  });
-  let mix = uniqueApi.concat(logoQs);
-  while(mix.length < QUESTIONS_PER_GAME){
-    const extra = await fetchApiQuestions(API_FETCH_COUNT);
-    for(const e of extra){
-      if(!usedQuestionsSet.has(e.q)){
-        usedQuestionsSet.add(e.q);
-        mix.push(e);
-        if(mix.length >= QUESTIONS_PER_GAME) break;
-      }
-    }
-    if(extra.length === 0) break;
-  }
-  return shuffle(mix).slice(0, QUESTIONS_PER_GAME);
+function shuffle(array) {
+  return array.sort(() => Math.random() - 0.5);
 }
 
-function showQuestion(){
-  clearInterval(questionTimer);
-  if(currentIndex >= questions.length) return finishQuiz();
-  const q = questions[currentIndex];
-  playerNameEl.textContent = playerName;
-  scoreEl.textContent = score;
-  questionEl.textContent = q.q;
-  if(q.img){
-    logoImg.src = q.img;
-    logoImg.style.display = 'block';
-  } else {
-    logoImg.style.display = 'none';
-    logoImg.src = '';
-  }
-  optionsEl.innerHTML = '';
-  for(const opt of q.options){
-    const btn = document.createElement('button');
-    btn.className = 'option';
-    btn.type = 'button';
-    btn.textContent = opt;
-    btn.onclick = ()=>handleAnswer(btn, opt, q.a);
-    optionsEl.appendChild(btn);
-  }
-  timeLeft = TIMER_SECONDS;
-  timeLeftEl.textContent = timeLeft;
-  questionTimer = setInterval(()=>{
-    timeLeft--;
-    totalTime++;
-    timeLeftEl.textContent = timeLeft;
-    if(timeLeft <= 0){
-      clearInterval(questionTimer);
-      currentIndex++;
-      setTimeout(()=>showQuestion(), 250);
-    }
-  },1000);
+function startQuiz() {
+  playerName = document.getElementById("nameInput").value.trim();
+  if (!playerName) return alert("Please enter your name!");
+  document.getElementById("startPage").style.display = "none";
+  document.getElementById("quizPage").style.display = "block";
+  loadQuiz();
 }
 
-function handleAnswer(btn, selected, correct){
-  clearInterval(questionTimer);
-  const btns = optionsEl.querySelectorAll('.option');
-  btns.forEach(b=> b.disabled = true);
-  if(selected === correct){
-    score++;
-    btn.classList.add('correct');
-    try{ sCorrect.currentTime = 0; sCorrect.play(); }catch(e){}
-  } else {
-    btn.classList.add('wrong');
-    try{ sWrong.currentTime = 0; sWrong.play(); }catch(e){}
-    btns.forEach(b=> { if(b.textContent === correct) b.classList.add('correct'); });
-  }
-  scoreEl.textContent = score;
-  setTimeout(()=>{
-    currentIndex++;
-    showQuestion();
-  },700);
-}
-
-async function finishQuiz(){
-  clearInterval(questionTimer);
-  quizPanel.style.display = 'none';
-  resultPanel.style.display = 'block';
-  finalScoreEl.textContent = score;
-  finalTimeEl.textContent = totalTime;
-  spawnConfetti();
-  saveScore(playerName, score, totalTime);
-  setTimeout(()=>loadLeaderboard(), 1800);
-}
-
-function saveScore(n, s, t){
-  fetch(GOOGLE_SCRIPT_URL, {
-    method:'POST',
-    headers: {'Content-Type':'application/json'},
-    body: JSON.stringify({ name:n, score:s, time:t })
-  })
-  .then(r=>r.json().catch(()=>({})))
-  .then(d=> console.log('save result', d))
-  .catch(e=> console.warn('save failed', e));
-}
-
-startBtn.addEventListener('click', async ()=>{
-  playerName = nameInput.value.trim();
-  if(!playerName){ alert('Enter your name'); return; }
-  startPanel.style.display = 'none';
-  resultPanel.style.display = 'none';
-  quizPanel.style.display = 'block';
-  currentIndex = 0; score = 0; totalTime = 0;
-  questions = await buildQuestions();
+async function loadQuiz() {
+  await fetchQuestions();
+  questionIndex = 0;
+  score = 0;
+  totalTime = 0;
   showQuestion();
-});
+}
 
-playAgainBtn.addEventListener('click', ()=>{
-  resultPanel.style.display = 'none';
-  startPanel.style.display = 'block';
-  nameInput.focus();
-});
+function showQuestion() {
+  if (questionIndex >= questions.length) return endQuiz();
 
-function spawnConfetti(){
-  for(let i=0;i<60;i++){
-    const el = document.createElement('div');
-    el.className = 'confetti';
-    el.style.left = (Math.random()*100)+'vw';
-    el.style.background = ['gold','cyan','magenta','lime','orange'][Math.floor(Math.random()*5)];
-    el.style.width = (8+Math.random()*8)+'px';
-    el.style.height = (8+Math.random()*8)+'px';
-    el.style.opacity = String(0.8+Math.random()*0.2);
-    el.style.transform = `translateY(-10vh) rotate(${Math.random()*360}deg)`;
-    el.style.transition = `transform ${2+Math.random()*2}s linear, opacity 1s linear`;
-    document.body.appendChild(el);
-    setTimeout(()=>{
-      el.style.transform = `translateY(${110+Math.random()*20}vh) rotate(${Math.random()*1080}deg)`;
-      el.style.opacity='0';
-    },10);
-    setTimeout(()=>el.remove(),3500);
+  const q = questions[questionIndex];
+  document.getElementById("questionText").textContent = q.question;
+  const optionsDiv = document.getElementById("options");
+  optionsDiv.innerHTML = "";
+  q.options.forEach(opt => {
+    const btn = document.createElement("button");
+    btn.textContent = opt;
+    btn.className = "option";
+    btn.onclick = () => checkAnswer(opt, q.correct, btn);
+    optionsDiv.appendChild(btn);
+  });
+  resetTimer();
+}
+
+function resetTimer() {
+  clearInterval(timer);
+  timeLeft = 5;
+  document.getElementById("timeLeft").textContent = timeLeft;
+  timer = setInterval(() => {
+    timeLeft--;
+    document.getElementById("timeLeft").textContent = timeLeft;
+    totalTime++;
+    if (timeLeft <= 0) {
+      clearInterval(timer);
+      questionIndex++;
+      showQuestion();
+    }
+  }, 1000);
+}
+
+function checkAnswer(selected, correct, btn) {
+  clearInterval(timer);
+  const options = document.querySelectorAll(".option");
+  options.forEach(b => b.disabled = true);
+  if (selected === correct) {
+    score++;
+    btn.classList.add("correct");
+    playSound("correct");
+  } else {
+    btn.classList.add("wrong");
+    playSound("wrong");
+  }
+  setTimeout(() => {
+    questionIndex++;
+    showQuestion();
+  }, 800);
+}
+
+function endQuiz() {
+  document.getElementById("quizPage").style.display = "none";
+  document.getElementById("resultPage").style.display = "block";
+  document.getElementById("scoreText").textContent = `Your Score: ${score}`;
+  document.getElementById("timeText").textContent = `Total Time: ${totalTime} sec`;
+  uploadScore();
+}
+
+function uploadScore() {
+  fetch(GOOGLE_SCRIPT_URL, {
+    method: "POST",
+    body: JSON.stringify({ name: playerName, score: score, time: totalTime }),
+  }).catch(err => console.error("Upload error:", err));
+}
+
+function showLeaderboard() {
+  document.getElementById("resultPage").style.display = "none";
+  document.getElementById("leaderboard").style.display = "block";
+  loadLeaderboard();
+}
+
+async function loadLeaderboard() {
+  try {
+    const res = await fetch(GOOGLE_SCRIPT_URL);
+    const data = await res.json();
+    const table = document.getElementById("leaderboardTable");
+    table.innerHTML = "<tr><th>Name</th><th>Score</th><th>Time (s)</th></tr>";
+    data.slice(1).reverse().forEach(row => {
+      if (!row[0]) return;
+      const tr = document.createElement("tr");
+      tr.innerHTML = `<td>${row[0]}</td><td>${row[1]}</td><td>${row[2]}</td>`;
+      table.appendChild(tr);
+    });
+  } catch (err) {
+    console.error(err);
+    alert("Error loading leaderboard!");
   }
 }
 
-async function loadLeaderboard(){
-  try{
-    const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json`;
-    const res = await fetch(url);
-    if(!res.ok) throw new Error('HTTP '+res.status);
-    const text = await res.text();
-    const jtext = text.substring(text.indexOf('(')+1).slice(0,-2);
-    const json = JSON.parse(jtext);
-    if(!json.table || !json.table.cols || json.table.cols.length===0){
-      leaderBody.innerHTML = '<tr><td colspan="4">No leaderboard data yet. Play to add scores.</td></tr>';
-      return;
-    }
-    const headers = json.table.cols.map(c=>(c.label||'').toString().trim().toLowerCase());
-    const nameIdx = headers.findIndex(h=>/name|player/i.test(h));
-    const scoreIdx = headers.findIndex(h=>/score|points/i.test(h));
-    const timeIdx = headers.findIndex(h=>/time|duration|totaltime/i.test(h));
-    const fName = nameIdx===-1?0:nameIdx;
-    const fScore = scoreIdx===-1?2:scoreIdx;
-    const fTime = timeIdx===-1?3:timeIdx;
-    const rows = (json.table.rows || []).map(r=>{
-      return {
-        name: r.c[fName] && r.c[fName].v ? r.c[fName].v : 'Unknown',
-        score: parseInt((r.c[fScore]&&r.c[fScore].v)||0)||0,
-        time: parseInt((r.c[fTime]&&r.c[fTime].v)||0)||0
-      };
-    });
-    if(rows.length===0){
-      leaderBody.innerHTML = '<tr><td colspan="4">No entries yet — play once.</td></tr>';
-      return;
-    }
-    rows.sort((a,b)=> (b.score - a.score) || (a.time - b.time) );
-    leaderBody.innerHTML = '';
-    rows.slice(0,10).forEach((r,i)=>{
-      const tr = document.createElement('tr');
-      tr.innerHTML = `<td>${i+1}</td><td>${escapeHtml(r.name)}</td><td>${r.score}</td><td>${r.time}</td>`;
-      leaderBody.appendChild(tr);
-    });
-  }catch(err){
-    console.error('Leaderboard load error', err);
-    leaderBody.innerHTML = '<tr><td colspan="4">Error loading leaderboard</td></tr>';
-  }
+function restart() {
+  document.getElementById("leaderboard").style.display = "none";
+  document.getElementById("startPage").style.display = "block";
 }
-function escapeHtml(s){
-  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+
+function playSound(type) {
+  const audio = new Audio(
+    type === "correct"
+      ? "https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg"
+      : "https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg"
+  );
+  audio.play();
 }
-loadLeaderboard();
-setInterval(loadLeaderboard,20000);
 </script>
-
 </body>
 </html>
+

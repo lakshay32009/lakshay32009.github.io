@@ -1,264 +1,399 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Utsav 2025 Quiz</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>UTSAV 2025 — Quiz</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 <style>
-body {
-  font-family: "Poppins", sans-serif;
-  background: linear-gradient(135deg, #1f1c2c, #928dab);
-  color: white;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-}
-.container {
-  max-width: 800px;
-  margin: 40px auto;
-  background: rgba(255,255,255,0.1);
-  padding: 30px;
-  border-radius: 20px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.3);
-}
-h1 {
-  font-size: 2.2em;
-  color: #ffeb3b;
-  animation: fadeIn 1s ease-in-out;
-}
-button {
-  background-color: #ffeb3b;
-  border: none;
-  color: black;
-  padding: 10px 25px;
-  border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-button:hover {
-  background-color: #fff176;
-}
-.option {
-  display: block;
-  background-color: white;
-  color: black;
-  border: 2px solid #444;
-  border-radius: 10px;
-  padding: 10px;
-  margin: 8px auto;
-  cursor: pointer;
-  width: 80%;
-  transition: 0.3s;
-}
-.option:hover {
-  background-color: #f0f0f0;
-}
-.correct { background-color: #4caf50 !important; color: white; }
-.wrong { background-color: #f44336 !important; color: white; }
-#leaderboard {
-  margin-top: 30px;
-  background: rgba(255,255,255,0.15);
-  border-radius: 10px;
-  padding: 15px;
-}
-table {
-  width: 100%;
-  border-collapse: collapse;
-  color: white;
-}
-th, td {
-  border-bottom: 1px solid #ddd;
-  padding: 10px;
-}
-@keyframes fadeIn {
-  from {opacity: 0; transform: translateY(-10px);}
-  to {opacity: 1; transform: translateY(0);}
-}
+  :root{
+    --accent:#00d4ff;
+    --gold:#ffcc00;
+    --bg1:#08121a;
+    --bg2:#19232b;
+  }
+  body{
+    margin:0;
+    font-family:'Poppins',sans-serif;
+    background:linear-gradient(180deg,var(--bg1),var(--bg2));
+    color:#fff;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:920px;margin:28px auto;padding:22px;background:rgba(255,255,255,0.03);border-radius:14px;}
+  header{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+  h1{margin:0;color:var(--accent);font-size:1.9rem}
+  .subtitle{color:#bfefff;font-size:.95rem}
+  .panel{background:rgba(255,255,255,0.02);padding:18px;border-radius:12px;margin-top:16px}
+  input[type="text"]{width:72%;padding:10px;border-radius:10px;border:0;margin:8px 0;font-size:1rem}
+  button.primary{background:var(--gold);color:#000;border:0;padding:10px 16px;border-radius:10px;cursor:pointer;font-weight:700}
+  button.primary:hover{filter:brightness(1.04)}
+  .scorebar{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-radius:10px;background:rgba(255,255,255,0.03);margin-bottom:12px}
+  .timer{color:var(--gold);font-weight:700}
+  .question{font-size:1.05rem;margin:14px 0;min-height:60px}
+  .options{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+  .option{
+    background:white;color:#000;border:2px solid rgba(0,0,0,0.12);border-radius:10px;padding:12px;cursor:pointer;
+    width:80%;margin:0 auto;font-weight:700;transition:transform .12s, box-shadow .12s;
+  }
+  .option:hover{transform:scale(1.02)}
+  .option.correct{background:#28a745;color:#fff;box-shadow:0 8px 20px rgba(40,167,69,0.12)}
+  .option.wrong{background:#dc3545;color:#fff;box-shadow:0 8px 20px rgba(220,53,69,0.12)}
+  .logo-img{display:block;margin:12px auto;max-width:220px;height:auto;border-radius:8px}
+  .round-title{font-weight:700;color:var(--accent);margin:8px 0}
+  .leader{margin-top:18px;padding:12px;border-radius:10px;background:rgba(255,255,255,0.02)}
+  table{width:100%;border-collapse:collapse;color:#fff}
+  th,td{padding:10px;border-bottom:1px solid rgba(255,255,255,0.03);text-align:left}
+  th{background:rgba(255,255,255,0.02)}
+  .confetti{position:fixed;pointer-events:none;z-index:9999}
+  @media (max-width:720px){ .option{width:92%} input[type="text"]{width:88%} }
 </style>
 </head>
 <body>
-  <div class="container" id="startPage">
-    <h1>Welcome to Utsav 2025 Quiz 🎉</h1>
-    <p>Test your knowledge — GK, Food, Fashion, Automobiles, and more!</p>
-    <input type="text" id="nameInput" placeholder="Enter your name" style="padding:8px;border-radius:6px;border:none;">
-    <br><br>
-    <button onclick="startQuiz()">Start Quiz</button>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>UTSAV 2025 — Quiz</h1>
+        <div class="subtitle">Two rounds • 30s per question • Saves to leaderboard</div>
+      </div>
+      <div class="subtitle">Have fun 🎉</div>
+    </header>
+
+    <!-- START PANEL -->
+    <div id="startPanel" class="panel">
+      <div style="text-align:center">
+        <input id="playerNameInput" type="text" placeholder="Enter your name" autocomplete="off"/>
+        <br>
+        <button id="startBtn" class="primary">Start Game (5 + 5)</button>
+      </div>
+    </div>
+
+    <!-- QUIZ PANEL -->
+    <div id="quizPanel" class="panel" style="display:none">
+      <div class="scorebar">
+        <div>Player: <strong id="playerNameDisplay"></strong></div>
+        <div>Round: <strong id="roundDisplay">1</strong></div>
+        <div>Score: <strong id="scoreDisplay">0</strong></div>
+        <div class="timer">⏱ <span id="timeLeft">30</span>s</div>
+      </div>
+
+      <div id="roundTitle" class="round-title"></div>
+      <div id="questionBox">
+        <div id="questionText" class="question"></div>
+        <img id="logoImage" class="logo-img" style="display:none" alt="logo/show">
+        <div id="optionsBox" class="options"></div>
+      </div>
+    </div>
+
+    <!-- RESULT PANEL -->
+    <div id="resultPanel" class="panel" style="display:none;text-align:center">
+      <h2>🎉 Round Complete</h2>
+      <p style="font-weight:700">Final Score: <span id="finalScore">0</span></p>
+      <p>Total Time Taken: <span id="finalTime">0</span> seconds</p>
+      <div style="margin-top:12px">
+        <button id="replayBtn" class="primary">Play Again</button>
+      </div>
+    </div>
+
+    <!-- LEADERBOARD -->
+    <div class="leader panel">
+      <h3 style="margin-top:0">🏆 Live Leaderboard</h3>
+      <table>
+        <thead><tr><th>Rank</th><th>Name</th><th>Score</th><th>Time (s)</th></tr></thead>
+        <tbody id="leaderBody"><tr><td colspan="4">Loading leaderboard…</td></tr></tbody>
+      </table>
+    </div>
+
   </div>
 
-  <div class="container" id="quizPage" style="display:none;">
-    <h1 id="questionText">Question</h1>
-    <div id="options"></div>
-    <p id="timer">Time left: <span id="timeLeft">5</span>s</p>
-  </div>
-
-  <div class="container" id="resultPage" style="display:none;">
-    <h1>Quiz Complete!</h1>
-    <h2 id="scoreText"></h2>
-    <h3 id="timeText"></h3>
-    <button onclick="showLeaderboard()">View Leaderboard</button>
-  </div>
-
-  <div class="container" id="leaderboard" style="display:none;">
-    <h1>Leaderboard 🏆</h1>
-    <table id="leaderboardTable">
-      <tr><th>Name</th><th>Score</th><th>Time (s)</th></tr>
-    </table>
-    <br>
-    <button onclick="restart()">Play Again</button>
-  </div>
+  <!-- sounds -->
+  <audio id="soundCorrect" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_0ff56c1a07.mp3?filename=correct-answer-4-145576.mp3"></audio>
+  <audio id="soundWrong" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_86b46f36c7.mp3?filename=error-126627.mp3"></audio>
 
 <script>
+/* CONFIG: paste your Apps Script /exec URL here (you provided this) */
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxImguBnWjQFzk1PEXScmFrW4hCmlFRwVbGq_rVCfB7gAvcci12rKh6u8BuifJOURJkaQ/exec";
+/* Google Sheet ID (editable sheet id). Use the sheet id you control and published. */
+const SHEET_ID = "1L6yYFs1BRqWRBNkRMReA_WYTQgPJf2QvCA-2tl9z6bc";
+
+/* Game settings */
+const ROUND1_COUNT = 5;    // number of easy GK questions
+const ROUND2_COUNT = 5;    // number of logo/show questions
+const TIME_PER_Q = 30;     // seconds per question
+
+/* LOGO & SHOW POOL: public image URLs (logos + reality show banners) */
+const IMAGE_POOL = [
+  {img:"https://upload.wikimedia.org/wikipedia/commons/4/44/Tesla_logo.png", a:"Tesla", opts:["Tesla","Toyota","Hyundai","Tata"]},
+  {img:"https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg", a:"Apple", opts:["Samsung","Sony","Apple","LG"]},
+  {img:"https://upload.wikimedia.org/wikipedia/commons/0/08/Google_2015_logo.svg", a:"Google", opts:["Microsoft","Amazon","Google","Meta"]},
+  {img:"https://upload.wikimedia.org/wikipedia/commons/a/a6/McDonalds_Golden_Arches.svg", a:"McDonald's", opts:["Burger King","KFC","McDonald's","Subway"]},
+  {img:"https://upload.wikimedia.org/wikipedia/commons/6/6a/Pepsi_logo_2014.svg", a:"Pepsi", opts:["Coca-Cola","Pepsi","Sprite","Mirinda"]},
+  {img:"https://upload.wikimedia.org/wikipedia/commons/0/03/Nike_logo.svg", a:"Nike", opts:["Puma","Nike","Adidas","Reebok"]},
+  {img:"https://upload.wikimedia.org/wikipedia/commons/3/39/Microsoft_logo_%282012%29.svg", a:"Microsoft", opts:["IBM","Microsoft","Oracle","SAP"]},
+  {img:"https://upload.wikimedia.org/wikipedia/commons/5/5a/Amazon_icon.png", a:"Amazon", opts:["Flipkart","Amazon","eBay","Alibaba"]},
+  // reality shows / banners (public images)
+  {img:"https://upload.wikimedia.org/wikipedia/en/6/6b/Kaun_Banega_Crorepati_Logo.jpg", a:"Kaun Banega Crorepati", opts:["Indian Idol","Kaun Banega Crorepati","Bigg Boss","Dance India Dance"]},
+  {img:"https://upload.wikimedia.org/wikipedia/en/f/fd/Bigg_Boss_logo.png", a:"Bigg Boss", opts:["Bigg Boss","Roadies","MTV Splitsvilla","Khatron Ke Khiladi"]},
+  {img:"https://upload.wikimedia.org/wikipedia/en/3/35/Indian_Idol_logo.png", a:"Indian Idol", opts:["Sa Re Ga Ma Pa","Indian Idol","The Voice","Super Singer"]},
+  {img:"https://upload.wikimedia.org/wikipedia/en/7/77/Koffee_With_Karan_logo.png", a:"Koffee with Karan", opts:["Koffee with Karan","The Kapil Sharma Show","Satyamev Jayate","No. 1 Yaari"]},
+  {img:"https://upload.wikimedia.org/wikipedia/en/3/37/MasterChef_India_logo.png", a:"MasterChef India", opts:["MasterChef India","Chopped","Top Chef","Cook With Comali"]}
+];
+
+/* STATE */
 let playerName = "";
+let questions = [];   // will contain objects {q, options, a, img?}
+let current = 0;
 let score = 0;
-let totalTime = 0;
-let questionIndex = 0;
-let questions = [];
-let timer;
-let timeLeft = 5;
+let timer = null;
+let timeLeft = TIME_PER_Q;
+let totalTime = 0;    // only increments while question timer runs
 
-// 🧠 Fetch random questions from OpenTriviaDB (unlimited variety)
-async function fetchQuestions() {
-  const res = await fetch("https://opentdb.com/api.php?amount=10&type=multiple");
-  const data = await res.json();
-  questions = data.results.map(q => ({
-    question: decodeHTML(q.question),
-    correct: decodeHTML(q.correct_answer),
-    options: shuffle([...q.incorrect_answers.map(decodeHTML), decodeHTML(q.correct_answer)])
-  }));
-}
+/* UI refs */
+const startPanel = document.getElementById('startPanel');
+const quizPanel  = document.getElementById('quizPanel');
+const resultPanel= document.getElementById('resultPanel');
+const startBtn   = document.getElementById('startBtn');
+const nameInput  = document.getElementById('playerNameInput');
+const playerNameDisplay = document.getElementById('playerNameDisplay');
+const roundDisplay = document.getElementById('roundDisplay');
+const scoreDisplay = document.getElementById('scoreDisplay');
+const timeLeftEl   = document.getElementById('timeLeft');
+const questionText = document.getElementById('questionText');
+const optionsBox   = document.getElementById('optionsBox');
+const logoImage    = document.getElementById('logoImage');
+const finalScore   = document.getElementById('finalScore');
+const finalTime    = document.getElementById('finalTime');
+const leaderBody   = document.getElementById('leaderBody');
+const correctSnd   = document.getElementById('soundCorrect');
+const wrongSnd     = document.getElementById('soundWrong');
+const replayBtn    = document.getElementById('replayBtn');
+const roundTitleEl = document.getElementById('roundTitle');
 
-function decodeHTML(html) {
-  const txt = document.createElement("textarea");
-  txt.innerHTML = html;
-  return txt.value;
-}
+/* HELPERS */
+function shuffle(arr){ return arr.slice().sort(()=>Math.random()-0.5); }
+function decodeHTML(html){ const t=document.createElement('textarea'); t.innerHTML=html; return t.value; }
 
-function shuffle(array) {
-  return array.sort(() => Math.random() - 0.5);
-}
-
-function startQuiz() {
-  playerName = document.getElementById("nameInput").value.trim();
-  if (!playerName) return alert("Please enter your name!");
-  document.getElementById("startPage").style.display = "none";
-  document.getElementById("quizPage").style.display = "block";
-  loadQuiz();
-}
-
-async function loadQuiz() {
-  await fetchQuestions();
-  questionIndex = 0;
-  score = 0;
-  totalTime = 0;
-  showQuestion();
-}
-
-function showQuestion() {
-  if (questionIndex >= questions.length) return endQuiz();
-
-  const q = questions[questionIndex];
-  document.getElementById("questionText").textContent = q.question;
-  const optionsDiv = document.getElementById("options");
-  optionsDiv.innerHTML = "";
-  q.options.forEach(opt => {
-    const btn = document.createElement("button");
-    btn.textContent = opt;
-    btn.className = "option";
-    btn.onclick = () => checkAnswer(opt, q.correct, btn);
-    optionsDiv.appendChild(btn);
-  });
-  resetTimer();
-}
-
-function resetTimer() {
-  clearInterval(timer);
-  timeLeft = 5;
-  document.getElementById("timeLeft").textContent = timeLeft;
-  timer = setInterval(() => {
-    timeLeft--;
-    document.getElementById("timeLeft").textContent = timeLeft;
-    totalTime++;
-    if (timeLeft <= 0) {
-      clearInterval(timer);
-      questionIndex++;
-      showQuestion();
-    }
-  }, 1000);
-}
-
-function checkAnswer(selected, correct, btn) {
-  clearInterval(timer);
-  const options = document.querySelectorAll(".option");
-  options.forEach(b => b.disabled = true);
-  if (selected === correct) {
-    score++;
-    btn.classList.add("correct");
-    playSound("correct");
-  } else {
-    btn.classList.add("wrong");
-    playSound("wrong");
-  }
-  setTimeout(() => {
-    questionIndex++;
-    showQuestion();
-  }, 800);
-}
-
-function endQuiz() {
-  document.getElementById("quizPage").style.display = "none";
-  document.getElementById("resultPage").style.display = "block";
-  document.getElementById("scoreText").textContent = `Your Score: ${score}`;
-  document.getElementById("timeText").textContent = `Total Time: ${totalTime} sec`;
-  uploadScore();
-}
-
-function uploadScore() {
-  fetch(GOOGLE_SCRIPT_URL, {
-    method: "POST",
-    body: JSON.stringify({ name: playerName, score: score, time: totalTime }),
-  }).catch(err => console.error("Upload error:", err));
-}
-
-function showLeaderboard() {
-  document.getElementById("resultPage").style.display = "none";
-  document.getElementById("leaderboard").style.display = "block";
-  loadLeaderboard();
-}
-
-async function loadLeaderboard() {
-  try {
-    const res = await fetch(GOOGLE_SCRIPT_URL);
+/* FETCH EASY QUESTIONS (round1) */
+async function fetchEasyQuestions(n){
+  try{
+    const url = `https://opentdb.com/api.php?amount=${n}&difficulty=easy&type=multiple`;
+    const res = await fetch(url);
     const data = await res.json();
-    const table = document.getElementById("leaderboardTable");
-    table.innerHTML = "<tr><th>Name</th><th>Score</th><th>Time (s)</th></tr>";
-    data.slice(1).reverse().forEach(row => {
-      if (!row[0]) return;
-      const tr = document.createElement("tr");
-      tr.innerHTML = `<td>${row[0]}</td><td>${row[1]}</td><td>${row[2]}</td>`;
-      table.appendChild(tr);
-    });
-  } catch (err) {
-    console.error(err);
-    alert("Error loading leaderboard!");
+    if(!data.results) return [];
+    return data.results.map(r => ({
+      q: decodeHTML(r.question),
+      options: shuffle([ ...r.incorrect_answers.map(decodeHTML), decodeHTML(r.correct_answer) ]),
+      a: decodeHTML(r.correct_answer),
+      img: null
+    }));
+  }catch(err){
+    console.warn('fetch error', err);
+    return [];
   }
 }
 
-function restart() {
-  document.getElementById("leaderboard").style.display = "none";
-  document.getElementById("startPage").style.display = "block";
+/* BUILD game questions: 5 easy + 5 image (logos/shows) */
+async function buildGame(){
+  questions = [];
+  totalTime = 0;
+  // Round 1: easy GK
+  const r1 = await fetchEasyQuestions(ROUND1_COUNT*2); // fetch extra to dedupe if needed
+  const uniqueR1 = [];
+  const seen = new Set();
+  for(const q of r1){
+    if(!seen.has(q.q) && uniqueR1.length < ROUND1_COUNT){ seen.add(q.q); uniqueR1.push(q); }
+  }
+  // Round 2: pick random images
+  const imgs = shuffle(IMAGE_POOL).slice(0, ROUND2_COUNT).map(img=>{
+    return { q: img.q || "Guess the brand/show:", options: shuffle(img.opts.slice()), a: img.a, img: img.img };
+  });
+
+  // combine and shuffle sections separately (rounds order is preserved but each round randomly ordered)
+  const round1Shuffled = shuffle(uniqueR1);
+  const round2Shuffled = shuffle(imgs);
+  // mark sections within list (we'll show Round number by index)
+  questions = [...round1Shuffled, ...round2Shuffled];
 }
 
-function playSound(type) {
-  const audio = new Audio(
-    type === "correct"
-      ? "https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg"
-      : "https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg"
-  );
-  audio.play();
+/* START GAME */
+startBtn.addEventListener('click', async ()=>{
+  playerName = nameInput.value.trim();
+  if(!playerName){ alert('Please enter your name'); nameInput.focus(); return; }
+  startPanel.style.display='none';
+  resultPanel.style.display='none';
+  quizPanel.style.display='block';
+  playerNameDisplay.textContent = playerName;
+  score = 0; current = 0;
+  scoreDisplay.textContent = '0';
+  // build questions
+  questions = [];
+  const build = await buildGame();
+  // start after slight delay
+  setTimeout(() => { showQuestion(); }, 200);
+});
+
+/* SHOW question */
+function showQuestion(){
+  clearInterval(timer);
+  if(current >= questions.length){ finishGame(); return; }
+
+  // determine round
+  const round = (current < ROUND1_COUNT) ? 1 : 2;
+  roundDisplay.textContent = round;
+  roundTitleEl.textContent = round===1 ? "Round 1 — Quick GK (Easy)" : "Round 2 — Guess the Logo / Show";
+
+  const q = questions[current];
+  questionText.textContent = q.q;
+  // logo image
+  if(q.img){ logoImage.src = q.img; logoImage.style.display = 'block'; }
+  else{ logoImage.src=''; logoImage.style.display = 'none'; }
+
+  // render options
+  optionsBox.innerHTML = '';
+  q.options.forEach(opt=>{
+    const btn = document.createElement('button');
+    btn.className = 'option';
+    btn.type = 'button';
+    btn.textContent = opt;
+    btn.onclick = ()=> selectAnswer(btn, opt, q.a);
+    optionsBox.appendChild(btn);
+  });
+
+  // timer
+  timeLeft = TIME_PER_Q;
+  timeLeftEl.textContent = timeLeft;
+  // start per-question timer; only while timer running we increment totalTime
+  timer = setInterval(()=>{
+    timeLeft--;
+    totalTime++;
+    timeLeftEl.textContent = timeLeft;
+    if(timeLeft <= 0){
+      clearInterval(timer);
+      // move on
+      current++;
+      setTimeout(showQuestion, 250);
+    }
+  },1000);
 }
+
+/* answer selection */
+function selectAnswer(btn, selected, correct){
+  clearInterval(timer); // stop counting time for this question now
+  // disable all options
+  const all = optionsBox.querySelectorAll('.option');
+  all.forEach(x=> x.disabled = true);
+  if(selected === correct){
+    score++;
+    btn.classList.add('correct');
+    try{ correctSnd.currentTime=0; correctSnd.play(); }catch(e){}
+  } else {
+    btn.classList.add('wrong');
+    try{ wrongSnd.currentTime=0; wrongSnd.play(); }catch(e){}
+    // highlight correct option
+    all.forEach(x=> { if(x.textContent === correct) x.classList.add('correct'); });
+  }
+  scoreDisplay.textContent = score;
+  // short pause then next question
+  setTimeout(()=>{
+    current++;
+    showQuestion();
+  },800);
+}
+
+/* finish and save */
+function finishGame(){
+  clearInterval(timer);
+  quizPanel.style.display='none';
+  resultPanel.style.display='block';
+  finalScore.textContent = score;
+  finalTime.textContent = totalTime;
+  spawnConfetti();
+  // save to Google Apps Script
+  saveScoreToSheet(playerName, score, totalTime);
+  // refresh leaderboard after short delay
+  setTimeout(()=> loadLeaderboard(), 1500);
+}
+
+/* save via Apps Script (POST) */
+function saveScoreToSheet(name, scoreVal, timeVal){
+  fetch(GOOGLE_SCRIPT_URL, {
+    method:'POST',
+    headers:{ 'Content-Type':'application/json' },
+    body: JSON.stringify({ name: name, score: scoreVal, time: timeVal })
+  })
+  .then(r=> r.text().catch(()=>'')) // no strict JSON expected
+  .then(res => console.log('score save response', res))
+  .catch(err => console.warn('save error', err));
+}
+
+/* confetti */
+function spawnConfetti(){
+  for(let i=0;i<60;i++){
+    const el = document.createElement('div');
+    el.className = 'confetti';
+    el.style.left = (Math.random()*100)+'vw';
+    el.style.top = (-10 - Math.random()*10)+'vh';
+    el.style.width = (6 + Math.random()*12)+'px';
+    el.style.height = el.style.width;
+    el.style.background = ['#ffd700','#00d4ff','#ff6ec7','#6effa1'][Math.floor(Math.random()*4)];
+    el.style.borderRadius = '2px';
+    document.body.appendChild(el);
+    // animate simple translate
+    const duration = 2000 + Math.random()*1800;
+    el.animate([{ transform: `translateY(0px) rotate(0deg)` }, { transform: `translateY(${window.innerHeight + 200}px) rotate(${720 + Math.random()*720}deg)` }], { duration, iterations:1, easing:'linear' });
+    setTimeout(()=> el.remove(), duration+50);
+  }
+}
+
+/* ===== Leaderboard loader (robust) ===== */
+async function loadLeaderboard(){
+  try{
+    const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json`;
+    const res = await fetch(url);
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    const text = await res.text();
+    const jsonText = text.substring(text.indexOf('(')+1).slice(0,-2);
+    const json = JSON.parse(jsonText);
+    if(!json.table || !json.table.cols || json.table.cols.length===0){
+      leaderBody.innerHTML = '<tr><td colspan="4">No leaderboard data yet (publish sheet or add rows).</td></tr>';
+      return;
+    }
+    const headers = json.table.cols.map(c => (c.label||'').toString().trim().toLowerCase());
+    const nameIdx = headers.findIndex(h => /name|player/i.test(h));
+    const scoreIdx = headers.findIndex(h => /score|points/i.test(h));
+    const timeIdx = headers.findIndex(h => /time|duration|totaltime/i.test(h));
+    const fName = nameIdx===-1 ? 0 : nameIdx;
+    const fScore = scoreIdx===-1 ? 1 : scoreIdx;
+    const fTime = timeIdx===-1 ? 2 : timeIdx;
+    const rows = (json.table.rows || []).map(r => ({
+      name: r.c[fName] && r.c[fName].v ? r.c[fName].v : 'Unknown',
+      score: parseInt((r.c[fScore] && r.c[fScore].v) || 0) || 0,
+      time: parseInt((r.c[fTime] && r.c[fTime].v) || 0) || 0
+    }));
+    if(rows.length === 0){ leaderBody.innerHTML = '<tr><td colspan="4">No entries yet — play once to add scores.</td></tr>'; return; }
+    rows.sort((a,b) => (b.score - a.score) || (a.time - b.time));
+    leaderBody.innerHTML = '';
+    rows.slice(0,10).forEach((r,i)=>{
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td>${i+1}</td><td>${escapeHtml(r.name)}</td><td>${r.score}</td><td>${r.time}</td>`;
+      leaderBody.appendChild(tr);
+    });
+  }catch(err){
+    console.error('leaderboard load error', err);
+    leaderBody.innerHTML = '<tr><td colspan="4">Error loading leaderboard</td></tr>';
+  }
+}
+function escapeHtml(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+/* replay */
+replayBtn.addEventListener('click', ()=>{
+  resultPanel.style.display='none';
+  startPanel.style.display='block';
+  nameInput.focus();
+});
+
+/* init (load leaderboard periodically) */
+loadLeaderboard();
+setInterval(loadLeaderboard, 20000);
 </script>
 </body>
 </html>
-

@@ -183,18 +183,28 @@ function spawnConfetti(){
 }
 
 async function loadLeaderboard(){
- leaderLoad.style.display="block";leaderBody.innerHTML="";
- try{
-  const res=await fetch(`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&tq&gid=0`);
-  const text=await res.text();const json=JSON.parse(text.substring(text.indexOf("(")+1,text.lastIndexOf(")")));
-  const rows=json.table.rows.map(r=>r.c.map(c=>c?c.v:""));
-  const header=json.table.cols.map(c=>c.label.toLowerCase());
-  const ni=header.findIndex(h=>/name/.test(h)),si=header.findIndex(h=>/score/.test(h)),ti=header.findIndex(h=>/time/.test(h));
-  const list=rows.map(r=>({name:r[ni],score:+r[si]||0,time:+r[ti]||0}))
-    .sort((a,b)=>b.score-a.score||a.time-b.time).slice(0,10);
-  leaderBody.innerHTML=list.map((r,i)=>`<tr><td>${i+1}</td><td>${r.name}</td><td>${r.score}</td><td>${r.time}</td></tr>`).join("");
- }catch(e){leaderBody.innerHTML="<tr><td colspan=4>Error loading leaderboard</td></tr>";}
- leaderLoad.style.display="none";
+  leaderLoad.style.display="block";
+  leaderBody.innerHTML="";
+  try {
+    const res = await fetch(`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&tq&gid=0`);
+    const text = await res.text();
+    const json = JSON.parse(text.substring(text.indexOf("(")+1, text.lastIndexOf(")")));
+    const rows = json.table.rows.map(r => r.c.map(c => c ? c.v : ""));
+    let data = [];
+    for (let r of rows) {
+      if (r.length >= 3 && r[0] && r[1]) {
+        data.push({ name: r[0], score: parseInt(r[1]) || 0, time: parseInt(r[2]) || 0 });
+      }
+    }
+    data = data.sort((a,b) => b.score - a.score || a.time - b.time).slice(0,10);
+    leaderBody.innerHTML = data.map((r,i)=>
+      `<tr><td>${i+1}</td><td>${r.name}</td><td>${r.score}</td><td>${r.time}</td></tr>`
+    ).join("");
+  } catch (e) {
+    console.error(e);
+    leaderBody.innerHTML = "<tr><td colspan='4'>⚠️ Error loading leaderboard</td></tr>";
+  }
+  leaderLoad.style.display="none";
 }
 
 replayBtn.onclick=()=>{resultPanel.style.display="none";startPanel.style.display="block";};

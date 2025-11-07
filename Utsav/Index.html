@@ -3,26 +3,32 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="UTSAV 2025 School Fest Quiz Game with leaderboard and fun rounds!">
 <title>UTSAV 2025 — Quiz</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 <style>
-:root{--accent:#00d4ff;--gold:#ffcc00;--bg1:#08121a;--bg2:#19232b;}
-body{margin:0;font-family:'Poppins',sans-serif;background:linear-gradient(180deg,var(--bg1),var(--bg2));color:#fff;}
-.wrap{max-width:920px;margin:28px auto;padding:22px;background:rgba(255,255,255,0.03);border-radius:14px;}
+:root{--accent:#00d4ff;--gold:#ffcc00;--bg1:#08121a;--bg2:#19232b;--card:rgba(255,255,255,0.03)}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Poppins',sans-serif;background:linear-gradient(180deg,var(--bg1),var(--bg2));color:#fff;-webkit-font-smoothing:antialiased}
+.wrap{max-width:920px;margin:28px auto;padding:22px;background:var(--card);border-radius:14px;transition:opacity .4s ease,transform .25s ease}
 header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap}
 h1{margin:0;color:var(--accent);font-size:1.9rem}
 .subtitle{color:#bfefff;font-size:.95rem}
-.panel{background:rgba(255,255,255,0.02);padding:18px;border-radius:12px;margin-top:16px}
+.panel{background:var(--card);padding:18px;border-radius:12px;margin-top:16px;transition:opacity .4s ease,transform .3s ease}
+.fadeIn{opacity:1;transform:translateY(0)}
+.fadeOut{opacity:0;transform:translateY(8px)}
 input[type=text]{width:72%;padding:10px;border-radius:10px;border:0;margin:8px 0;font-size:1rem}
-button.primary{background:var(--gold);color:#000;border:0;padding:10px 16px;border-radius:10px;cursor:pointer;font-weight:700}
-.scorebar{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-radius:10px;background:rgba(255,255,255,0.03);margin-bottom:12px}
+button.primary{background:var(--gold);color:#000;border:0;padding:10px 16px;border-radius:10px;cursor:pointer;font-weight:700;transition:transform .12s,filter .12s}
+button.primary:hover{filter:brightness(1.03);transform:scale(1.03)}
+.btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.08);padding:8px 12px;border-radius:8px}
+.scorebar{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;align-items:center;padding:8px 12px;border-radius:10px;background:rgba(255,255,255,0.03);margin-bottom:12px}
 .timer{color:var(--gold);font-weight:700}
-.question{font-size:1.05rem;margin:14px 0;min-height:60px}
+.question{font-size:1.05rem;margin:14px 0;min-height:64px}
 .options{display:flex;flex-direction:column;gap:10px;margin-top:8px}
 .option{background:#fff;color:#000;border:2px solid rgba(0,0,0,0.12);border-radius:10px;padding:12px;cursor:pointer;width:80%;margin:0 auto;font-weight:700;transition:transform .12s,box-shadow .12s}
 .option:hover{transform:scale(1.02)}
-.option.correct{background:#28a745;color:#fff}
-.option.wrong{background:#dc3545;color:#fff}
+.option.correct{background:#28a745;color:#fff;border-color:rgba(0,0,0,0.12)}
+.option.wrong{background:#dc3545;color:#fff;border-color:rgba(0,0,0,0.12)}
 .logo-img{display:block;margin:12px auto;max-width:220px;border-radius:8px}
 .round-title{font-weight:700;color:var(--accent);margin:8px 0}
 .leader{margin-top:18px;padding:12px;border-radius:10px;background:rgba(255,255,255,0.02)}
@@ -31,8 +37,14 @@ th,td{padding:10px;border-bottom:1px solid rgba(255,255,255,0.03);text-align:lef
 th{background:rgba(255,255,255,0.02)}
 .loader{width:24px;height:24px;border:3px solid #fff;border-top:3px solid transparent;border-radius:50%;animation:spin 1s linear infinite;margin:auto}
 @keyframes spin{to{transform:rotate(360deg)}}
-.confetti{position:fixed;pointer-events:none;z-index:9999}
-@media(max-width:720px){.option{width:92%}input[type=text]{width:88%}}
+.confetti-container{position:fixed;left:0;top:0;width:100%;height:0;pointer-events:none;overflow:visible;z-index:9999}
+.confetti{position:absolute;top:-10vh;border-radius:50%;opacity:0.95}
+@keyframes conf-fall{to{transform:translateY(120vh) rotate(720deg);opacity:0.9}}
+.confetti{animation-name:conf-fall;animation-duration:2200ms;animation-timing-function:linear}
+.sound-toggle{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:6px 10px;border-radius:8px;color:#fff}
+.meta-row{display:flex;gap:8px;align-items:center}
+.hint{font-size:.9rem;color:#cfefff}
+@media(max-width:720px){.option{width:92%}input[type=text]{width:88%}.scorebar{flex-direction:column;align-items:flex-start}}
 </style>
 </head>
 <body>
@@ -42,15 +54,19 @@ th{background:rgba(255,255,255,0.02)}
     <h1>UTSAV 2025 — Quiz</h1>
     <div class="subtitle">Two rounds • 10 s per question • Auto-save leaderboard</div>
   </div>
-  <div class="subtitle">Good luck 🎉</div>
+  <div class="meta-row">
+    <div class="subtitle">Good luck 🎉</div>
+    <button id="soundToggle" class="sound-toggle" aria-pressed="true">🔊</button>
+  </div>
 </header>
 
-<div id="startPanel" class="panel" style="text-align:center">
+<div id="startPanel" class="panel fadeIn" style="text-align:center">
   <input id="playerNameInput" type="text" placeholder="Enter your name" autocomplete="off"><br>
   <button id="startBtn" class="primary">Start Game (5 + 5)</button>
+  <div class="hint">Tip: Tap answers quickly — faster answers aren't explicitly scored, but time is shown on leaderboard.</div>
 </div>
 
-<div id="quizPanel" class="panel" style="display:none">
+<div id="quizPanel" class="panel fadeOut" style="display:none">
   <div class="scorebar">
     <div>Player: <strong id="playerNameDisplay"></strong></div>
     <div>Round: <strong id="roundDisplay">1</strong></div>
@@ -60,12 +76,12 @@ th{background:rgba(255,255,255,0.02)}
   <div id="roundTitle" class="round-title"></div>
   <div id="questionBox">
     <div id="questionText" class="question"></div>
-    <img id="logoImage" class="logo-img" style="display:none">
-    <div id="optionsBox" class="options"></div>
+    <img id="logoImage" class="logo-img" style="display:none" alt="logo image">
+    <div id="optionsBox" class="options" role="listbox" aria-label="Answer choices"></div>
   </div>
 </div>
 
-<div id="resultPanel" class="panel" style="display:none;text-align:center">
+<div id="resultPanel" class="panel fadeOut" style="display:none;text-align:center">
   <h2>🎉 Round Complete</h2>
   <p><b>Final Score:</b> <span id="finalScore">0</span></p>
   <p><b>Total Time Taken:</b> <span id="finalTime">0</span> seconds</p>
@@ -74,22 +90,27 @@ th{background:rgba(255,255,255,0.02)}
 
 <div class="leader panel">
   <h3>🏆 Live Leaderboard</h3>
-  <div id="leaderLoad" class="loader"></div>
+  <div id="leaderLoad" class="loader" style="display:inline-block"></div>
   <table>
-    <thead><tr><th>Rank</th><th>Name</th><th>Score</th><th>Time (s)</th></tr></thead>
+    <thead><tr><th>#</th><th>👤 Player</th><th>⭐ Score</th><th>⏱ Time</th></tr></thead>
     <tbody id="leaderBody"></tbody>
   </table>
 </div>
 </div>
 
-<audio id="soundCorrect" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_0ff56c1a07.mp3?filename=correct-answer-4-145576.mp3"></audio>
-<audio id="soundWrong" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_86b46f36c7.mp3?filename=error-126627.mp3"></audio>
+<div id="confettiRoot" class="confetti-container" aria-hidden="true"></div>
+
+<audio id="soundCorrect" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_0ff56c1a07.mp3?filename=correct-answer-4-145576.mp3" preload="auto"></audio>
+<audio id="soundWrong" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_86b46f36c7.mp3?filename=error-126627.mp3" preload="auto"></audio>
 
 <script>
+// ===== Configuration =====
 const GOOGLE_SCRIPT_URL="https://script.google.com/macros/s/AKfycbxImguBnWjQFzk1PEXScmFrW4hCmlFRwVbGq_rVCfB7gAvcci12rKh6u8BuifJOURJkaQ/exec";
 const SHEET_ID="1L6yYFs1BRqWRBNkRMReA_WYTQgPJf2QvCA-2tl9z6bc";
-const ROUND1_COUNT=5,ROUND2_COUNT=5,TIME_PER_Q=10;
+const ROUND1_COUNT=5, ROUND2_COUNT=5, TIME_PER_Q=10;
+const CACHE_KEY='utsav_questions_cache_v1';
 
+// Image / round2 pool (kept small for demo); you can add more items
 const IMAGE_POOL=[
  {img:"https://upload.wikimedia.org/wikipedia/commons/4/44/Tesla_logo.png",a:"Tesla",opts:["Tesla","Toyota","Hyundai","Tata"]},
  {img:"https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg",a:"Apple",opts:["Samsung","Sony","Apple","LG"]},
@@ -98,118 +119,199 @@ const IMAGE_POOL=[
  {img:"https://upload.wikimedia.org/wikipedia/en/3/35/Indian_Idol_logo.png",a:"Indian Idol",opts:["Sa Re Ga Ma Pa","Indian Idol","The Voice","Super Singer"]}
 ];
 
-let playerName="",questions=[],current=0,score=0,timer=null,timeLeft=TIME_PER_Q,totalTime=0;
+// ===== State =====
+let playerName="", questions=[], current=0, score=0, timer=null, timeLeft=TIME_PER_Q, totalTime=0;
+let questionStart=0; let soundOn=true;
 
-const startPanel=document.getElementById("startPanel"),quizPanel=document.getElementById("quizPanel"),
-resultPanel=document.getElementById("resultPanel"),startBtn=document.getElementById("startBtn"),
-nameInput=document.getElementById("playerNameInput"),playerNameDisplay=document.getElementById("playerNameDisplay"),
-roundDisplay=document.getElementById("roundDisplay"),scoreDisplay=document.getElementById("scoreDisplay"),
-timeLeftEl=document.getElementById("timeLeft"),questionText=document.getElementById("questionText"),
-optionsBox=document.getElementById("optionsBox"),logoImage=document.getElementById("logoImage"),
-finalScore=document.getElementById("finalScore"),finalTime=document.getElementById("finalTime"),
-leaderBody=document.getElementById("leaderBody"),leaderLoad=document.getElementById("leaderLoad"),
-correctSnd=document.getElementById("soundCorrect"),wrongSnd=document.getElementById("soundWrong"),
-replayBtn=document.getElementById("replayBtn"),roundTitle=document.getElementById("roundTitle");
+// ===== Elements =====
+const startPanel=document.getElementById("startPanel"), quizPanel=document.getElementById("quizPanel"),
+ resultPanel=document.getElementById("resultPanel"), startBtn=document.getElementById("startBtn"),
+ nameInput=document.getElementById("playerNameInput"), playerNameDisplay=document.getElementById("playerNameDisplay"),
+ roundDisplay=document.getElementById("roundDisplay"), scoreDisplay=document.getElementById("scoreDisplay"),
+ timeLeftEl=document.getElementById("timeLeft"), questionText=document.getElementById("questionText"),
+ optionsBox=document.getElementById("optionsBox"), logoImage=document.getElementById("logoImage"),
+ finalScore=document.getElementById("finalScore"), finalTime=document.getElementById("finalTime"),
+ leaderBody=document.getElementById("leaderBody"), leaderLoad=document.getElementById("leaderLoad"),
+ correctSnd=document.getElementById("soundCorrect"), wrongSnd=document.getElementById("soundWrong"),
+ replayBtn=document.getElementById("replayBtn"), roundTitle=document.getElementById("roundTitle"),
+ confettiRoot=document.getElementById('confettiRoot'), soundToggle=document.getElementById('soundToggle');
 
-function shuffle(a){return a.sort(()=>Math.random()-.5);}
+function shuffle(a){return a.sort(()=>Math.random()-.5);} // small array shuffle
 function decodeHTML(h){const t=document.createElement("textarea");t.innerHTML=h;return t.value;}
 
+// ===== OpenTDB fetch w/ cache & fallback =====
 async function fetchEasyQuestions(n){
- try{const res=await fetch(`https://opentdb.com/api.php?amount=${n}&difficulty=easy&type=multiple`);
- const data=await res.json();return data.results.map(r=>({q:decodeHTML(r.question),
- options:shuffle([...r.incorrect_answers.map(decodeHTML),decodeHTML(r.correct_answer)]),
- a:decodeHTML(r.correct_answer)}));}catch(e){return[];}
+  // Use cached if recent
+  try{
+    const cached=JSON.parse(localStorage.getItem(CACHE_KEY)||'null');
+    if(cached && (Date.now()-cached.t)<1000*60*60 && cached.items?.length>=n){
+      return cached.items.slice(0,n);
+    }
+  }catch(e){/* ignore cache parse errors */}
+
+  try{
+    const res=await fetch(`https://opentdb.com/api.php?amount=${n}&difficulty=easy&type=multiple`);
+    if(!res.ok) throw new Error('Network');
+    const data=await res.json();
+    if(!data.results || !data.results.length) throw new Error('No data');
+    const items=data.results.map(r=>({q:decodeHTML(r.question), options:shuffle([...r.incorrect_answers.map(decodeHTML),decodeHTML(r.correct_answer)]), a:decodeHTML(r.correct_answer)}));
+    // Cache
+    localStorage.setItem(CACHE_KEY, JSON.stringify({t:Date.now(), items}));
+    return items;
+  }catch(e){
+    console.warn('OpenTDB failed, using fallback questions:', e);
+    // Fallback small pool
+    const fallback=[
+      {q:"Which planet is known as the Red Planet?", options:["Mars","Venus","Jupiter","Saturn"], a:"Mars"},
+      {q:"What is the capital of India?", options:["Delhi","Mumbai","Kolkata","Chennai"], a:"Delhi"},
+      {q:"How many continents are there?", options:["5","6","7","8"], a:"7"},
+      {q:"What gas do plants absorb from the atmosphere?", options:["Oxygen","Nitrogen","Carbon Dioxide","Helium"], a:"Carbon Dioxide"},
+      {q:"Which is the largest ocean on Earth?", options:["Atlantic","Indian","Arctic","Pacific"], a:"Pacific"}
+    ];
+    return fallback.slice(0,n);
+  }
 }
 
 async function buildGame(){
- const r1=await fetchEasyQuestions(ROUND1_COUNT*2);
- const round1=[...new Map(r1.map(i=>[i.q,i])).values()].slice(0,ROUND1_COUNT);
- const round2=shuffle(IMAGE_POOL).slice(0,ROUND2_COUNT)
-   .map(i=>({q:"Guess the logo/show:",options:shuffle(i.opts),a:i.a,img:i.img}));
- questions=[...shuffle(round1),...shuffle(round2)];
+  const r1 = await fetchEasyQuestions(ROUND1_COUNT*2);
+  const round1 = [...new Map(r1.map(i=>[i.q,i])).values()].slice(0,ROUND1_COUNT);
+  const round2 = shuffle(IMAGE_POOL).slice(0,ROUND2_COUNT).map(i=>({q:"Guess the logo/show:",options:shuffle(i.opts),a:i.a,img:i.img}));
+  questions = [...shuffle(round1),...shuffle(round2)];
 }
 
+// ===== UI helpers =====
+function show(el){el.style.display='block';el.classList.remove('fadeOut');el.classList.add('fadeIn');}
+function hide(el){el.classList.remove('fadeIn');el.classList.add('fadeOut');setTimeout(()=>el.style.display='none',350);} 
+
 startBtn.onclick=async()=>{
- playerName=nameInput.value.trim();if(!playerName)return alert("Enter your name first!");
- startPanel.style.display="none";quizPanel.style.display="block";
- playerNameDisplay.textContent=playerName;score=0;current=0;scoreDisplay.textContent="0";
- await buildGame();showQuestion();
+  playerName=nameInput.value.trim(); if(!playerName) return alert('Enter your name first!');
+  hide(startPanel); score=0; current=0; totalTime=0; scoreDisplay.textContent='0';
+  playerNameDisplay.textContent=playerName; show(quizPanel);
+  await buildGame(); showQuestion();
 };
 
 function showQuestion(){
- clearInterval(timer);
- if(current>=questions.length)return finishGame();
- const q=questions[current];const round=current<ROUND1_COUNT?1:2;
- roundDisplay.textContent=round;roundTitle.textContent=round==1?"Round 1 – General Knowledge":"Round 2 – Logos & Shows";
- questionText.textContent=q.q;logoImage.style.display=q.img?"block":"none";
- if(q.img)logoImage.src=q.img;
- optionsBox.innerHTML="";
- q.options.forEach(opt=>{
-  const b=document.createElement("button");b.className="option";b.textContent=opt;
-  b.onclick=()=>selectAnswer(b,opt,q.a);optionsBox.appendChild(b);
- });
- timeLeft=TIME_PER_Q;timeLeftEl.textContent=timeLeft;
- timer=setInterval(()=>{timeLeft--;totalTime++;timeLeftEl.textContent=timeLeft;
-  if(timeLeft<=0){clearInterval(timer);current++;showQuestion();}},1000);
+  clearInterval(timer);
+  if(current>=questions.length) return finishGame();
+  const q=questions[current];
+  const round=current<ROUND1_COUNT?1:2;
+  roundDisplay.textContent=round; roundTitle.textContent=round==1?"Round 1 – General Knowledge":"Round 2 – Logos & Shows";
+  questionText.textContent=q.q; logoImage.style.display = q.img? 'block' : 'none'; if(q.img) logoImage.src=q.img;
+  optionsBox.innerHTML='';
+  q.options.forEach(opt=>{
+    const b=document.createElement('button'); b.className='option'; b.textContent=opt; b.setAttribute('role','option');
+    b.onclick=()=>selectAnswer(b,opt,q.a);
+    optionsBox.appendChild(b);
+  });
+  // start timing
+  questionStart = Date.now(); timeLeft = TIME_PER_Q; timeLeftEl.textContent = timeLeft;
+  timer = setInterval(()=>{
+    const elapsed = Math.floor((Date.now()-questionStart)/1000);
+    timeLeft = TIME_PER_Q - elapsed; timeLeftEl.textContent = Math.max(0,timeLeft);
+    if(timeLeft<=0){
+      clearInterval(timer);
+      // if timeout, we add full TIME_PER_Q (we counted in increments, but prefer to add TIME_PER_Q to totalTime)
+      totalTime += TIME_PER_Q;
+      markTimeoutAnswer(q.a);
+      setTimeout(()=>{ current++; showQuestion(); }, 700);
+    }
+  }, 200);
 }
 
-function selectAnswer(btn,sel,correct){
- clearInterval(timer);
- const all=optionsBox.querySelectorAll(".option");all.forEach(x=>x.disabled=true);
- if(sel===correct){score++;btn.classList.add("correct");correctSnd.play();}
- else{btn.classList.add("wrong");wrongSnd.play();all.forEach(x=>{if(x.textContent===correct)x.classList.add("correct")});}
- scoreDisplay.textContent=score;setTimeout(()=>{current++;showQuestion();},800);
+function markTimeoutAnswer(correct){
+  const all = optionsBox.querySelectorAll('.option'); all.forEach(x=>x.disabled=true);
+  // highlight correct
+  all.forEach(x=>{ if(x.textContent===correct) x.classList.add('correct'); });
+  if(soundOn) wrongSnd.play();
+}
+
+function selectAnswer(btn, sel, correct){
+  clearInterval(timer);
+  const all = optionsBox.querySelectorAll('.option'); all.forEach(x=>x.disabled=true);
+  // elapsed seconds for question
+  const elapsed = Math.ceil((Date.now()-questionStart)/1000);
+  // clamp elapsed
+  const used = Math.min(elapsed, TIME_PER_Q);
+  totalTime += used;
+  if(sel===correct){ score++; btn.classList.add('correct'); if(soundOn) correctSnd.play(); }
+  else{ btn.classList.add('wrong'); if(soundOn) wrongSnd.play(); all.forEach(x=>{ if(x.textContent===correct) x.classList.add('correct'); }); }
+  scoreDisplay.textContent = score;
+  setTimeout(()=>{ current++; showQuestion(); }, 800);
 }
 
 function finishGame(){
- clearInterval(timer);quizPanel.style.display="none";resultPanel.style.display="block";
- finalScore.textContent=score;finalTime.textContent=totalTime;spawnConfetti();
- saveScore(playerName,score,totalTime);setTimeout(loadLeaderboard,1500);
+  clearInterval(timer); hide(quizPanel); show(resultPanel);
+  finalScore.textContent = score; finalTime.textContent = totalTime; spawnConfetti(); saveScore(playerName,score,totalTime); setTimeout(loadLeaderboard,1200);
 }
 
 function saveScore(n,s,t){
- fetch(GOOGLE_SCRIPT_URL,{method:"POST",headers:{"Content-Type":"application/json"},
- body:JSON.stringify({name:n,score:s,time:t})}).catch(console.error);
+  fetch(GOOGLE_SCRIPT_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:n,score:s,time:t})})
+    .then(r=>{ if(!r.ok) throw new Error('Save failed'); })
+    .catch(e=>{ console.error(e); alert('⚠️ Could not save to leaderboard. Check internet or script URL.'); });
 }
 
+// ===== Confetti (optimized) =====
 function spawnConfetti(){
- for(let i=0;i<60;i++){const e=document.createElement("div");e.className="confetti";
- e.style.left=Math.random()*100+"vw";e.style.top="-10vh";e.style.width=(6+Math.random()*12)+"px";
- e.style.height=e.style.width;e.style.background=["#ffd700","#00d4ff","#ff6ec7","#6effa1"][Math.floor(Math.random()*4)];
- document.body.appendChild(e);
- e.animate([{transform:"translateY(0)"},{transform:`translateY(${window.innerHeight+200}px) rotate(720deg)`}],
- {duration:2000+Math.random()*1500,easing:"linear"});
- setTimeout(()=>e.remove(),3500);}
-}
-
-async function loadLeaderboard(){
-  leaderLoad.style.display="block";
-  leaderBody.innerHTML="";
-  try {
-    const res = await fetch(`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&tq&gid=0`);
-    const text = await res.text();
-    const json = JSON.parse(text.substring(text.indexOf("(")+1, text.lastIndexOf(")")));
-    const rows = json.table.rows.map(r => r.c.map(c => c ? c.v : ""));
-    let data = [];
-    for (let r of rows) {
-      if (r.length >= 3 && r[0] && r[1]) {
-        data.push({ name: r[0], score: parseInt(r[1]) || 0, time: parseInt(r[2]) || 0 });
-      }
-    }
-    data = data.sort((a,b) => b.score - a.score || a.time - b.time).slice(0,10);
-    leaderBody.innerHTML = data.map((r,i)=>
-      `<tr><td>${i+1}</td><td>${r.name}</td><td>${r.score}</td><td>${r.time}</td></tr>`
-    ).join("");
-  } catch (e) {
-    console.error(e);
-    leaderBody.innerHTML = "<tr><td colspan='4'>⚠️ Error loading leaderboard</td></tr>";
+  // create up to 30 pieces
+  const colors=['#ffd700','#00d4ff','#ff6ec7','#6effa1'];
+  const pieces = 30;
+  const container = confettiRoot;
+  // clear existing
+  container.innerHTML='';
+  for(let i=0;i<pieces;i++){
+    const el = document.createElement('div'); el.className='confetti';
+    const size = 6 + Math.random()*12; el.style.width = size+'px'; el.style.height = size+'px';
+    el.style.left = Math.random()*100+'%'; el.style.background = colors[Math.floor(Math.random()*colors.length)];
+    el.style.opacity = 0.95; el.style.transform = `translateX(${(Math.random()-0.5)*40}vw)`;
+    el.style.animationDuration = (1800+Math.random()*1200)+'ms';
+    el.style.animationDelay = (Math.random()*200)+'ms';
+    container.appendChild(el);
   }
-  leaderLoad.style.display="none";
+  // remove after animation
+  setTimeout(()=>{ container.innerHTML=''; }, 3500);
 }
 
-replayBtn.onclick=()=>{resultPanel.style.display="none";startPanel.style.display="block";};
+// ===== Leaderboard load with safety checks =====
+async function loadLeaderboard(){
+  leaderLoad.style.display='inline-block'; leaderBody.innerHTML='';
+  try{
+    const res = await fetch(`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&tq&gid=0`);
+    if(!res.ok) throw new Error('Sheet fetch failed');
+    const text = await res.text();
+    const json = JSON.parse(text.substring(text.indexOf('(')+1, text.lastIndexOf(')')));
+    const rows = json.table?.rows || [];
+    let data = [];
+    for(let r of rows){
+      const c = r.c || [];
+      const name = c[0] ? c[0].v : '';
+      const score = c[1] ? parseInt(c[1].v) : 0;
+      const time = c[2] ? parseInt(c[2].v) : 0;
+      if(name) data.push({name,score,time});
+    }
+    data = data.sort((a,b)=> b.score - a.score || a.time - b.time).slice(0,10);
+    leaderBody.innerHTML = data.map((r,i)=>{
+      const medal = ['🥇','🥈','🥉'][i] || (i+1);
+      return `<tr><td>${medal}</td><td>${r.name}</td><td>${r.score}</td><td>${r.time}</td></tr>`;
+    }).join('');
+    if(data.length===0) leaderBody.innerHTML = '<tr><td colspan="4">No scores yet — be the first! 🏁</td></tr>';
+  }catch(e){
+    console.error(e);
+    leaderBody.innerHTML = '<tr><td colspan="4">⚠️ Error loading leaderboard</td></tr>';
+  }
+  leaderLoad.style.display='none';
+}
 
-loadLeaderboard();setInterval(loadLeaderboard,20000);
+replayBtn.onclick = ()=>{ hide(resultPanel); show(startPanel); };
+
+// sound toggle
+soundToggle.onclick = ()=>{ soundOn = !soundOn; soundToggle.textContent = soundOn? '🔊' : '🔇'; soundToggle.setAttribute('aria-pressed', String(soundOn)); };
+
+// initial leaderboard load and polling
+loadLeaderboard(); setInterval(loadLeaderboard,20000);
+
+// quick keyboard accessibility: Enter to start
+nameInput.addEventListener('keydown', e=>{ if(e.key==='Enter') startBtn.click(); });
+
 </script>
 </body>
 </html>
